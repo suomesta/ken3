@@ -1,16 +1,16 @@
 # ken3
 
-The c++ library ken3 includes some useful functions.
+The C++ library ken3 includes some useful functions.
 
 ## Getting Started
 
 All ken3 source code depends on only c++11 standard.
 It is recommended to build ken3 by Bazel.
 
-bits: handling bit data.
-metric: easy and portable conversion between units.
-pystr: functions which imitate python str function.
-stopwatch: simple but useful stopwatch using c++11 chrono.
+- bits: handling bit data.
+- metric: easy and flexible conversion between units.
+- pystr: functions which imitate python str function.
+- stopwatch: simple but useful stopwatch using c++11 chrono.
 
 ### Installing
 
