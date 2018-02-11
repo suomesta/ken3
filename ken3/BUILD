@@ -1,7 +1,13 @@
 cc_library(
-    name = "stopwatch",
-    srcs = ["stopwatch.cpp"],
-    hdrs = ["stopwatch.hpp"],
+    name = "bits",
+    srcs = ["bits.cpp"],
+    hdrs = ["bits.hpp"],
+    visibility = ["//unittest:__pkg__"],
+)
+
+cc_library(
+    name = "metric",
+    hdrs = ["metric.hpp"],
     visibility = ["//unittest:__pkg__"],
 )
 
@@ -13,8 +19,9 @@ cc_library(
 )
 
 cc_library(
-    name = "metric",
-    hdrs = ["metric.hpp"],
+    name = "stopwatch",
+    srcs = ["stopwatch.cpp"],
+    hdrs = ["stopwatch.hpp"],
     visibility = ["//unittest:__pkg__"],
 )
 
