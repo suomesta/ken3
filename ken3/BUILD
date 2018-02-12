@@ -6,6 +6,12 @@ cc_library(
 )
 
 cc_library(
+    name = "biunique_map",
+    hdrs = ["biunique_map.hpp"],
+    visibility = ["//unittest:__pkg__"],
+)
+
+cc_library(
     name = "metric",
     hdrs = ["metric.hpp"],
     visibility = ["//unittest:__pkg__"],
@@ -25,8 +31,3 @@ cc_library(
     visibility = ["//unittest:__pkg__"],
 )
 
-cc_binary(
-    name = "test",
-    srcs = ["test.cpp"],
-    deps = [":stopwatch", ":pystr"],
-)

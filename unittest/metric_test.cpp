@@ -1,6 +1,6 @@
 /**
  * @file    metric_test.cpp
- * @brief   Implementation of MetricTest class and main function. 
+ * @brief   Testing ken3::metric using lest. 
  * @author  toda
  * @date    2017-01-24
  * @version 0.1.0

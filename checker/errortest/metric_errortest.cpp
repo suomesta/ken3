@@ -1,10 +1,10 @@
 /**
- * @file    metric_compile_error.cpp
+ * @file    metric_errortest.cpp
  * @brief   Define some test function to check compile error occurs.
  * @author  toda
  * @date    2017-07-07
  * @version 0.1.0
- * @target  C++11
+ * @remark  the target is C++11 or more
  */
 
 #include "../../ken3/metric.hpp"
