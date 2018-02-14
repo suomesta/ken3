@@ -159,8 +159,8 @@ const bits bits::operator+(const bits& rhs) const
  */
 bits& bits::operator&=(const bits& rhs)
 {
-    std::list<bool>::iterator i = value_.begin();
-    std::list<bool>::const_iterator j = rhs.value_.cbegin();
+    storage_type::iterator i = value_.begin();
+    storage_type::const_iterator j = rhs.value_.cbegin();
     for (; i != value_.end() && j != rhs.value_.cend(); ++i, ++j) {
         *i &= *j;
     }
@@ -196,8 +196,8 @@ const bits bits::operator&(const bits& rhs) const
  */
 bits& bits::operator|=(const bits& rhs)
 {
-    std::list<bool>::iterator i = value_.begin();
-    std::list<bool>::const_iterator j = rhs.value_.cbegin();
+    storage_type::iterator i = value_.begin();
+    storage_type::const_iterator j = rhs.value_.cbegin();
     for (; i != value_.end() && j != rhs.value_.cend(); ++i, ++j) {
         *i |= *j;
     }
@@ -233,8 +233,8 @@ const bits bits::operator|(const bits& rhs) const
  */
 bits& bits::operator^=(const bits& rhs)
 {
-    std::list<bool>::iterator i = value_.begin();
-    std::list<bool>::const_iterator j = rhs.value_.cbegin();
+    storage_type::iterator i = value_.begin();
+    storage_type::const_iterator j = rhs.value_.cbegin();
     for (; i != value_.end() && j != rhs.value_.cend(); ++i, ++j) {
         *i ^= *j;
     }
@@ -353,6 +353,16 @@ bits::size_type bits::size(void) const noexcept
 /////////////////////////////////////////////////////////////////////////////
 
 /**
+ * @brief      is empty
+ * @return     true: empty, false: not empty
+ */
+bool bits::empty(void) const noexcept
+{
+    return value_.empty();
+}
+/////////////////////////////////////////////////////////////////////////////
+
+/**
  * @brief      convert bits data into string
  * @return     converted string.
  * @note       bits b(4, 0xA5); b.str(); => "0101"
@@ -379,7 +389,7 @@ std::string bits::str(void) const
  */
 void bits::reverse(void) noexcept
 {
-    return value_.reverse();
+    std::reverse(value_.begin(), value_.end());
 }
 /////////////////////////////////////////////////////////////////////////////
 
@@ -392,6 +402,15 @@ void bits::inverse(void)
     for (auto& i: value_) {
         i = !i;
     }
+}
+/////////////////////////////////////////////////////////////////////////////
+
+/**
+ * @brief      remove all bits
+ */
+void bits::clear(void)
+{
+    value_.clear();
 }
 /////////////////////////////////////////////////////////////////////////////
 
@@ -417,11 +436,9 @@ bits::int_type bits::pop_msb(size_type length)
     size_type pop_size = std::min({length, value_.size(), sizeof(int_type) * 8});
 
     int_type ret = 0;
-    std::list<bool>::const_iterator iter = value_.cbegin();
     for (size_type i = 0; i < pop_size; i++) {
-        ret = (ret << 1) + (*iter ? 1 : 0);
+        ret = (ret << 1) + (value_.front() ? 1 : 0);
 
-        ++iter;
         value_.pop_front();
     }
 
@@ -439,11 +456,9 @@ bits::int_type bits::pop_lsb(size_type length)
     size_type pop_size = std::min({length, value_.size(), sizeof(int_type) * 8});
 
     int_type ret = 0;
-    std::list<bool>::const_reverse_iterator riter = value_.crbegin();
     for (size_type i = 0; i < pop_size; i++) {
-        ret += ((*riter ? 1 : 0) << i);
+        ret += ((value_.back() ? 1 : 0) << i);
 
-        ++riter;
         value_.pop_back();
     }
 
@@ -463,18 +478,15 @@ bits::int_type bits::refer(size_type start, size_type length) const
         return 0;
     }
 
-    std::list<bool>::const_iterator iter = value_.cbegin();
-    std::advance(iter, start); // at this moment, iter < value_.end()
+    size_type refer_size = std::min({length, value_.size() - start, sizeof(int_type) * 8});
+    storage_type::const_iterator iter = std::next(value_.cbegin(), start); // at this moment, iter < value_.end()
 
     int_type ret = 0;
-    for (size_type i = 0; i < length; i++) {
+    for (size_type i = 0; i < refer_size; i++) {
         ret <<= 1;
         ret += (*iter ? 1 : 0);
 
         ++iter;
-        if (iter == value_.end()) {
-            break;
-        }
     }
 
     return ret;

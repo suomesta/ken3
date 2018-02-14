@@ -26,7 +26,7 @@
 #define INCLUDE_GUARD_KEN3_BITS_HPP
 
 #include <cstdint>
-#include <list>
+#include <deque>
 #include <string>
 
 namespace ken3 {
@@ -42,8 +42,9 @@ class bits
 {
 public:
     // type defines
-    typedef std::list<bool>::size_type size_type;
-    typedef std::uint64_t int_type;
+    using storage_type = std::deque<bool>; // storage_type shall support pop_front() and pop_back()
+    using size_type = storage_type::size_type;
+    using int_type = std::uint64_t;
     /////////////////////////////////////////////////////////////////////////////
 
 public:
@@ -270,6 +271,13 @@ public:
     /////////////////////////////////////////////////////////////////////////////
 
     /**
+     * @brief      is empty
+     * @return     true: empty, false: not empty
+     */
+    bool empty(void) const noexcept;
+    /////////////////////////////////////////////////////////////////////////////
+
+    /**
      * @brief      convert bits data into string
      * @return     converted string.
      * @note       bits b(4, 0xA5); b.str(); => "0101"
@@ -292,6 +300,12 @@ public:
      * @note       bits(8, 0x12).inverse(); => "1110 1101"
      */
     void inverse(void);
+    /////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * @brief      remove all bits
+     */
+    void clear(void);
     /////////////////////////////////////////////////////////////////////////////
 
     /**
@@ -327,7 +341,7 @@ public:
     /////////////////////////////////////////////////////////////////////////////
 
 private:
-    std::list<bool> value_;
+    std::deque<bool> value_;
     /////////////////////////////////////////////////////////////////////////////
 
 };

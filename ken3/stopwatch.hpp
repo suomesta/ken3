@@ -6,6 +6,7 @@
  * @date    2018-01-17
  * @version 0.1.0
  * @remark  the target is C++11 or more
+ * @remark  stopwatch class is completely exception free
  *
  * @note
  * Typical usage is;
@@ -38,6 +39,7 @@ namespace ken3 {
  * @brief   stopwatch can measure elapsed time based on C++11 <chrono>.
  *          stopwatch supports start/stop, and getter of elapsed time in
  *          ns, us, ms, and s.
+ * @note    this class is completely exception free..
  */
 class stopwatch
 {
