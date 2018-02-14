@@ -7,8 +7,6 @@
  * @remark  the target is C++11 or more
  */
 
-#include <cmath>
-#include <limits>
 #include <type_traits>
 #include "ken3/metric.hpp"
 #include "unittest/lest.hpp"

@@ -624,6 +624,26 @@ const lest::test specification[] =
         }
     },
 
+    CASE("empty")
+    {
+        using ken3::bits;
+
+        {
+            bits b(4, 0x0A);
+            EXPECT(not b.empty());
+            b += bits(4, 0x05);
+            EXPECT(not b.empty());
+            b.clear();
+            EXPECT(b.empty());
+            b <<= 4;
+            EXPECT(not b.empty());
+        }
+        {
+            bits b;
+            EXPECT(b.empty());
+        }
+    },
+
     CASE("str")
     {
         using ken3::bits;
@@ -679,6 +699,23 @@ const lest::test specification[] =
             EXPECT(0UL == b.size());
             EXPECT("" == b.str());
             EXPECT(0UL == b.refer(0, 1));
+        }
+    },
+
+    CASE("inverse")
+    {
+        using ken3::bits;
+
+        {
+            bits b(4, 0x0A);
+            EXPECT(4UL == b.size());
+            b.clear();
+            EXPECT(0UL == b.size());
+        }
+        {
+            bits b;
+            b.clear();
+            EXPECT(0UL == b.size());
         }
     },
 
@@ -815,6 +852,11 @@ const lest::test specification[] =
             EXPECT(0UL == b.refer(0, 0));
             EXPECT(0UL == b.refer(2, 0));
             EXPECT(0UL == b.refer(100, 8));
+        }
+        {
+            const unsigned char a[9] = {0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA};
+            bits b(sizeof(a) * 8, a, 0);
+            EXPECT(0xAAAAAAAAAAAAAAAA == b.refer(0, 65));
         }
     },
 

@@ -1,4 +1,10 @@
 cc_library(
+    name = "angle",
+    hdrs = ["angle.hpp"],
+    visibility = ["//unittest:__pkg__"],
+)
+
+cc_library(
     name = "bits",
     srcs = ["bits.cpp"],
     hdrs = ["bits.hpp"],

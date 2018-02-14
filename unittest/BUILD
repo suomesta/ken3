@@ -1,4 +1,11 @@
 cc_test(
+    name = "angle_test",
+    srcs = ["angle_test.cpp", "lest.hpp"],
+    deps = ["//ken3:angle"],
+    size = "small",
+)
+
+cc_test(
     name = "bits_test",
     srcs = ["bits_test.cpp", "lest.hpp"],
     deps = ["//ken3:bits"],
