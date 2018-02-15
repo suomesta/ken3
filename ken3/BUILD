@@ -37,3 +37,9 @@ cc_library(
     visibility = ["//unittest:__pkg__"],
 )
 
+cc_library(
+    name = "type_util",
+    hdrs = ["type_util.hpp"],
+    visibility = ["//unittest:__pkg__"],
+)
+

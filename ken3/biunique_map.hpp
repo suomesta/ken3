@@ -5,7 +5,8 @@
  * @author  toda
  * @date    2016-11-24
  * @version 0.1.0
- * @target  C++11
+ * @remark  the target is C++11
+ * @remark  biunique_map works only with this header file
  *
  * @note
  * Typical usage is;

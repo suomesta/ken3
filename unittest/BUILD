@@ -40,3 +40,10 @@ cc_test(
     size = "small",
 )
 
+cc_test(
+    name = "type_util_test",
+    srcs = ["type_util_test.cpp", "type_util/e2i_test.cpp", "type_util/array_size_test.cpp", "lest.hpp"],
+    deps = ["//ken3:type_util"],
+    size = "small",
+)
+

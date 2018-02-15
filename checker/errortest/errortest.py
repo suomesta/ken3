@@ -37,6 +37,7 @@ def filenames(targets, exclude):
         names = list(targets)
     else:
         names = [i for i in glob.glob('*.cpp')]
+        names += [i for i in glob.glob('*/*.cpp')]
 
     if exclude:
         names = [i for i in names if i not in exclude]
