@@ -23,6 +23,7 @@
  * usage of ken3::array_get() is,
  *     int a[3] = {1, 2, 3};
  *     int i = ken3::array_get<1>(a); // i is 2
+ *     i = ken3::array_get<3>(a); // compile error!
  *     int* p = a;
  *     i = ken3::array_get<1>(p); // compile error!
  *
