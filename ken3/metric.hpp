@@ -104,7 +104,7 @@ using RadianPerMinute = Unit<Rot, std::ratio_divide<typename Radian::ratio, type
 using DegreePerMinute = Unit<Rot, std::ratio_divide<typename Degree::ratio, typename Minute::ratio>>;
 /////////////////////////////////////////////////////////////////////////////
 
-namespace detail {
+namespace metirc_detail {
 
 // types of unit checker
 template<typename>
@@ -133,7 +133,7 @@ constexpr VALUE scaling_factor(void)
 }
 /////////////////////////////////////////////////////////////////////////////
 
-} // namespace detail {
+} // namespace metirc_detail {
 
 /**
  * @brief      convert value in a unit into another unit value.
@@ -147,13 +147,13 @@ template <typename FROM, typename TO, typename VALUE>
 typename std::common_type<VALUE, double>::type convert(VALUE value)
 {
     // check template types
-    static_assert(detail::is_unit<FROM>::value && detail::is_unit<TO>::value,
+    static_assert(metirc_detail::is_unit<FROM>::value && metirc_detail::is_unit<TO>::value,
                   "FROM and TO must be metric::Unit in metric::convert().");
     static_assert(std::is_same<Arbitrary, typename FROM::type>::value ||
                   std::is_same<Arbitrary, typename TO::type>::value ||
                   std::is_same<typename FROM::type, typename TO::type>::value,
                   "Type mismatch in metric::convert().");
-    static_assert(detail::is_ratio<typename FROM::ratio>::value && detail::is_ratio<typename TO::ratio>::value,
+    static_assert(metirc_detail::is_ratio<typename FROM::ratio>::value && metirc_detail::is_ratio<typename TO::ratio>::value,
                   "FROM and TO must include std::ratio in metric::convert().");
 
     // create types
@@ -161,7 +161,7 @@ typename std::common_type<VALUE, double>::type convert(VALUE value)
     using return_type = typename std::common_type<VALUE, double>::type;
 
     // do conversion
-    return value * detail::scaling_factor<ratio, return_type>();
+    return value * metirc_detail::scaling_factor<ratio, return_type>();
 }
 /////////////////////////////////////////////////////////////////////////////
 

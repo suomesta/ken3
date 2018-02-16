@@ -1,5 +1,5 @@
 /**
- * @file    type_util/array_size_errortest.cpp
+ * @file    type_util/array_get_errortest.cpp
  * @brief   Define some test function to check compile error occurs.
  * @author  toda
  * @date    2017-07-21
@@ -22,7 +22,7 @@
 int test_func(void)
 {
     int i = 0;
-    size_t size = ken3::array_size<decltype(i)>::value;
+    auto a = ken3::array_get<0>(i)>;
 
     return 0;
 }
@@ -37,7 +37,7 @@ int test_func(void)
 {
     int array[3] = {1, 2, 3};
     int* p = array;
-    size_t size = ken3::array_size<decltype(p)>::value;
+    auto a = ken3::array_get<0>(p)>;
 
     return 0;
 }
@@ -51,7 +51,7 @@ int test_func(void)
 int test_func(void)
 {
     std::array<int, 3> array{1, 2, 3};
-    size_t size = ken3::array_size<decltype(array)>::value;
+    auto a = ken3::array_get<0>(array)>;
 
     return 0;
 }
@@ -65,7 +65,7 @@ int test_func(void)
 int test_func(void)
 {
     std::string s{"str"};
-    size_t size = ken3::array_size<decltype(s)>::value;
+    auto a = ken3::array_get<0>(s)>;
 
     return 0;
 }
@@ -79,7 +79,7 @@ int test_func(void)
 int test_func(void)
 {
     std::vector<int> v{1, 2, 3};
-    size_t size = ken3::array_size<decltype(v)>::value;
+    auto a = ken3::array_get<0>(v)>;
 
     return 0;
 }
@@ -92,7 +92,7 @@ int test_func(void)
  */
 int test_func(void)
 {
-    size_t size = ken3::array_size<decltype(nullptr)>::value;
+    auto a = ken3::array_get<0>(nullptr)>;
 
     return 0;
 }
@@ -108,7 +108,7 @@ int test_func(void)
     class c
     {
     };
-    size_t size = ken3::array_size<c>::value;
+    auto a = ken3::array_get<0>(c)>;
 
     return 0;
 }
@@ -122,7 +122,34 @@ int test_func(void)
 int test_func(void)
 {
     int array[2][2] = {{0, 1}, {2, 3}};
-    size_t size = ken3::array_size<decltype(array)>::value;
+    auto a = ken3::array_get<0>(array)>;
+
+    return 0;
+}
+/////////////////////////////////////////////////////////////////////////////
+
+#elif defined D0009_TEST_FUNC_ACTIVATED
+/**
+ * @brief      test that compile error occurs when index is out of bounds.
+ */
+int test_func(void)
+{
+    int array[3] = {1, 2, 3};
+    auto a = ken3::array_get<3>(array)>;
+
+    return 0;
+}
+/////////////////////////////////////////////////////////////////////////////
+
+#elif defined D0010_TEST_FUNC_ACTIVATED
+/**
+ * @brief      test that compile error occurs when index is out of bounds
+ *             once more.
+ */
+int test_func(void)
+{
+    int array[3] = {1, 2, 3};
+    auto a = ken3::array_get<100>(array)>;
 
     return 0;
 }
