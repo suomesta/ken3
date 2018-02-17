@@ -6,7 +6,7 @@
  * @author  toda
  * @date    2017-01-24
  * @version 0.1.0
- * @remark  the target is C++11
+ * @remark  the target is C++11 or more
  * @remark  metric works only with this header file
  *
  * @note

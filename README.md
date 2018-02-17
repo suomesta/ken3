@@ -5,12 +5,15 @@ The C++ library ken3 includes some useful functions.
 ## Getting Started
 
 All ken3 source code depends on only c++11 standard.
-It is recommended to build ken3 by Bazel.
+Bazel is recommended to build and test ken3.
 
+- angle: util angle class.
 - bits: handling bit data.
 - metric: easy and flexible conversion between units.
-- pystr: functions which imitate python str function.
-- stopwatch: simple but useful stopwatch using c++11 chrono.
+- pyloop: functions to create Python like object for range-for statement.
+- pystr: functions which imitate Python str function.
+- stopwatch: simple but useful stopwatch using C++11 <chrono>.
+- type_util: util class and functions using C++11 <type_traits>.
 
 ### Installing
 
