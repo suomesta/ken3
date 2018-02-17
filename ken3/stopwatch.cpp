@@ -10,7 +10,7 @@
 
 #include <ratio>
 #include <utility>
-#include "stopwatch.hpp"
+#include "ken3/stopwatch.hpp"
 
 namespace {
 

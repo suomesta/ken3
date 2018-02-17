@@ -10,7 +10,7 @@
 #include <array>
 #include <string>
 #include <vector>
-#include "../../../ken3/type_util.hpp"
+#include "ken3/type_util.hpp"
 
 #if 0
 

@@ -7,7 +7,7 @@
  * @remark  the target is C++11 or more
  */
 
-#include "../../ken3/metric.hpp"
+#include "ken3/metric.hpp"
 
 #if 0
 

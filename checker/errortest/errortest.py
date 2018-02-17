@@ -16,7 +16,7 @@ __version__ = '1.0.0'
 # compile command
 COMMAND = 'g++'
 # options of compile command
-OPTIONS = ['--std=c++11', '-c']
+OPTIONS = ['--std=c++11', '-c', '-I../../']
 # '#elif defined D0001_TEST_FUNC_ACTIVATED'
 DEF_LENGTH = 39
 DEF_PREFIX = '#elif defined D'
@@ -66,12 +66,15 @@ def execute(name, full_description):
                 line.endswith(DEF_SUFFIX)):
             defines.add(line.split(' ')[2])
 
+    # output file name
+    out = '.o'.join(name.rsplit('.cpp', 1))
+
     # try to compile and get result
     oks = []
     ngs = []
 
     for define in sorted(defines):
-        cmd = ' '.join([COMMAND, name, '-D ' + define] + OPTIONS)
+        cmd = ' '.join([COMMAND, name, '-D', define, '-o', out] + OPTIONS)
         proc = subprocess.Popen(cmd, shell=True, cwd=None,
                                 stdout=subprocess.PIPE,
                                 stderr=subprocess.PIPE)
@@ -82,7 +85,7 @@ def execute(name, full_description):
         else:  # success to compile
             ngs.append(define)
             # remove object file
-            os.remove('.o'.join(name.rsplit('.cpp', 1)))
+            os.remove(out)
 
         if full_description:  # print program's output
             print(stdout.decode('utf-8'))

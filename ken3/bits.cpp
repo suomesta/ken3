@@ -11,7 +11,7 @@
 #include <algorithm>
 #include <iterator>
 #include <limits>
-#include "bits.hpp"
+#include "ken3/bits.hpp"
 
 namespace ken3 {
 

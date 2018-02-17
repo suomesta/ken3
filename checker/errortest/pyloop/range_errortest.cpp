@@ -1,25 +1,27 @@
 /**
- * @file    type_util/e2i_errortest.cpp
+ * @file    pyloop/range_errortest.cpp
  * @brief   Define some test function to check compile error occurs.
  * @author  toda
- * @date    2017-07-21
+ * @date    2017-08-25
  * @version 0.1.0
  * @remark  the target is C++11 or more
  */
 
-#include "ken3/type_util.hpp"
+#include <string>
+#include "ken3/pyloop.hpp"
 
 #if 0
 
 #elif defined D0001_TEST_FUNC_ACTIVATED
 /**
  * @brief      test that compile error occurs when template argument is
- *             int (not enum).
+ *             bool (range does not accept).
  */
 int test_func(void)
 {
-    int i = 0;
-    auto a = ken3::e2i(i);
+    for (const auto& i: ken3::pyloop::range<bool>(true)) {
+        ;
+    }
 
     return 0;
 }
@@ -28,12 +30,13 @@ int test_func(void)
 #elif defined D0002_TEST_FUNC_ACTIVATED
 /**
  * @brief      test that compile error occurs when template argument is
- *             pointer (not enum).
+ *             not integral (std::string).
  */
 int test_func(void)
 {
-    int* p = nullptr;
-    auto a = ken3::e2i(p);
+    for (const auto& i: ken3::pyloop::range(std::string("abc"))) {
+        ;
+    }
 
     return 0;
 }
@@ -42,14 +45,15 @@ int test_func(void)
 #elif defined D0003_TEST_FUNC_ACTIVATED
 /**
  * @brief      test that compile error occurs when template argument is
- *             class (not enum).
+ *             not integral (struct).
  */
 int test_func(void)
 {
-    class c
-    {
-    };
-    auto a = ken3::e2i(c{});
+    struct S{};
+
+    for (const auto& i: ken3::pyloop::range(S{})) {
+        ;
+    }
 
     return 0;
 }
@@ -58,11 +62,16 @@ int test_func(void)
 #elif defined D0004_TEST_FUNC_ACTIVATED
 /**
  * @brief      test that compile error occurs when template argument is
- *             nullptr (not enum).
+ *             not integral (pointer).
  */
 int test_func(void)
 {
-    auto a = ken3::e2i(nullptr);
+    int i = 0;
+    int* p = &i;
+
+    for (const auto& i: ken3::pyloop::range(p)) {
+        ;
+    }
 
     return 0;
 }
@@ -82,7 +91,9 @@ int test_func(void)
 
 int main(void)
 {
-    return test_func();
+    test_func();
+
+    return 0;
 }
 /////////////////////////////////////////////////////////////////////////////
 

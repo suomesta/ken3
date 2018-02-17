@@ -11,7 +11,7 @@
 #include <algorithm>
 #include <cctype>
 #include <map>
-#include "pystr.hpp"
+#include "ken3/pystr.hpp"
 
 namespace {
 

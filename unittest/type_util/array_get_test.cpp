@@ -46,3 +46,4 @@ const lest::test module[] =
 extern lest::tests& specification();
 
 MODULE(specification(), module)
+

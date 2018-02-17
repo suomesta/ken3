@@ -27,6 +27,13 @@ cc_test(
 )
 
 cc_test(
+    name = "pyloop_test",
+    srcs = ["pyloop_test.cpp", "pyloop/enumerate_test.cpp", "pyloop/range_test.cpp", "pyloop/zip_test.cpp", "lest.hpp"],
+    deps = ["//ken3:pyloop"],
+    size = "small",
+)
+
+cc_test(
     name = "pystr_test",
     srcs = ["pystr_test.cpp", "lest.hpp"],
     deps = ["//ken3:pystr"],

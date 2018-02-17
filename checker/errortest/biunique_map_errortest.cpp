@@ -7,7 +7,7 @@
  * @remark  the target is C++11 or more
  */
 
-#include "../../ken3/biunique_map.hpp"
+#include "ken3/biunique_map.hpp"
 
 #if 0
 
