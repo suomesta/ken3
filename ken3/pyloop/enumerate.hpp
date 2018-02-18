@@ -24,6 +24,7 @@ struct enumerate_iterator
 {
     using self_type = enumerate_iterator<ITERATOR>;
     using size_type = typename std::iterator_traits<ITERATOR>::difference_type;
+    using return_type = std::pair<size_type, decltype(*std::declval<ITERATOR>())>;
 
     size_type first;
     ITERATOR second;
@@ -34,9 +35,9 @@ struct enumerate_iterator
         ++second;
     }
 
-    auto operator*(void) -> std::pair<size_type, decltype(*second)>
+    return_type operator*(void)
     {
-        return std::pair<size_type, decltype(*second)>{first, *second};
+        return return_type{first, *second};
     }
 
     bool operator!=(const self_type& rhs) const
@@ -50,17 +51,14 @@ struct enumerate_iterator
 template <typename ITERABLE>
 class enumerate_object
 {
-private:
-    const ITERABLE& iterable_;
-
 public:
-    using iterator_type = enumerate_iterator<decltype(std::begin(iterable_))>;
+    using iterator_type = enumerate_iterator<decltype(std::begin(std::declval<ITERABLE&>()))>;
 
-    enumerate_object(void) = delete;
-
-    explicit enumerate_object(const ITERABLE& iterable):
+    explicit enumerate_object(ITERABLE& iterable):
         iterable_(iterable)
     {}
+
+    enumerate_object(void) = delete;
 
     iterator_type begin(void) const
     {
@@ -72,6 +70,9 @@ public:
         return iterator_type{std::distance(std::begin(iterable_), std::end(iterable_)),
                              std::end(iterable_)};
     }
+
+private:
+    ITERABLE& iterable_;
 };
 /////////////////////////////////////////////////////////////////////////////
 

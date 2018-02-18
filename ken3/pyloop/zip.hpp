@@ -22,6 +22,9 @@ namespace zip_detail {
 template <typename ITERATOR1, typename ITERATOR2>
 struct zip_iterator
 {
+    using return_type = std::pair<decltype(*std::declval<ITERATOR1>()),
+                                  decltype(*std::declval<ITERATOR2>())>;
+
     ITERATOR1 first;
     ITERATOR2 second;
 
@@ -31,9 +34,9 @@ struct zip_iterator
         ++second;
     }
 
-    auto operator*(void) -> std::pair<decltype(*first), decltype(*second)>
+    return_type operator*(void)
     {
-        return std::pair<decltype(*first), decltype(*second)>{*first, *second};
+        return return_type{*first, *second};
     }
 
     bool operator!=(const zip_iterator& rhs) const
@@ -48,16 +51,16 @@ template <typename ITERABLE1, typename ITERABLE2>
 class zip_object
 {
 private:
-    const ITERABLE1& iterable1_;
-    const ITERABLE2& iterable2_;
-
-    using iterator = zip_iterator<decltype(std::begin(iterable1_)), decltype(std::begin(iterable2_))>;
+    using iterator = zip_iterator<decltype(std::begin(std::declval<ITERABLE1&>())),
+                                  decltype(std::begin(std::declval<ITERABLE2&>()))>;
 
 public:
-    zip_object(const ITERABLE1& iterable1, const ITERABLE2& iterable2):
+    zip_object(ITERABLE1& iterable1, ITERABLE2& iterable2):
         iterable1_(iterable1),
         iterable2_(iterable2)
     {}
+
+    zip_object(void) = delete;
 
     iterator begin(void) const
     {
@@ -68,6 +71,10 @@ public:
     {
         return iterator{std::end(iterable1_), std::end(iterable2_)};
     }
+
+private:
+    ITERABLE1& iterable1_;
+    ITERABLE2& iterable2_;
 };
 /////////////////////////////////////////////////////////////////////////////
 

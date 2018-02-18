@@ -91,7 +91,7 @@ struct ValueError : public std::runtime_error
  * @return     created enumerate object. this works in range-for statement.
  */
 template <typename ITERABLE>
-enumerate_detail::enumerate_object<ITERABLE> enumerate(const ITERABLE& iterable)
+enumerate_detail::enumerate_object<ITERABLE> enumerate(ITERABLE& iterable)
 {
     return enumerate_detail::enumerate_object<ITERABLE>(iterable);
 }
@@ -156,7 +156,7 @@ range_detail::range_object<T> range(T stop)
  * @return     created zip object. this works in range-for statement.
  */
 template <typename ITERABLE1, typename ITERABLE2>
-zip_detail::zip_object<ITERABLE1, ITERABLE2> zip(const ITERABLE1& iterable1, const ITERABLE2& iterable2)
+zip_detail::zip_object<ITERABLE1, ITERABLE2> zip(ITERABLE1& iterable1, ITERABLE2& iterable2)
 {
     return zip_detail::zip_object<ITERABLE1, ITERABLE2>(iterable1, iterable2);
 }

@@ -7,7 +7,6 @@
  * @remark  the target is C++11 or more
  */
 
-#include <array>
 #include <string>
 #include <vector>
 #include "ken3/pyloop.hpp"
@@ -65,6 +64,57 @@ int test_func(void)
 
     for (const auto& i: ken3::pyloop::enumerate(p)) {
         ;
+    }
+
+    return 0;
+}
+/////////////////////////////////////////////////////////////////////////////
+
+#elif defined D0004_TEST_FUNC_ACTIVATED
+/**
+ * @brief      test that compile error occurs when try to modify const array
+ *             through enumerate.
+ */
+int test_func(void)
+{
+    const int array[3] = {1, 22, 333};
+
+    for (const auto& i: ken3::pyloop::enumerate(array)) {
+        i.second += 1;
+    }
+
+    return 0;
+}
+/////////////////////////////////////////////////////////////////////////////
+
+#elif defined D0005_TEST_FUNC_ACTIVATED
+/**
+ * @brief      test that compile error occurs when try to modify const STL
+ *             through enumerate.
+ */
+int test_func(void)
+{
+    const std::vector<int> v{1, 22, 333};
+
+    for (const auto& i: ken3::pyloop::enumerate(v)) {
+        i.second += 1;
+    }
+
+    return 0;
+}
+/////////////////////////////////////////////////////////////////////////////
+
+#elif defined D0006_TEST_FUNC_ACTIVATED
+/**
+ * @brief      test that compile error occurs when try to modify const std::string
+ *             through enumerate.
+ */
+int test_func(void)
+{
+    const std::string s = "ABC";
+
+    for (const auto& i: ken3::pyloop::enumerate(s)) {
+        i.second += 1;
     }
 
     return 0;
