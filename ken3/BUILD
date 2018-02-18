@@ -18,6 +18,12 @@ cc_library(
 )
 
 cc_library(
+    name = "cast",
+    hdrs = ["cast.hpp", "cast/int_cast.hpp"],
+    visibility = ["//unittest:__pkg__"],
+)
+
+cc_library(
     name = "metric",
     hdrs = ["metric.hpp"],
     visibility = ["//unittest:__pkg__"],

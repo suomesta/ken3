@@ -8,7 +8,9 @@ All ken3 source code depends on only c++11 standard.
 Bazel is recommended to build and test ken3.
 
 - angle: util angle class.
+- biunique_map: useful expanded map class.
 - bits: handling bit data.
+- cast: supports some safe cast functions.
 - metric: easy and flexible conversion between units.
 - pyloop: functions to create Python like object for range-for statement.
 - pystr: functions which imitate Python str function.

@@ -86,8 +86,8 @@ struct ValueError : public std::runtime_error
 /**
  * @function   enumerate
  * @brief      create and return enumerate object.
+ * @tparam     ITERABLE: type of argument. should accept std::begin() and std::end().
  * @param[in]  iterable: appointed iterable object. shall be left const reference.
- * @template   ITERABLE: type of argument. should accept std::begin() and std::end().
  * @return     created enumerate object. this works in range-for statement.
  */
 template <typename ITERABLE>
@@ -100,10 +100,10 @@ enumerate_detail::enumerate_object<ITERABLE> enumerate(ITERABLE& iterable)
 /**
  * @function   enumerate with (start, stop, step)
  * @brief      create and return range object.
+ * @tparam     T: type of element. shall be integral type (exclude bool).
  * @param[in]  start: start value of range.
  * @param[in]  stop: stop value of range.
  * @param[in]  step: step value of range.
- * @template   T: type of element. shall be integral type (exclude bool).
  * @return     created range object. this works in range-for statement.
  * @throw      ken3::pyloop::ValueError: if step is 0.
  */
@@ -118,9 +118,9 @@ range_detail::range_object<T> range(T start, T stop, T step)
 /**
  * @function   enumerate with (start, stop)
  * @brief      create and return range object.
+ * @tparam     T: type of element. shall be integral type (exclude bool).
  * @param[in]  start: start value of range.
  * @param[in]  stop: stop value of range.
- * @template   T: type of element. shall be integral type (exclude bool).
  * @return     created range object. this works in range-for statement.
  * @note       step is set to 1 automatically.
  */
@@ -134,8 +134,8 @@ range_detail::range_object<T> range(T start, T stop)
 /**
  * @function   enumerate with (stop)
  * @brief      create and return range object.
+ * @tparam     T: type of element. shall be integral type (exclude bool).
  * @param[in]  stop: stop value of range.
- * @template   T: type of element. shall be integral type (exclude bool).
  * @return     created range object. this works in range-for statement.
  * @note       start is set to 0, step is set to 1 automatically.
  */
@@ -149,10 +149,10 @@ range_detail::range_object<T> range(T stop)
 /**
  * @function   zip
  * @brief      create and return zip object.
+ * @tparam     ITERABLE1: type of iterable1. should accept std::begin() and std::end().
+ * @tparam     ITERABLE2: type of iterable2. should accept std::begin() and std::end().
  * @param[in]  iterable1: appointed iterable object 1 of 2. shall be left const reference.
  * @param[in]  iterable2: appointed iterable object 2 of 2. shall be left const reference.
- * @template   ITERABLE1: type of iterable1. should accept std::begin() and std::end().
- * @template   ITERABLE2: type of iterable2. should accept std::begin() and std::end().
  * @return     created zip object. this works in range-for statement.
  */
 template <typename ITERABLE1, typename ITERABLE2>

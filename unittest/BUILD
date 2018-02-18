@@ -20,6 +20,13 @@ cc_test(
 )
 
 cc_test(
+    name = "cast_test",
+    srcs = ["cast_test.cpp", "cast/int_cast_test.cpp", "lest.hpp"],
+    deps = ["//ken3:cast"],
+    size = "small",
+)
+
+cc_test(
     name = "metric_test",
     srcs = ["metric_test.cpp", "lest.hpp"],
     deps = ["//ken3:metric"],
