@@ -1,5 +1,5 @@
 /**
- * @file    type_util.hpp
+ * @file    ken3/type_util.hpp
  * @brief   Define some util functions and types using <type_traits>.
  *
  *          ken3::array_size<> gives array size. it causes compile error

@@ -19,7 +19,7 @@ cc_library(
 
 cc_library(
     name = "cast",
-    hdrs = ["cast.hpp", "cast/int_cast.hpp"],
+    hdrs = ["cast.hpp", "cast/int_cast.hpp", "cast/string_to.hpp"],
     visibility = ["//unittest:__pkg__"],
 )
 

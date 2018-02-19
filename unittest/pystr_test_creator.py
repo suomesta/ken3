@@ -904,7 +904,7 @@ def create_expect(test):
 def create_source():
     yield """\
 /**
- * @file    pystr_test.cpp
+ * @file    unittest/pystr_test.cpp
  * @brief   Testing ken3::pystr using lest. 
  * @author  toda
  * @date    2016-06-29

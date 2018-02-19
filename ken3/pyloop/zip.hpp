@@ -1,5 +1,5 @@
 /**
- * @file    pyloop/zip.hpp
+ * @file    ken3/pyloop/zip.hpp
  * @brief   Detail implementation of ken3::zip().
  * @author  toda
  * @date    2017-08-25

@@ -1,5 +1,5 @@
 /**
- * @file    biunique_map_test.cpp
+ * @file    unittest/biunique_map_test.cpp
  * @brief   Testing ken3::biunique_map using lest. 
  * @author  toda
  * @date    2016-11-24

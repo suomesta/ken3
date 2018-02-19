@@ -1,5 +1,5 @@
 /**
- * @file    biunique_map.hpp
+ * @file    ken3/biunique_map.hpp
  * @brief   Implementation of biunique_map class. 
  *          biunique_map is usefule when two kinds of data are biunique. 
  * @author  toda

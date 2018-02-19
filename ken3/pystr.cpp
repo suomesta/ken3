@@ -1,5 +1,5 @@
 /**
- * @file    pystr.cpp
+ * @file    ken3/pystr.cpp
  * @brief   Implementation of pystr functions. 
  * @author  toda
  * @date    2016-06-29

@@ -21,7 +21,7 @@ cc_test(
 
 cc_test(
     name = "cast_test",
-    srcs = ["cast_test.cpp", "cast/int_cast_test.cpp", "lest.hpp"],
+    srcs = ["cast_test.cpp", "cast/int_cast_test.cpp", "cast/string_to_test.cpp", "lest.hpp"],
     deps = ["//ken3:cast"],
     size = "small",
 )

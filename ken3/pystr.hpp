@@ -1,5 +1,5 @@
 /**
- * @file    pystr.hpp
+ * @file    ken3/pystr.hpp
  * @brief   Define functions which imitates Python str class methods.
  *          This file does not contain implements but #include.
  * @author  toda

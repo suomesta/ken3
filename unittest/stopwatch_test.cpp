@@ -1,5 +1,5 @@
 /**
- * @file    stopwatch_test.cpp
+ * @file    unittest/stopwatch_test.cpp
  * @brief   Testing ken3::stopwatch using lest. 
  * @author  toda
  * @date    2018-01-26

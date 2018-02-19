@@ -1,5 +1,5 @@
 /**
- * @file    metric.hpp
+ * @file    ken3/metric.hpp
  * @brief   Define functions to calculate unit conversion.
  *          metric supports length, time, speed, angle, and ROT. 
  *          It is easy to add new units if needed.

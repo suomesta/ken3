@@ -1,5 +1,5 @@
 /**
- * @file    type_util/array_get_test.cpp
+ * @file    unittest/type_util/array_get_test.cpp
  * @brief   Testing ken3::array_get() using lest.
  * @author  toda
  * @date    2017-07-21

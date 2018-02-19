@@ -1,5 +1,5 @@
 /**
- * @file    angle.hpp
+ * @file    ken3/angle.hpp
  * @brief   Implementation of angle class. 
  *          angle class holds angle value, which is normalized. 
  *          its unit is degree or radian (defined by template parameter),

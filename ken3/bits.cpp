@@ -1,5 +1,5 @@
 ﻿/**
- * @file    bits.hpp
+ * @file    ken3/bits.hpp
  * @brief   Implementation of bits class.
  *          bits supports to handle multiple bit data.
  * @author  toda

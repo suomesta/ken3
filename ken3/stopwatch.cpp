@@ -1,5 +1,5 @@
 /**
- * @file    stopwatch.cpp
+ * @file    ken3/stopwatch.cpp
  * @brief   Implementation of stopwatch class. 
  *          stopwatch can measure elapsed time. 
  * @author  toda

@@ -1,5 +1,5 @@
 /**
- * @file    cast/int_cast.hpp
+ * @file    ken3/cast/int_cast.hpp
  * @brief   Detail implementation of ken3::int_cast().
  * @author  toda
  * @date    2018-02-18

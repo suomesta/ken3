@@ -1,5 +1,5 @@
 /**
- * @file    cast/int_cast_test.cpp
+ * @file    unittest/cast/int_cast_test.cpp
  * @brief   Testing ken3::int_cast() using lest.
  * @author  toda
  * @date    2018-02-18

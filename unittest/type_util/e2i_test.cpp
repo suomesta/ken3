@@ -1,5 +1,5 @@
 /**
- * @file    type_util/e2i_test.cpp
+ * @file    unittest/type_util/e2i_test.cpp
  * @brief   Testing e2i() using lest. 
  * @author  toda
  * @date    2017-07-21

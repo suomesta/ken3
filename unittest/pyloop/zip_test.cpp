@@ -1,5 +1,5 @@
 /**
- * @file    pyloop/zip_test.cpp
+ * @file    unittest/pyloop/zip_test.cpp
  * @brief   Testing ken3::pyloop::zip() using lest.
  * @author  toda
  * @date    2017-07-21

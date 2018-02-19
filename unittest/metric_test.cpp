@@ -1,5 +1,5 @@
 /**
- * @file    metric_test.cpp
+ * @file    unittest/metric_test.cpp
  * @brief   Testing ken3::metric using lest. 
  * @author  toda
  * @date    2017-01-24

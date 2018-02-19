@@ -1,5 +1,5 @@
 /**
- * @file    bits_test.cpp
+ * @file    unittest/bits_test.cpp
  * @brief   Testing ken3::bits using lest. 
  * @author  toda
  * @date    2018-01-29
