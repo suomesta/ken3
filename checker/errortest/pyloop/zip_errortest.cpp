@@ -23,7 +23,7 @@ int test_func(void)
     int ten = 10;
     int array[10] = {};
 
-    for (const auto& i: ken3::zip(ten, array)) {
+    for (auto i: ken3::zip(ten, array)) {
         ;
     }
 
@@ -41,7 +41,7 @@ int test_func(void)
     int ten = 10;
     int array[10] = {};
 
-    for (const auto& i: ken3::zip(array, ten)) {
+    for (auto i: ken3::zip(array, ten)) {
         ;
     }
 
@@ -60,7 +60,7 @@ int test_func(void)
     int array[10] = {};
     int* p = &ten;
 
-    for (const auto& i: ken3::zip(p, array)) {
+    for (auto i: ken3::zip(p, array)) {
         ;
     }
 
@@ -79,7 +79,7 @@ int test_func(void)
     int array[10] = {};
     int* p = &ten;
 
-    for (const auto& i: ken3::zip(array, p)) {
+    for (auto i: ken3::zip(array, p)) {
         ;
     }
 
@@ -97,7 +97,7 @@ int test_func(void)
     const int array[3] = {1, 2, 3};
     int dummy[3] = {1, 2, 3};
 
-    for (const auto& i: ken3::zip(array, dummy)) {
+    for (auto i: ken3::zip(array, dummy)) {
         i.first += 1;
     }
 
@@ -115,7 +115,7 @@ int test_func(void)
     int dummy[3] = {1, 2, 3};
     const int array[3] = {1, 2, 3};
 
-    for (const auto& i: ken3::zip(dummy, array)) {
+    for (auto i: ken3::zip(dummy, array)) {
         i.second += 1;
     }
 
@@ -133,7 +133,7 @@ int test_func(void)
     const std::vector<int> v{1, 2, 3};
     std::vector<int> dummy{1, 2, 3};
 
-    for (const auto& i: ken3::zip(v, dummy)) {
+    for (auto i: ken3::zip(v, dummy)) {
         i.first += 1;
     }
 
@@ -151,7 +151,7 @@ int test_func(void)
     std::vector<int> dummy{1, 2, 3};
     const std::vector<int> v{1, 2, 3};
 
-    for (const auto& i: ken3::zip(dummy, v)) {
+    for (auto i: ken3::zip(dummy, v)) {
         i.second += 1;
     }
 
@@ -169,7 +169,7 @@ int test_func(void)
     const std::string s = "ABC";
     std::string dummy = "ABC";
 
-    for (const auto& i: ken3::zip(s, dummy)) {
+    for (auto i: ken3::zip(s, dummy)) {
         i.first += 1;
     }
 
@@ -187,7 +187,7 @@ int test_func(void)
     std::string dummy = "ABC";
     const std::string s = "ABC";
 
-    for (const auto& i: ken3::zip(dummy, s)) {
+    for (auto i: ken3::zip(dummy, s)) {
         i.second += 1;
     }
 

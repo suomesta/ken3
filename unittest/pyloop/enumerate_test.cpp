@@ -27,7 +27,7 @@ const lest::test module[] =
         std::vector<int> firsts;
         std::vector<int> seconds;
 
-        for (const auto& i: enumerate(array)) {
+        for (auto i: enumerate(array)) {
             firsts.push_back(i.first);
             seconds.push_back(i.second);
         }
@@ -46,7 +46,7 @@ const lest::test module[] =
             std::vector<int> firsts;
             std::vector<int> seconds;
 
-            for (const auto& i: enumerate(a)) {
+            for (auto i: enumerate(a)) {
                 firsts.push_back(i.first);
                 seconds.push_back(i.second);
             }
@@ -62,7 +62,7 @@ const lest::test module[] =
             std::vector<char> secondfirsts;
             std::vector<int> secondseconds;
 
-            for (const auto& i: enumerate(m)) {
+            for (auto i: enumerate(m)) {
                 firsts.push_back(i.first);
                 secondfirsts.push_back(i.second.first);
                 secondseconds.push_back(i.second.second);
@@ -78,7 +78,7 @@ const lest::test module[] =
             std::vector<int> firsts;
             std::vector<int> seconds;
 
-            for (const auto& i: enumerate(s)) {
+            for (auto i: enumerate(s)) {
                 firsts.push_back(i.first);
                 seconds.push_back(i.second);
             }
@@ -92,7 +92,7 @@ const lest::test module[] =
             std::vector<int> firsts;
             std::vector<int> seconds;
 
-            for (const auto& i: enumerate(v)) {
+            for (auto i: enumerate(v)) {
                 firsts.push_back(i.first);
                 seconds.push_back(i.second);
             }
@@ -111,7 +111,7 @@ const lest::test module[] =
         std::vector<int> firsts;
         std::vector<char> seconds;
 
-        for (const auto& i: enumerate(str)) {
+        for (auto i: enumerate(str)) {
             firsts.push_back(i.first);
             seconds.push_back(i.second);
         }
@@ -129,7 +129,7 @@ const lest::test module[] =
         std::vector<int> firsts;
         std::vector<int> seconds;
 
-        for (const auto& i: enumerate(array)) {
+        for (auto i: enumerate(array)) {
             firsts.push_back(i.first);
             seconds.push_back(i.second);
         }
@@ -148,7 +148,7 @@ const lest::test module[] =
             std::vector<int> firsts;
             std::vector<int> seconds;
 
-            for (const auto& i: enumerate(a)) {
+            for (auto i: enumerate(a)) {
                 firsts.push_back(i.first);
                 seconds.push_back(i.second);
             }
@@ -164,7 +164,7 @@ const lest::test module[] =
             std::vector<char> secondfirsts;
             std::vector<int> secondseconds;
 
-            for (const auto& i: enumerate(m)) {
+            for (auto i: enumerate(m)) {
                 firsts.push_back(i.first);
                 secondfirsts.push_back(i.second.first);
                 secondseconds.push_back(i.second.second);
@@ -180,7 +180,7 @@ const lest::test module[] =
             std::vector<int> firsts;
             std::vector<int> seconds;
 
-            for (const auto& i: enumerate(s)) {
+            for (auto i: enumerate(s)) {
                 firsts.push_back(i.first);
                 seconds.push_back(i.second);
             }
@@ -194,7 +194,7 @@ const lest::test module[] =
             std::vector<int> firsts;
             std::vector<int> seconds;
 
-            for (const auto& i: enumerate(v)) {
+            for (auto i: enumerate(v)) {
                 firsts.push_back(i.first);
                 seconds.push_back(i.second);
             }
@@ -213,7 +213,7 @@ const lest::test module[] =
         std::vector<int> firsts;
         std::vector<char> seconds;
 
-        for (const auto& i: enumerate(str)) {
+        for (auto i: enumerate(str)) {
             firsts.push_back(i.first);
             seconds.push_back(i.second);
         }
@@ -228,7 +228,7 @@ const lest::test module[] =
 
         int array[3] = {1, 2, 3};
 
-        for (const auto& i: enumerate(array)) {
+        for (auto i: enumerate(array)) {
             i.second *= 2;
         }
 
@@ -244,7 +244,7 @@ const lest::test module[] =
         {
             std::array<int, 3> a{1, 2, 3};
 
-            for (const auto& i: enumerate(a)) {
+            for (auto i: enumerate(a)) {
                 i.second *= 2;
             }
 
@@ -254,7 +254,7 @@ const lest::test module[] =
             std::map<char, int> m{{'A', 10}, {'B', 11}, {'C', 12},
                                   {'D', 13}, {'E', 14}, {'F', 15}};
 
-            for (const auto& i: enumerate(m)) {
+            for (auto i: enumerate(m)) {
                 i.second.second -= 10;
             }
 
@@ -263,7 +263,7 @@ const lest::test module[] =
         {
             std::vector<int> v{1, 2, 3};
 
-            for (const auto& i: enumerate(v)) {
+            for (auto i: enumerate(v)) {
                 i.second *= 2;
             }
 
@@ -277,7 +277,7 @@ const lest::test module[] =
 
         std::string str = "ABCD";
 
-        for (const auto& i: enumerate(str)) {
+        for (auto i: enumerate(str)) {
             i.second += ('a' - 'A');
         }
 
@@ -291,35 +291,35 @@ const lest::test module[] =
         {
             std::array<int, 0> a;
 
-            for (const auto& i: enumerate(a)) {
+            for (auto i: enumerate(a)) {
                 EXPECT(false);
             }
         }
         {
             std::map<char, int> m;
 
-            for (const auto& i: enumerate(m)) {
+            for (auto i: enumerate(m)) {
                 EXPECT(false);
             }
         }
         {
             std::set<int> s;
 
-            for (const auto& i: enumerate(s)) {
+            for (auto i: enumerate(s)) {
                 EXPECT(false);
             }
         }
         {
             std::vector<int> v;
 
-            for (const auto& i: enumerate(v)) {
+            for (auto i: enumerate(v)) {
                 EXPECT(false);
             }
         }
         {
             std::string s;
 
-            for (const auto& i: enumerate(s)) {
+            for (auto i: enumerate(s)) {
                 EXPECT(false);
             }
         }

@@ -11,7 +11,7 @@
  * @note
  * Typical usage of ken3::pyloop::enumerate is;
  *     std::vector<int> v{1, 22, 333};
- *     for (const auto& i: ken3::pyloop::enumerate(v)) {
+ *     for (auto i: ken3::pyloop::enumerate(v)) {
  *         std::cout << i.first << " " << i.second;
  *         // => "0 1"
  *         // => "1 22"
@@ -37,7 +37,7 @@
  * Typical usage of ken3::pyloop::zip is;
  *     std::vector<int> v1{1, 2, 3};
  *     std::vector<int> v2{4, 5, 6};
- *     for (const auto& i: ken3::pyloop::zip(v1, v2)) {
+ *     for (auto i: ken3::pyloop::zip(v1, v2)) {
  *         std::cout << i.first << " " << i.second;
  *         // => "1 4"
  *         // => "2 5"
@@ -46,7 +46,7 @@
  *
  *     int a1[3] = {7, 8, 9};
  *     int a2[4] = {10, 11, 12, 13};
- *     for (const auto& i: ken3::pyloop::zip(a1, a2)) {
+ *     for (auto i: ken3::pyloop::zip(a1, a2)) {
  *         std::cout << i.first << " " << i.second;
  *         // => "7 10"
  *         // => "8 11"

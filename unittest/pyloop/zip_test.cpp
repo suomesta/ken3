@@ -28,7 +28,7 @@ const lest::test module[] =
         std::vector<int> firsts;
         std::vector<int> seconds;
 
-        for (const auto& i: zip(a1, a2)) {
+        for (auto i: zip(a1, a2)) {
             firsts.push_back(i.first);
             seconds.push_back(i.second);
         }
@@ -48,7 +48,7 @@ const lest::test module[] =
             std::vector<int> firsts;
             std::vector<int> seconds;
 
-            for (const auto& i: zip(a, v)) {
+            for (auto i: zip(a, v)) {
                 firsts.push_back(i.first);
                 seconds.push_back(i.second);
             }
@@ -65,7 +65,7 @@ const lest::test module[] =
             std::vector<char> secondfirsts;
             std::vector<int> secondseconds;
 
-            for (const auto& i: zip(s, m)) {
+            for (auto i: zip(s, m)) {
                 firsts.push_back(i.first);
                 secondfirsts.push_back(i.second.first);
                 secondseconds.push_back(i.second.second);
@@ -87,7 +87,7 @@ const lest::test module[] =
         std::vector<char> firsts;
         std::vector<char> seconds;
 
-        for (const auto& i: zip(s1, s2)) {
+        for (auto i: zip(s1, s2)) {
             firsts.push_back(i.first);
             seconds.push_back(i.second);
         }
@@ -106,7 +106,7 @@ const lest::test module[] =
         std::vector<int> firsts;
         std::vector<int> seconds;
 
-        for (const auto& i: zip(a1, a2)) {
+        for (auto i: zip(a1, a2)) {
             firsts.push_back(i.first);
             seconds.push_back(i.second);
         }
@@ -126,7 +126,7 @@ const lest::test module[] =
             std::vector<int> firsts;
             std::vector<int> seconds;
 
-            for (const auto& i: zip(a, v)) {
+            for (auto i: zip(a, v)) {
                 firsts.push_back(i.first);
                 seconds.push_back(i.second);
             }
@@ -143,7 +143,7 @@ const lest::test module[] =
             std::vector<char> secondfirsts;
             std::vector<int> secondseconds;
 
-            for (const auto& i: zip(s, m)) {
+            for (auto i: zip(s, m)) {
                 firsts.push_back(i.first);
                 secondfirsts.push_back(i.second.first);
                 secondseconds.push_back(i.second.second);
@@ -165,7 +165,7 @@ const lest::test module[] =
         std::vector<char> firsts;
         std::vector<char> seconds;
 
-        for (const auto& i: zip(s1, s2)) {
+        for (auto i: zip(s1, s2)) {
             firsts.push_back(i.first);
             seconds.push_back(i.second);
         }
@@ -181,7 +181,7 @@ const lest::test module[] =
         int a1[3] = {1, 2, 3};
         int a2[3] = {4, 5, 6};
 
-        for (const auto& i: zip(a1, a2)) {
+        for (auto i: zip(a1, a2)) {
             i.first *= 2;
             i.second *= 2;
         }
@@ -202,7 +202,7 @@ const lest::test module[] =
             std::array<int, 3> a{1, 2, 3};
             std::vector<int> v{4, 5, 6};
 
-            for (const auto& i: zip(a, v)) {
+            for (auto i: zip(a, v)) {
                 i.first *= 2;
                 i.second *= 2;
             }
@@ -215,7 +215,7 @@ const lest::test module[] =
             std::map<char, int> m{{'A', 10}, {'B', 11}, {'C', 12},
                                   {'D', 13}, {'E', 14}, {'F', 15}};
 
-            for (const auto& i: zip(s, m)) {
+            for (auto i: zip(s, m)) {
                 i.second.second -= 10;
             }
 
@@ -230,7 +230,7 @@ const lest::test module[] =
         std::string s1 = "ABC";
         std::string s2 = "abc";
 
-        for (const auto& i: zip(s1, s2)) {
+        for (auto i: zip(s1, s2)) {
             i.first += 3;
             i.second += 3;
         }
@@ -247,7 +247,7 @@ const lest::test module[] =
             std::array<int, 0> a;
             std::vector<int> v;
 
-            for (const auto& i: zip(a, v)) {
+            for (auto i: zip(a, v)) {
                 EXPECT(false);
             }
         }
@@ -255,7 +255,7 @@ const lest::test module[] =
             std::set<int> s;
             std::map<char, int> m;
 
-            for (const auto& i: zip(s, m)) {
+            for (auto i: zip(s, m)) {
                 EXPECT(false);
             }
         }
@@ -268,7 +268,7 @@ const lest::test module[] =
         std::string s1 = "";
         std::string s2 = "";
 
-        for (const auto& i: zip(s1, s2)) {
+        for (auto i: zip(s1, s2)) {
             EXPECT(false);
         }
     },
@@ -283,7 +283,7 @@ const lest::test module[] =
             std::vector<int> firsts;
             std::vector<char> seconds;
 
-            for (const auto& i: zip(a, s)) {
+            for (auto i: zip(a, s)) {
                 firsts.push_back(i.first);
                 seconds.push_back(i.second);
             }
@@ -297,7 +297,7 @@ const lest::test module[] =
             std::vector<int> firsts;
             std::vector<int> seconds;
 
-            for (const auto& i: zip(a, v)) {
+            for (auto i: zip(a, v)) {
                 firsts.push_back(i.first);
                 seconds.push_back(i.second);
             }
@@ -312,7 +312,7 @@ const lest::test module[] =
             std::vector<char> secondfirsts;
             std::vector<int> secondseconds;
 
-            for (const auto& i: zip(s, m)) {
+            for (auto i: zip(s, m)) {
                 firsts.push_back(i.first);
                 secondfirsts.push_back(i.second.first);
                 secondseconds.push_back(i.second.second);
@@ -334,7 +334,7 @@ const lest::test module[] =
             std::vector<int> firsts;
             std::vector<char> seconds;
 
-            for (const auto& i: zip(a, s)) {
+            for (auto i: zip(a, s)) {
                 firsts.push_back(i.first);
                 seconds.push_back(i.second);
             }
@@ -348,7 +348,7 @@ const lest::test module[] =
             std::vector<int> firsts;
             std::vector<int> seconds;
 
-            for (const auto& i: zip(a, v)) {
+            for (auto i: zip(a, v)) {
                 firsts.push_back(i.first);
                 seconds.push_back(i.second);
             }
@@ -364,7 +364,7 @@ const lest::test module[] =
             std::vector<char> secondfirsts;
             std::vector<int> secondseconds;
 
-            for (const auto& i: zip(s, m)) {
+            for (auto i: zip(s, m)) {
                 firsts.push_back(i.first);
                 secondfirsts.push_back(i.second.first);
                 secondseconds.push_back(i.second.second);
@@ -384,7 +384,7 @@ const lest::test module[] =
         std::vector<int> firsts;
         std::vector<int> seconds;
 
-        for (const auto& i: zip(v, v)) {
+        for (auto i: zip(v, v)) {
             firsts.push_back(i.first);
             seconds.push_back(i.second);
         }

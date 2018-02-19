@@ -22,7 +22,7 @@ int test_func(void)
 {
     int ten = 10;
 
-    for (const auto& i: ken3::pyloop::enumerate(ten)) {
+    for (auto i: ken3::pyloop::enumerate(ten)) {
         ;
     }
 
@@ -44,7 +44,7 @@ int test_func(void)
     };
     enum_class e = enum_class::e1; 
 
-    for (const auto& i: ken3::pyloop::enumerate(e)) {
+    for (auto i: ken3::pyloop::enumerate(e)) {
         ;
     }
 
@@ -62,7 +62,7 @@ int test_func(void)
     int array[3] = {1, 22, 333};
     int* p = array;
 
-    for (const auto& i: ken3::pyloop::enumerate(p)) {
+    for (auto i: ken3::pyloop::enumerate(p)) {
         ;
     }
 
@@ -79,7 +79,7 @@ int test_func(void)
 {
     const int array[3] = {1, 22, 333};
 
-    for (const auto& i: ken3::pyloop::enumerate(array)) {
+    for (auto i: ken3::pyloop::enumerate(array)) {
         i.second += 1;
     }
 
@@ -96,7 +96,7 @@ int test_func(void)
 {
     const std::vector<int> v{1, 22, 333};
 
-    for (const auto& i: ken3::pyloop::enumerate(v)) {
+    for (auto i: ken3::pyloop::enumerate(v)) {
         i.second += 1;
     }
 
@@ -113,7 +113,7 @@ int test_func(void)
 {
     const std::string s = "ABC";
 
-    for (const auto& i: ken3::pyloop::enumerate(s)) {
+    for (auto i: ken3::pyloop::enumerate(s)) {
         i.second += 1;
     }
 
