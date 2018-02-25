@@ -70,7 +70,7 @@ bool all_default(index_type start=None, index_type end=None, index_type step=Non
 /**
  * @brief     helper class to arrange {start, end, step} for safety use.
  */
-class Slice {
+class slice_object {
 public:
     /**
      * @brief     constructor to have valid {start, end, step}.
@@ -80,7 +80,7 @@ public:
      * @param[in] step: step of slice
      * @throw     ken3::pystr::ValueError: when step is 0
      */
-    explicit Slice(index_type size, index_type start=None, index_type end=None, index_type step=None)
+    explicit slice_object(index_type size, index_type start=None, index_type end=None, index_type step=None)
     {
         // set step
         step_ = step;
@@ -130,7 +130,7 @@ public:
     /**
      * @brief     delete default constructor
      */
-    Slice(void) = delete;
+    slice_object(void) = delete;
     /////////////////////////////////////////////////////////////////////////////
 
     /**
@@ -178,7 +178,7 @@ private:
  */
 index_type offset(const std::string& self, index_type start=None, index_type end=None, index_type step=None)
 {
-    Slice s(static_cast<index_type>(self.size()), start, end, step);
+    slice_object s(static_cast<index_type>(self.size()), start, end, step);
 
     return s.start();
 }
@@ -289,7 +289,7 @@ std::string getitem(const std::string& self, index_type index)
 std::string slice(const std::string& self, index_type start/*=None*/, index_type end/*=None*/, index_type step/*=None*/)
 {
     const index_type size = static_cast<index_type>(self.size());
-    Slice s(size, start, end, step);
+    slice_object s(size, start, end, step);
 
     std::string retval;
 
@@ -298,7 +298,7 @@ std::string slice(const std::string& self, index_type start/*=None*/, index_type
             if (i < 0 || i >= size) {
                 break;
             }
-            retval.append(1, self[i]);
+            retval.push_back(self[i]);
         }
     }
     else {
@@ -306,7 +306,7 @@ std::string slice(const std::string& self, index_type start/*=None*/, index_type
             if (i < 0 || i >= size) {
                 break;
             }
-            retval.append(1, self[i]);
+            retval.push_back(self[i]);
         }
     }
 
