@@ -26,7 +26,7 @@ const lest::test specification[] =
         using namespace ken3::metric;
         using lest::approx;
 
-        EXPECT(approx(1.0 / 1852.0) == (convert<Metre, NauticalMile>(1.0)));
+        EXPECT(approx(1.0 / 1852.0) == (convert<metre, nauticalmile>(1.0)));
     },
 
     CASE("length")
@@ -34,32 +34,32 @@ const lest::test specification[] =
         using namespace ken3::metric;
         using lest::approx;
 
-        // with Metre
-        EXPECT(approx(1.0 / 1.0) == (convert<Metre, Si>(1.0)));
-        EXPECT(approx(2.0 / 1.0) == (convert<Metre, Metre>(2.0)));
-        EXPECT(approx(3.0 / 1852.0) == (convert<Metre, NauticalMile>(3.0)));
-        EXPECT(approx(4.0 / 0.9144) == (convert<Metre, Yard>(4.0)));
-        EXPECT(approx(5.0 / 1000.0) == (convert<Metre, Kilometre>(5.0)));
-        EXPECT(approx(6.0 / 914.4) == (convert<Metre, Kiloyard>(6.0)));
-        EXPECT(approx(6.0 * 1.0) == (convert<Si, Metre>(6.0)));
-        EXPECT(approx(5.0 * 1.0) == (convert<Metre, Metre>(5.0)));
-        EXPECT(approx(4.0 * 1852.0) == (convert<NauticalMile, Metre>(4.0)));
-        EXPECT(approx(3.0 * 0.9144) == (convert<Yard, Metre>(3.0)));
-        EXPECT(approx(2.0 * 1000.0) == (convert<Kilometre, Metre>(2.0)));
-        EXPECT(approx(1.0 * 914.4) == (convert<Kiloyard, Metre>(1.0)));
-        // without Metre
-        EXPECT(approx(1.0 * 1852.0 / 0.9144) == (convert<NauticalMile, Yard>(1.0)));
-        EXPECT(approx(2.0 * 1852.0 / 1000.0) == (convert<NauticalMile, Kilometre>(2.0)));
-        EXPECT(approx(3.0 * 1852.0 / 914.4) == (convert<NauticalMile, Kiloyard>(3.0)));
-        EXPECT(approx(3.0 * 0.9144 / 1852.0) == (convert<Yard, NauticalMile>(3.0)));
-        EXPECT(approx(2.0 * 0.9144 / 1000.0) == (convert<Yard, Kilometre>(2.0)));
-        EXPECT(approx(1.0 * 0.9144 / 914.4) == (convert<Yard, Kiloyard>(1.0)));
-        EXPECT(approx(1.0 * 1000.0 / 1852.0) == (convert<Kilometre, NauticalMile>(1.0)));
-        EXPECT(approx(2.0 * 1000.0 / 0.9144) == (convert<Kilometre, Yard>(2.0)));
-        EXPECT(approx(3.0 * 1000.0 / 914.4) == (convert<Kilometre, Kiloyard>(3.0)));
-        EXPECT(approx(3.0 * 914.4 / 1852.0) == (convert<Kiloyard, NauticalMile>(3.0)));
-        EXPECT(approx(2.0 * 914.4 / 0.9144) == (convert<Kiloyard, Yard>(2.0)));
-        EXPECT(approx(1.0 * 914.4 / 1000.0) == (convert<Kiloyard, Kilometre>(1.0)));
+        // with metre
+        EXPECT(approx(1.0 / 1.0) == (convert<metre, si>(1.0)));
+        EXPECT(approx(2.0 / 1.0) == (convert<metre, metre>(2.0)));
+        EXPECT(approx(3.0 / 1852.0) == (convert<metre, nauticalmile>(3.0)));
+        EXPECT(approx(4.0 / 0.9144) == (convert<metre, yard>(4.0)));
+        EXPECT(approx(5.0 / 1000.0) == (convert<metre, kilometre>(5.0)));
+        EXPECT(approx(6.0 / 914.4) == (convert<metre, kiloyard>(6.0)));
+        EXPECT(approx(6.0 * 1.0) == (convert<si, metre>(6.0)));
+        EXPECT(approx(5.0 * 1.0) == (convert<metre, metre>(5.0)));
+        EXPECT(approx(4.0 * 1852.0) == (convert<nauticalmile, metre>(4.0)));
+        EXPECT(approx(3.0 * 0.9144) == (convert<yard, metre>(3.0)));
+        EXPECT(approx(2.0 * 1000.0) == (convert<kilometre, metre>(2.0)));
+        EXPECT(approx(1.0 * 914.4) == (convert<kiloyard, metre>(1.0)));
+        // without metre
+        EXPECT(approx(1.0 * 1852.0 / 0.9144) == (convert<nauticalmile, yard>(1.0)));
+        EXPECT(approx(2.0 * 1852.0 / 1000.0) == (convert<nauticalmile, kilometre>(2.0)));
+        EXPECT(approx(3.0 * 1852.0 / 914.4) == (convert<nauticalmile, kiloyard>(3.0)));
+        EXPECT(approx(3.0 * 0.9144 / 1852.0) == (convert<yard, nauticalmile>(3.0)));
+        EXPECT(approx(2.0 * 0.9144 / 1000.0) == (convert<yard, kilometre>(2.0)));
+        EXPECT(approx(1.0 * 0.9144 / 914.4) == (convert<yard, kiloyard>(1.0)));
+        EXPECT(approx(1.0 * 1000.0 / 1852.0) == (convert<kilometre, nauticalmile>(1.0)));
+        EXPECT(approx(2.0 * 1000.0 / 0.9144) == (convert<kilometre, yard>(2.0)));
+        EXPECT(approx(3.0 * 1000.0 / 914.4) == (convert<kilometre, kiloyard>(3.0)));
+        EXPECT(approx(3.0 * 914.4 / 1852.0) == (convert<kiloyard, nauticalmile>(3.0)));
+        EXPECT(approx(2.0 * 914.4 / 0.9144) == (convert<kiloyard, yard>(2.0)));
+        EXPECT(approx(1.0 * 914.4 / 1000.0) == (convert<kiloyard, kilometre>(1.0)));
     },
 
     CASE("time")
@@ -67,32 +67,32 @@ const lest::test specification[] =
         using namespace ken3::metric;
         using lest::approx;
 
-        // with Second
-        EXPECT(approx(1.0 / 1.0) == (convert<Second, Si>(1.0)));
-        EXPECT(approx(2.0 / 1.0) == (convert<Second, Second>(2.0)));
-        EXPECT(approx(3.0 / 60.0) == (convert<Second, Minute>(3.0)));
-        EXPECT(approx(4.0 / 3600.0) == (convert<Second, Hour>(4.0)));
-        EXPECT(approx(5.0 / 86400.0) == (convert<Second, Day>(5.0)));
-        EXPECT(approx(6.0 / 604800.0) == (convert<Second, Week>(6.0)));
-        EXPECT(approx(6.0 * 1.0) == (convert<Si, Second>(6.0)));
-        EXPECT(approx(5.0 * 1.0) == (convert<Second, Second>(5.0)));
-        EXPECT(approx(4.0 * 60.0) == (convert<Minute, Second>(4.0)));
-        EXPECT(approx(3.0 * 3600.0) == (convert<Hour, Second>(3.0)));
-        EXPECT(approx(2.0 * 86400.0) == (convert<Day, Second>(2.0)));
-        EXPECT(approx(1.0 * 604800.0) == (convert<Week, Second>(1.0)));
-        // without Second
-        EXPECT(approx(1.0 * 60.0 / 3600.0) == (convert<Minute, Hour>(1.0)));
-        EXPECT(approx(2.0 * 60.0 / 86400.0) == (convert<Minute, Day>(2.0)));
-        EXPECT(approx(3.0 * 60.0 / 604800.0) == (convert<Minute, Week>(3.0)));
-        EXPECT(approx(3.0 * 3600.0 / 60.0) == (convert<Hour, Minute>(3.0)));
-        EXPECT(approx(2.0 * 3600.0 / 86400.0) == (convert<Hour, Day>(2.0)));
-        EXPECT(approx(1.0 * 3600.0 / 604800.0) == (convert<Hour, Week>(1.0)));
-        EXPECT(approx(1.0 * 86400.0 / 60.0) == (convert<Day, Minute>(1.0)));
-        EXPECT(approx(2.0 * 86400.0 / 3600.0) == (convert<Day, Hour>(2.0)));
-        EXPECT(approx(3.0 * 86400.0 / 604800.0) == (convert<Day, Week>(3.0)));
-        EXPECT(approx(3.0 * 604800.0 / 60.0) == (convert<Week, Minute>(3.0)));
-        EXPECT(approx(2.0 * 604800.0 / 3600.0) == (convert<Week, Hour>(2.0)));
-        EXPECT(approx(1.0 * 604800.0 / 86400.0) == (convert<Week, Day>(1.0)));
+        // with second
+        EXPECT(approx(1.0 / 1.0) == (convert<second, si>(1.0)));
+        EXPECT(approx(2.0 / 1.0) == (convert<second, second>(2.0)));
+        EXPECT(approx(3.0 / 60.0) == (convert<second, minute>(3.0)));
+        EXPECT(approx(4.0 / 3600.0) == (convert<second, hour>(4.0)));
+        EXPECT(approx(5.0 / 86400.0) == (convert<second, day>(5.0)));
+        EXPECT(approx(6.0 / 604800.0) == (convert<second, week>(6.0)));
+        EXPECT(approx(6.0 * 1.0) == (convert<si, second>(6.0)));
+        EXPECT(approx(5.0 * 1.0) == (convert<second, second>(5.0)));
+        EXPECT(approx(4.0 * 60.0) == (convert<minute, second>(4.0)));
+        EXPECT(approx(3.0 * 3600.0) == (convert<hour, second>(3.0)));
+        EXPECT(approx(2.0 * 86400.0) == (convert<day, second>(2.0)));
+        EXPECT(approx(1.0 * 604800.0) == (convert<week, second>(1.0)));
+        // without second
+        EXPECT(approx(1.0 * 60.0 / 3600.0) == (convert<minute, hour>(1.0)));
+        EXPECT(approx(2.0 * 60.0 / 86400.0) == (convert<minute, day>(2.0)));
+        EXPECT(approx(3.0 * 60.0 / 604800.0) == (convert<minute, week>(3.0)));
+        EXPECT(approx(3.0 * 3600.0 / 60.0) == (convert<hour, minute>(3.0)));
+        EXPECT(approx(2.0 * 3600.0 / 86400.0) == (convert<hour, day>(2.0)));
+        EXPECT(approx(1.0 * 3600.0 / 604800.0) == (convert<hour, week>(1.0)));
+        EXPECT(approx(1.0 * 86400.0 / 60.0) == (convert<day, minute>(1.0)));
+        EXPECT(approx(2.0 * 86400.0 / 3600.0) == (convert<day, hour>(2.0)));
+        EXPECT(approx(3.0 * 86400.0 / 604800.0) == (convert<day, week>(3.0)));
+        EXPECT(approx(3.0 * 604800.0 / 60.0) == (convert<week, minute>(3.0)));
+        EXPECT(approx(2.0 * 604800.0 / 3600.0) == (convert<week, hour>(2.0)));
+        EXPECT(approx(1.0 * 604800.0 / 86400.0) == (convert<week, day>(1.0)));
     },
 
     CASE("speed")
@@ -100,18 +100,18 @@ const lest::test specification[] =
         using namespace ken3::metric;
         using lest::approx;
 
-        // with MetrePerSecond
-        EXPECT(approx(1.0 / 1.0) == (convert<MetrePerSecond, Si>(1.0)));
-        EXPECT(approx(2.0 / 1.0) == (convert<MetrePerSecond, MetrePerSecond>(2.0)));
-        EXPECT(approx(3.0 / (1000.0 / 3600.0)) == (convert<MetrePerSecond, KilometrePerHour>(3.0)));
-        EXPECT(approx(4.0 / (1852.0 / 3600.0)) == (convert<MetrePerSecond, Knot>(4.0)));
-        EXPECT(approx(4.0 * 1.0) == (convert<Si, MetrePerSecond>(4.0)));
-        EXPECT(approx(3.0 * 1.0) == (convert<MetrePerSecond, MetrePerSecond>(3.0)));
-        EXPECT(approx(2.0 * (1000.0 / 3600.0)) == (convert<KilometrePerHour, MetrePerSecond>(2.0)));
-        EXPECT(approx(1.0 * (1852.0 / 3600.0)) == (convert<Knot, MetrePerSecond>(1.0)));
-        // without MetrePerSecond
-        EXPECT(approx(1.0 * (1000.0 / 3600.0) / (1852.0 / 3600.0)) == (convert<KilometrePerHour, Knot>(1.0)));
-        EXPECT(approx(1.0 * (1852.0 / 3600.0) / (1000.0 / 3600.0)) == (convert<Knot, KilometrePerHour>(1.0)));
+        // with metre_per_second
+        EXPECT(approx(1.0 / 1.0) == (convert<metre_per_second, si>(1.0)));
+        EXPECT(approx(2.0 / 1.0) == (convert<metre_per_second, metre_per_second>(2.0)));
+        EXPECT(approx(3.0 / (1000.0 / 3600.0)) == (convert<metre_per_second, kilometre_per_hour>(3.0)));
+        EXPECT(approx(4.0 / (1852.0 / 3600.0)) == (convert<metre_per_second, knot>(4.0)));
+        EXPECT(approx(4.0 * 1.0) == (convert<si, metre_per_second>(4.0)));
+        EXPECT(approx(3.0 * 1.0) == (convert<metre_per_second, metre_per_second>(3.0)));
+        EXPECT(approx(2.0 * (1000.0 / 3600.0)) == (convert<kilometre_per_hour, metre_per_second>(2.0)));
+        EXPECT(approx(1.0 * (1852.0 / 3600.0)) == (convert<knot, metre_per_second>(1.0)));
+        // without metre_per_second
+        EXPECT(approx(1.0 * (1000.0 / 3600.0) / (1852.0 / 3600.0)) == (convert<kilometre_per_hour, knot>(1.0)));
+        EXPECT(approx(1.0 * (1852.0 / 3600.0) / (1000.0 / 3600.0)) == (convert<knot, kilometre_per_hour>(1.0)));
     },
 
     CASE("angle")
@@ -119,13 +119,13 @@ const lest::test specification[] =
         using namespace ken3::metric;
         using lest::approx;
 
-        // with Radian
-        EXPECT(approx(1.0 / 1.0) == (convert<Radian, Si>(1.0)));
-        EXPECT(approx(2.0 / 1.0) == (convert<Radian, Radian>(2.0)));
-        EXPECT(approx(3.0 / rad2deg) == (convert<Radian, Degree>(3.0)));
-        EXPECT(approx(3.0 * 1.0) == (convert<Si, Radian>(3.0)));
-        EXPECT(approx(2.0 * 1.0) == (convert<Radian, Radian>(2.0)));
-        EXPECT(approx(1.0 * rad2deg) == (convert<Degree, Radian>(1.0)));
+        // with radian
+        EXPECT(approx(1.0 / 1.0) == (convert<radian, si>(1.0)));
+        EXPECT(approx(2.0 / 1.0) == (convert<radian, radian>(2.0)));
+        EXPECT(approx(3.0 / rad2deg) == (convert<radian, degree>(3.0)));
+        EXPECT(approx(3.0 * 1.0) == (convert<si, radian>(3.0)));
+        EXPECT(approx(2.0 * 1.0) == (convert<radian, radian>(2.0)));
+        EXPECT(approx(1.0 * rad2deg) == (convert<degree, radian>(1.0)));
     },
 
     CASE("ROT")
@@ -133,24 +133,24 @@ const lest::test specification[] =
         using namespace ken3::metric;
         using lest::approx;
 
-        // with RadianPerSecond
-        EXPECT(approx(1.0 / 1.0) == (convert<RadianPerSecond, Si>(1.0)));
-        EXPECT(approx(2.0 / 1.0) == (convert<RadianPerSecond, RadianPerSecond>(2.0)));
-        EXPECT(approx(3.0 / rad2deg) == (convert<RadianPerSecond, DegreePerSecond>(3.0)));
-        EXPECT(approx(4.0 / (1.0 / 60.0)) == (convert<RadianPerSecond, RadianPerMinute>(4.0)));
-        EXPECT(approx(5.0 / (rad2deg / 60.0)) == (convert<RadianPerSecond, DegreePerMinute>(5.0)));
-        EXPECT(approx(5.0 * 1.0) == (convert<Si, RadianPerSecond>(5.0)));
-        EXPECT(approx(4.0 * 1.0) == (convert<RadianPerSecond, RadianPerSecond>(4.0)));
-        EXPECT(approx(3.0 * rad2deg) == (convert<DegreePerSecond, RadianPerSecond>(3.0)));
-        EXPECT(approx(2.0 * (1.0 / 60.0)) == (convert<RadianPerMinute, RadianPerSecond>(2.0)));
-        EXPECT(approx(1.0 * (rad2deg / 60.0)) == (convert<DegreePerMinute, RadianPerSecond>(1.0)));
-        // without RadianPerSecond
-        EXPECT(approx(1.0 * rad2deg / (1.0 / 60.0)) == (convert<DegreePerSecond, RadianPerMinute>(1.0)));
-        EXPECT(approx(2.0 * rad2deg / (rad2deg / 60.0)) == (convert<DegreePerSecond, DegreePerMinute>(2.0)));
-        EXPECT(approx(2.0 * (1.0 / 60.0) / rad2deg) == (convert<RadianPerMinute, DegreePerSecond>(2.0)));
-        EXPECT(approx(1.0 * (1.0 / 60.0) / (rad2deg / 60.0)) == (convert<RadianPerMinute, DegreePerMinute>(1.0)));
-        EXPECT(approx(1.0 * (rad2deg / 60.0) / rad2deg) == (convert<DegreePerMinute, DegreePerSecond>(1.0)));
-        EXPECT(approx(2.0 * (rad2deg / 60.0) / (1.0 / 60.0)) == (convert<DegreePerMinute, RadianPerMinute>(2.0)));
+        // with radian_per_second
+        EXPECT(approx(1.0 / 1.0) == (convert<radian_per_second, si>(1.0)));
+        EXPECT(approx(2.0 / 1.0) == (convert<radian_per_second, radian_per_second>(2.0)));
+        EXPECT(approx(3.0 / rad2deg) == (convert<radian_per_second, degree_per_second>(3.0)));
+        EXPECT(approx(4.0 / (1.0 / 60.0)) == (convert<radian_per_second, radian_per_minute>(4.0)));
+        EXPECT(approx(5.0 / (rad2deg / 60.0)) == (convert<radian_per_second, degree_per_minute>(5.0)));
+        EXPECT(approx(5.0 * 1.0) == (convert<si, radian_per_second>(5.0)));
+        EXPECT(approx(4.0 * 1.0) == (convert<radian_per_second, radian_per_second>(4.0)));
+        EXPECT(approx(3.0 * rad2deg) == (convert<degree_per_second, radian_per_second>(3.0)));
+        EXPECT(approx(2.0 * (1.0 / 60.0)) == (convert<radian_per_minute, radian_per_second>(2.0)));
+        EXPECT(approx(1.0 * (rad2deg / 60.0)) == (convert<degree_per_minute, radian_per_second>(1.0)));
+        // without radian_per_second
+        EXPECT(approx(1.0 * rad2deg / (1.0 / 60.0)) == (convert<degree_per_second, radian_per_minute>(1.0)));
+        EXPECT(approx(2.0 * rad2deg / (rad2deg / 60.0)) == (convert<degree_per_second, degree_per_minute>(2.0)));
+        EXPECT(approx(2.0 * (1.0 / 60.0) / rad2deg) == (convert<radian_per_minute, degree_per_second>(2.0)));
+        EXPECT(approx(1.0 * (1.0 / 60.0) / (rad2deg / 60.0)) == (convert<radian_per_minute, degree_per_minute>(1.0)));
+        EXPECT(approx(1.0 * (rad2deg / 60.0) / rad2deg) == (convert<degree_per_minute, degree_per_second>(1.0)));
+        EXPECT(approx(2.0 * (rad2deg / 60.0) / (1.0 / 60.0)) == (convert<degree_per_minute, radian_per_minute>(2.0)));
     },
 
     CASE("add unit")
@@ -159,30 +159,30 @@ const lest::test specification[] =
         using lest::approx;
 
         // define [cm]
-        using Centimetre = ken3::metric::Unit<ken3::metric::Length, std::ratio<1, 100>>;
+        using centimetre = ken3::metric::unit<ken3::metric::length, std::ratio<1, 100>>;
 
-        EXPECT(approx(10.0) == (convert<Centimetre, Metre>(1000)));
+        EXPECT(approx(10.0) == (convert<centimetre, metre>(1000)));
     },
 
     CASE("return value type")
     {
         using namespace ken3::metric;
 
-        auto c = convert<Si, Si>(static_cast<char>(1));
+        auto c = convert<si, si>(static_cast<char>(1));
         EXPECT((std::is_same<double, decltype(c)>::value));
-        auto s = convert<Si, Si>(static_cast<short>(1));
+        auto s = convert<si, si>(static_cast<short>(1));
         EXPECT((std::is_same<double, decltype(s)>::value));
-        auto i = convert<Si, Si>(static_cast<int>(1));
+        auto i = convert<si, si>(static_cast<int>(1));
         EXPECT((std::is_same<double, decltype(i)>::value));
-        auto l = convert<Si, Si>(static_cast<long>(1));
+        auto l = convert<si, si>(static_cast<long>(1));
         EXPECT((std::is_same<double, decltype(l)>::value));
-        auto ll = convert<Si, Si>(static_cast<long long>(1));
+        auto ll = convert<si, si>(static_cast<long long>(1));
         EXPECT((std::is_same<double, decltype(ll)>::value));
-        auto f = convert<Si, Si>(static_cast<float>(1));
+        auto f = convert<si, si>(static_cast<float>(1));
         EXPECT((std::is_same<double, decltype(f)>::value));
-        auto d = convert<Si, Si>(static_cast<double>(1));
+        auto d = convert<si, si>(static_cast<double>(1));
         EXPECT((std::is_same<double, decltype(d)>::value));
-        auto ld = convert<Si, Si>(static_cast<long double>(1));
+        auto ld = convert<si, si>(static_cast<long double>(1));
         EXPECT((std::is_same<long double, decltype(ld)>::value));
     },
 
