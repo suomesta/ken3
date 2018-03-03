@@ -102,7 +102,7 @@ bits::bits(const std::string& str)
  * @return     result of operator<.
  *             result is same as (str() < rhs.str())
  */
-bool bits::operator<(const bits& rhs) const
+bool bits::operator<(const bits& rhs) const noexcept
 {
     return value_ < rhs.value_;
 }
@@ -113,7 +113,7 @@ bool bits::operator<(const bits& rhs) const
  * @param[in]  rhs: rhs of operator==
  * @return     result of operator==.
  */
-bool bits::operator==(const bits& rhs) const
+bool bits::operator==(const bits& rhs) const noexcept
 {
     return value_ == rhs.value_;
 }
@@ -157,7 +157,7 @@ const bits bits::operator+(const bits& rhs) const
  * @note       bits(4, 0x0F) &= bits(4, 0x05); => "0101"
  *             bits(4, 0x0F) &= bits(2, 0x01); => "0111"
  */
-bits& bits::operator&=(const bits& rhs)
+bits& bits::operator&=(const bits& rhs) noexcept
 {
     storage_type::iterator i = value_.begin();
     storage_type::const_iterator j = rhs.value_.cbegin();
@@ -177,7 +177,7 @@ bits& bits::operator&=(const bits& rhs)
  * @note       bits(4, 0x0F) & bits(4, 0x05); => "0101"
  *             bits(4, 0x0F) & bits(2, 0x01); => "0111"
  */
-const bits bits::operator&(const bits& rhs) const
+const bits bits::operator&(const bits& rhs) const noexcept
 {
     bits ret = *this;
     ret &= rhs;
@@ -194,7 +194,7 @@ const bits bits::operator&(const bits& rhs) const
  * @note       bits(4, 0x0A) |= bits(4, 0x05); => "1111"
  *             bits(4, 0x0A) |= bits(2, 0x03); => "1110"
  */
-bits& bits::operator|=(const bits& rhs)
+bits& bits::operator|=(const bits& rhs) noexcept
 {
     storage_type::iterator i = value_.begin();
     storage_type::const_iterator j = rhs.value_.cbegin();
@@ -214,7 +214,7 @@ bits& bits::operator|=(const bits& rhs)
  * @note       bits(4, 0x0A) | bits(4, 0x05); => "1111"
  *             bits(4, 0x0A) | bits(2, 0x03); => "1110"
  */
-const bits bits::operator|(const bits& rhs) const
+const bits bits::operator|(const bits& rhs) const noexcept
 {
     bits ret = *this;
     ret |= rhs;
@@ -231,7 +231,7 @@ const bits bits::operator|(const bits& rhs) const
  * @note       bits(4, 0x0A) ^= bits(4, 0x0F); => "0101"
  *             bits(4, 0x0A) ^= bits(2, 0x03); => "0110"
  */
-bits& bits::operator^=(const bits& rhs)
+bits& bits::operator^=(const bits& rhs) noexcept
 {
     storage_type::iterator i = value_.begin();
     storage_type::const_iterator j = rhs.value_.cbegin();
@@ -251,7 +251,7 @@ bits& bits::operator^=(const bits& rhs)
  * @note       bits(4, 0x0A) ^ bits(4, 0x05); => "1111"
  *             bits(4, 0x0A) ^ bits(2, 0x03); => "0110"
  */
-const bits bits::operator^(const bits& rhs) const
+const bits bits::operator^(const bits& rhs) const noexcept
 {
     bits ret = *this;
     ret ^= rhs;
@@ -322,7 +322,7 @@ const bits bits::operator>>(size_type shift) const
  * @return     result of operator~.
  * @note       ~bits(4, 0x0A); => "0101"
  */
-const bits bits::operator~(void) const
+const bits bits::operator~(void) const noexcept
 {
     bits ret = *this;
     for (auto& i: ret.value_) {
@@ -397,7 +397,7 @@ void bits::reverse(void) noexcept
  * @brief      inverse bits
  * @note       bits(8, 0x12).inverse(); => "1110 1101"
  */
-void bits::inverse(void)
+void bits::inverse(void) noexcept
 {
     for (auto& i: value_) {
         i = !i;
@@ -408,7 +408,7 @@ void bits::inverse(void)
 /**
  * @brief      remove all bits
  */
-void bits::clear(void)
+void bits::clear(void) noexcept
 {
     value_.clear();
 }
@@ -418,7 +418,7 @@ void bits::clear(void)
  * @brief      set all bits 0 or 1
  * @param[in]  value: true means 1, false means 0
  */
-void bits::set_all(bool value)
+void bits::set_all(bool value) noexcept
 {
     for (auto& i: value_) {
         i = value;
@@ -429,9 +429,10 @@ void bits::set_all(bool value)
 /**
  * @brief      pop some bits from MSB side and get integer
  * @param[in]  length: appointed length of bits. should be <= 64
+ * @return     popped integer.
  * @note       bits(8, 0x12).pop_msb(4); => return 1, remain bits(4, 0x02)
  */
-bits::int_type bits::pop_msb(size_type length)
+bits::int_type bits::pop_msb(size_type length) noexcept
 {
     size_type pop_size = std::min({length, value_.size(), sizeof(int_type) * 8});
 
@@ -449,9 +450,10 @@ bits::int_type bits::pop_msb(size_type length)
 /**
  * @brief      pop some bits from LSB side and get integer
  * @param[in]  length: appointed length of bits. should be <= 64
+ * @return     popped integer.
  * @note       bits(8, 0x12).pop_lsb(4); => return 2, remain bits(4, 0x01)
  */
-bits::int_type bits::pop_lsb(size_type length)
+bits::int_type bits::pop_lsb(size_type length) noexcept
 {
     size_type pop_size = std::min({length, value_.size(), sizeof(int_type) * 8});
 
@@ -470,9 +472,10 @@ bits::int_type bits::pop_lsb(size_type length)
  * @brief      pick some bits from start with length and get integer
  * @param[in]  start: appointed start index of bits. starts with 0
  * @param[in]  length: appointed length of bits. should be <= 64
+ * @return     referred integer.
  * @note       bits(8, 0xA5).refer(2, 4); => return 9
  */
-bits::int_type bits::refer(size_type start, size_type length) const
+bits::int_type bits::refer(size_type start, size_type length) const noexcept
 {
     if (start >= value_.size()) {
         return 0;

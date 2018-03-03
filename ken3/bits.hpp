@@ -109,7 +109,7 @@ public:
      * @return     result of operator<.
      *             result is same as (str() < rhs.str())
      */
-    bool operator<(const bits& rhs) const;
+    bool operator<(const bits& rhs) const noexcept;
     /////////////////////////////////////////////////////////////////////////////
 
     /**
@@ -117,7 +117,7 @@ public:
      * @param[in]  rhs: rhs of operator==
      * @return     result of operator==.
      */
-    bool operator==(const bits& rhs) const;
+    bool operator==(const bits& rhs) const noexcept;
     /////////////////////////////////////////////////////////////////////////////
 
     /**
@@ -149,7 +149,7 @@ public:
      * @note       bits(4, 0x0F) &= bits(4, 0x05); => "0101"
      *             bits(4, 0x0F) &= bits(2, 0x01); => "0111"
      */
-    bits& operator&=(const bits& rhs);
+    bits& operator&=(const bits& rhs) noexcept;
     /////////////////////////////////////////////////////////////////////////////
 
     /**
@@ -161,7 +161,7 @@ public:
      * @note       bits(4, 0x0F) & bits(4, 0x05); => "0101"
      *             bits(4, 0x0F) & bits(2, 0x01); => "0111"
      */
-    const bits operator&(const bits& rhs) const;
+    const bits operator&(const bits& rhs) const noexcept;
     /////////////////////////////////////////////////////////////////////////////
 
     /**
@@ -173,7 +173,7 @@ public:
      * @note       bits(4, 0x0A) |= bits(4, 0x05); => "1111"
      *             bits(4, 0x0A) |= bits(2, 0x03); => "1110"
      */
-    bits& operator|=(const bits& rhs);
+    bits& operator|=(const bits& rhs) noexcept;
     /////////////////////////////////////////////////////////////////////////////
 
     /**
@@ -185,7 +185,7 @@ public:
      * @note       bits(4, 0x0A) | bits(4, 0x05); => "1111"
      *             bits(4, 0x0A) | bits(2, 0x03); => "1110"
      */
-    const bits operator|(const bits& rhs) const;
+    const bits operator|(const bits& rhs) const noexcept;
     /////////////////////////////////////////////////////////////////////////////
 
     /**
@@ -197,7 +197,7 @@ public:
      * @note       bits(4, 0x0A) ^= bits(4, 0x0F); => "0101"
      *             bits(4, 0x0A) ^= bits(2, 0x03); => "0110"
      */
-    bits& operator^=(const bits& rhs);
+    bits& operator^=(const bits& rhs) noexcept;
     /////////////////////////////////////////////////////////////////////////////
 
     /**
@@ -209,7 +209,7 @@ public:
      * @note       bits(4, 0x0A) ^ bits(4, 0x05); => "1111"
      *             bits(4, 0x0A) ^ bits(2, 0x03); => "0110"
      */
-    const bits operator^(const bits& rhs) const;
+    const bits operator^(const bits& rhs) const noexcept;
     /////////////////////////////////////////////////////////////////////////////
 
     /**
@@ -253,7 +253,7 @@ public:
      * @return     result of operator~.
      * @note       ~bits(4, 0x0A); => "0101"
      */
-    const bits operator~(void) const;
+    const bits operator~(void) const noexcept;
     /////////////////////////////////////////////////////////////////////////////
 
     /**
@@ -299,45 +299,48 @@ public:
      * @brief      inverse bits
      * @note       bits(8, 0x12).inverse(); => "1110 1101"
      */
-    void inverse(void);
+    void inverse(void) noexcept;
     /////////////////////////////////////////////////////////////////////////////
 
     /**
      * @brief      remove all bits
      */
-    void clear(void);
+    void clear(void) noexcept;
     /////////////////////////////////////////////////////////////////////////////
 
     /**
      * @brief      set all bits 0 or 1
      * @param[in]  value: true means 1, false means 0
      */
-    void set_all(bool value);
+    void set_all(bool value) noexcept;
     /////////////////////////////////////////////////////////////////////////////
 
     /**
      * @brief      pop some bits from MSB side and get integer
      * @param[in]  length: appointed length of bits. should be <= 64
+     * @return     popped integer.
      * @note       bits(8, 0x12).pop_msb(4); => return 1, remain bits(4, 0x02)
      */
-    int_type pop_msb(size_type length);
+    int_type pop_msb(size_type length) noexcept;
     /////////////////////////////////////////////////////////////////////////////
 
     /**
      * @brief      pop some bits from LSB side and get integer
      * @param[in]  length: appointed length of bits. should be <= 64
+     * @return     popped integer.
      * @note       bits(8, 0x12).pop_lsb(4); => return 2, remain bits(4, 0x01)
      */
-    int_type pop_lsb(size_type length);
+    int_type pop_lsb(size_type length) noexcept;
     /////////////////////////////////////////////////////////////////////////////
 
     /**
      * @brief      pick some bits from start with length and get integer
      * @param[in]  start: appointed start index of bits. starts with 0
      * @param[in]  length: appointed length of bits. should be <= 64
+     * @return     referred integer.
      * @note       bits(8, 0xA5).refer(2, 4); => return 9
      */
-    int_type refer(size_type start, size_type length) const;
+    int_type refer(size_type start, size_type length) const noexcept;
     /////////////////////////////////////////////////////////////////////////////
 
 private:
