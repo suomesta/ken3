@@ -52,6 +52,31 @@ constexpr size_t factory_index(void)
 }
 /////////////////////////////////////////////////////////////////////////////
 
+// helper function to check validity
+template <typename T, typename TMP>
+void range_check(TMP tmp)
+{
+    if (tmp > std::numeric_limits<T>::max() ||
+        tmp < std::numeric_limits<T>::lowest() )
+    {
+        throw std::out_of_range("");        
+    }
+}
+/////////////////////////////////////////////////////////////////////////////
+
+// helper function to check validity
+template <typename TMP>
+void negative_check(TMP tmp, const std::string& str, size_t instance_pos)
+{
+    if (tmp != 0) {
+        auto end = std::next(str.cbegin(), instance_pos);
+        if (std::find(str.cbegin(), end, '-') != end) {
+            throw std::out_of_range("");
+        }
+    }
+}
+/////////////////////////////////////////////////////////////////////////////
+
 // convert to float
 // no extra operation
 template <typename T>
@@ -87,12 +112,8 @@ T string_to(const std::string& str, size_t* pos, int base, factory<4> dummy)
     size_t instance_pos;
     int tmp = std::stoi(str, &instance_pos, base);
 
-    // range check
-    if (tmp > std::numeric_limits<T>::max() ||
-        tmp < std::numeric_limits<T>::lowest() )
-    {
-        throw std::out_of_range("");        
-    }
+    // check validity
+    range_check<T>(tmp);
 
     T ret = static_cast<T>(tmp);
     if (pos != nullptr) {
@@ -137,18 +158,9 @@ T string_to(const std::string& str, size_t* pos, int base, factory<8> dummy)
     size_t instance_pos;
     unsigned long tmp = std::stoul(str, &instance_pos, base);
 
-    // negative check
-    if (tmp != 0) {
-        auto end = std::next(str.cbegin(), instance_pos);
-        if (std::find(str.cbegin(), end, '-') != end) {
-            throw std::out_of_range("");
-        }
-    }
-
-    // range check
-    if (tmp > std::numeric_limits<T>::max()) {
-        throw std::out_of_range("");        
-    }
+    // check validity
+    negative_check(tmp, str, instance_pos);
+    range_check<T>(tmp);
 
     T ret = static_cast<T>(tmp);
     if (pos != nullptr) {
@@ -166,13 +178,8 @@ T string_to(const std::string& str, size_t* pos, int base, factory<9> dummy)
     size_t instance_pos;
     unsigned long ret = std::stoul(str, &instance_pos, base);
 
-    // negative check
-    if (ret != 0) {
-        auto end = std::next(str.cbegin(), instance_pos);
-        if (std::find(str.cbegin(), end, '-') != end) {
-            throw std::out_of_range("");
-        }
-    }
+    // check validity
+    negative_check(ret, str, instance_pos);
 
     if (pos != nullptr) {
         *pos = instance_pos;
@@ -189,13 +196,8 @@ T string_to(const std::string& str, size_t* pos, int base, factory<10> dummy)
     size_t instance_pos;
     unsigned long long ret = std::stoull(str, &instance_pos, base);
 
-    // negative check
-    if (ret != 0) {
-        auto end = std::next(str.cbegin(), instance_pos);
-        if (std::find(str.cbegin(), end, '-') != end) {
-            throw std::out_of_range("");
-        }
-    }
+    // check validity
+    negative_check(ret, str, instance_pos);
 
     if (pos != nullptr) {
         *pos = instance_pos;
