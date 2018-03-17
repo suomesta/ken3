@@ -12,6 +12,7 @@ Bazel is recommended to build and test ken3.
 - bits: handling bit data.
 - cast: supports some safe cast functions.
 - metric: easy and flexible conversion between units.
+- pyfunc: Python like functions min, max, all, any, sum, reduce, filter, and map.
 - pyloop: functions to create Python like object for range-for statement.
 - pystr: functions which imitate Python str function.
 - stopwatch: simple but useful stopwatch using C++11 <chrono>.
