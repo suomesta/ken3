@@ -11,13 +11,6 @@
 #include "ken3/metric.hpp"
 #include "unittest/lest.hpp"
 
-namespace {
-
-// constants
-constexpr double rad2deg = 3.14159265358979323846 / 180.0;
-
-} // namespace {
-
 const lest::test specification[] =
 {
 
@@ -112,45 +105,6 @@ const lest::test specification[] =
         // without metre_per_second
         EXPECT(approx(1.0 * (1000.0 / 3600.0) / (1852.0 / 3600.0)) == (convert<kilometre_per_hour, knot>(1.0)));
         EXPECT(approx(1.0 * (1852.0 / 3600.0) / (1000.0 / 3600.0)) == (convert<knot, kilometre_per_hour>(1.0)));
-    },
-
-    CASE("angle")
-    {
-        using namespace ken3::metric;
-        using lest::approx;
-
-        // with radian
-        EXPECT(approx(1.0 / 1.0) == (convert<radian, si>(1.0)));
-        EXPECT(approx(2.0 / 1.0) == (convert<radian, radian>(2.0)));
-        EXPECT(approx(3.0 / rad2deg) == (convert<radian, degree>(3.0)));
-        EXPECT(approx(3.0 * 1.0) == (convert<si, radian>(3.0)));
-        EXPECT(approx(2.0 * 1.0) == (convert<radian, radian>(2.0)));
-        EXPECT(approx(1.0 * rad2deg) == (convert<degree, radian>(1.0)));
-    },
-
-    CASE("ROT")
-    {
-        using namespace ken3::metric;
-        using lest::approx;
-
-        // with radian_per_second
-        EXPECT(approx(1.0 / 1.0) == (convert<radian_per_second, si>(1.0)));
-        EXPECT(approx(2.0 / 1.0) == (convert<radian_per_second, radian_per_second>(2.0)));
-        EXPECT(approx(3.0 / rad2deg) == (convert<radian_per_second, degree_per_second>(3.0)));
-        EXPECT(approx(4.0 / (1.0 / 60.0)) == (convert<radian_per_second, radian_per_minute>(4.0)));
-        EXPECT(approx(5.0 / (rad2deg / 60.0)) == (convert<radian_per_second, degree_per_minute>(5.0)));
-        EXPECT(approx(5.0 * 1.0) == (convert<si, radian_per_second>(5.0)));
-        EXPECT(approx(4.0 * 1.0) == (convert<radian_per_second, radian_per_second>(4.0)));
-        EXPECT(approx(3.0 * rad2deg) == (convert<degree_per_second, radian_per_second>(3.0)));
-        EXPECT(approx(2.0 * (1.0 / 60.0)) == (convert<radian_per_minute, radian_per_second>(2.0)));
-        EXPECT(approx(1.0 * (rad2deg / 60.0)) == (convert<degree_per_minute, radian_per_second>(1.0)));
-        // without radian_per_second
-        EXPECT(approx(1.0 * rad2deg / (1.0 / 60.0)) == (convert<degree_per_second, radian_per_minute>(1.0)));
-        EXPECT(approx(2.0 * rad2deg / (rad2deg / 60.0)) == (convert<degree_per_second, degree_per_minute>(2.0)));
-        EXPECT(approx(2.0 * (1.0 / 60.0) / rad2deg) == (convert<radian_per_minute, degree_per_second>(2.0)));
-        EXPECT(approx(1.0 * (1.0 / 60.0) / (rad2deg / 60.0)) == (convert<radian_per_minute, degree_per_minute>(1.0)));
-        EXPECT(approx(1.0 * (rad2deg / 60.0) / rad2deg) == (convert<degree_per_minute, degree_per_second>(1.0)));
-        EXPECT(approx(2.0 * (rad2deg / 60.0) / (1.0 / 60.0)) == (convert<degree_per_minute, radian_per_minute>(2.0)));
     },
 
     CASE("add unit")

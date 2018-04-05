@@ -1,7 +1,7 @@
 /**
  * @file    ken3/metric.hpp
  * @brief   Define functions to calculate unit conversion.
- *          metric supports length, time, speed, angle, and rot. 
+ *          metric supports length, time, and speed. 
  *          It is easy to add new units if needed.
  * @author  toda
  * @date    2017-01-24
@@ -20,8 +20,6 @@
  *     length {metre, nauticalmile, yard, kilometre, kiloyard}
  *     time {second, minute, hour, day, week}
  *     speed {metre_per_second, kilometre_per_hour, knot}
- *     angle {radian, degree}
- *     rot {radian_per_second, degree_per_second, radian_per_minute, degree_per_minute}
  *
  * si is a special unit to deal with SI units;
  *     // convert 1000[SI unit(m)] into [NM]
@@ -88,20 +86,6 @@ struct speed {};
 using metre_per_second   = unit<speed, std::ratio_divide<typename metre::ratio,        typename second::ratio>>; // SI
 using kilometre_per_hour = unit<speed, std::ratio_divide<typename kilometre::ratio,    typename hour::ratio>>;
 using knot               = unit<speed, std::ratio_divide<typename nauticalmile::ratio, typename hour::ratio>>;
-/////////////////////////////////////////////////////////////////////////////
-
-// angle unit definition
-struct angle {};
-using radian = unit<angle, std::ratio<1, 1>>; // SI
-using degree = unit<angle, std::ratio<314159265358979/*323846*/, 18000000000000000/*000000*/>>;
-/////////////////////////////////////////////////////////////////////////////
-
-// ROT unit definition
-struct rot {};
-using radian_per_second = unit<rot, std::ratio_divide<typename radian::ratio, typename second::ratio>>; // SI
-using degree_per_second = unit<rot, std::ratio_divide<typename degree::ratio, typename second::ratio>>;
-using radian_per_minute = unit<rot, std::ratio_divide<typename radian::ratio, typename minute::ratio>>;
-using degree_per_minute = unit<rot, std::ratio_divide<typename degree::ratio, typename minute::ratio>>;
 /////////////////////////////////////////////////////////////////////////////
 
 namespace metirc_detail {
