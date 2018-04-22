@@ -1,9 +1,9 @@
 /**
  * @file    ken3/pyfunc.hpp
  * @brief   Define functions which imitate Python's built-in functions. 
- *          pyfunc::min(), pyfunc::max(), pyfunc::all(), pyfunc::any(), pyfunc::sum(),
- *          pyfunc::reduce(), pyfunc::filter(), and pyfunc::map() behave almost same as
- *          Python's same named function.
+ *          pyfunc::bool_cast(), pyfunc::min(), pyfunc::max(), pyfunc::all(), pyfunc::any(),
+ *          pyfunc::sum(), pyfunc::reduce(), pyfunc::map(), and pyfunc::filter() behave almost
+ *          same as Python's same named function.
  * @author  toda
  * @date    2018-03-13
  * @version 0.1.0
@@ -11,15 +11,57 @@
  *
  * @note
  * Typical usage is;
+ *     using namespace ken3::pyfunc;
+ *
+ *     // Python like bool()
+ *     std::cout << bool_cast(std::vector<int>{}); // => 0
+ *     std::cout << bool_cast(std::vector<int>{1}); // => 1
+ *
+ *     // Python like min()
+ *     std::cout << min(std::vector<int>{1, 2, 3}); // => 1
+ *
+ *     // Python like max()
+ *     std::cout << max(std::vector<int>{1, 2, 3}); // => 3
+ *
+ *     // Python like all()
+ *     std::cout << all(std::vector<int>{}); // => 1
+ *     std::cout << all(std::vector<int>{0, 0}); // => 0
+ *     std::cout << all(std::vector<int>{0, 1}); // => 1
+ *     std::cout << all(std::vector<int>{1, 1}); // => 1
+ *
+ *     // Python like any()
+ *     std::cout << any(std::vector<int>{}); // => 0
+ *     std::cout << any(std::vector<int>{0, 0}); // => 0
+ *     std::cout << any(std::vector<int>{0, 1}); // => 1
+ *     std::cout << any(std::vector<int>{1, 1}); // => 1
+ *
+ *     // Python like sum()
+ *     std::cout << sum(std::vector<int>{}); // => 0
+ *     std::cout << sum(std::vector<int>{1, 2, 3}); // => 6
+ *     std::cout << sum(std::vector<std::string>{"A", "B"}); // => AB
+ *
+ *     // Python like reduce()
+ *     std::cout << reduce(std::plus<int>(), std::vector<int>{1, 2, 3}); // => 6
+ *     std::cout << reduce(std::plus<int>(), std::vector<int>{1, 2, 3}, 10); // => 16
+ *     std::cout << reduce(std::plus<int>(), std::vector<int>{}); // => TypeError
+ *
+ *     // Python like map()
+ *     std::cout << map(::toupper, std::string("aABbCcdD")); // => AABBCCDD
+ *
+ *     // Python like filter()
+ *     auto f = [](char c) -> bool {
+ *         return static_cast<bool>(c);
+ *     };
+ *     std::string s = "ABC";
+ *     s[1] = '\0';
+ *     std::cout << filter(f, s); // => AC
  */
 
 #ifndef INCLUDE_GUARD_KEN3_PYFUNC_HPP
 #define INCLUDE_GUARD_KEN3_PYFUNC_HPP
 
 #include <algorithm>
-#include <functional>
 #include <iterator>
-#include <numeric>
 #include <stdexcept>
 #include <string>
 #include <type_traits>
@@ -34,6 +76,20 @@ struct remove_cvr
 {
     using type = typename std::remove_cv<typename std::remove_reference<T>::type>::type;
 };
+/////////////////////////////////////////////////////////////////////////////
+
+template <typename T>
+bool bool_cast(const T& t, std::true_type dummy)
+{
+    return bool(t);
+}
+/////////////////////////////////////////////////////////////////////////////
+
+template <typename T>
+bool bool_cast(const T& t, std::false_type dummy)
+{
+    return std::begin(t) != std::end(t);
+}
 /////////////////////////////////////////////////////////////////////////////
 
 } // namespace pyfunc_detail {
@@ -75,6 +131,36 @@ struct TypeError : public std::runtime_error
 /////////////////////////////////////////////////////////////////////////////
 
 /**
+ * @brief      Python like bool().
+ * @tparam     T: appointed type.
+ * @param[in]  t: appointed value.
+ * @return     result of bool().
+ *             nullptr, NULL, 0 in arithmetic, and empty iterable object return false.
+ *             otherwise true.
+ */
+template <typename T>
+bool bool_cast(const T& t)
+{
+    constexpr bool bool_convertible = std::is_convertible<T, bool>::value;
+    using true_false_type = typename std::integral_constant<bool, bool_convertible>::type;
+
+    return pyfunc_detail::bool_cast(t, true_false_type{});
+}
+/////////////////////////////////////////////////////////////////////////////
+
+/**
+ * @brief      Python like bool() with nullptr.
+ * @param[in]  t: nullptr.
+ * @return     false.
+ */
+template <>
+bool bool_cast(const std::nullptr_t& t)
+{
+    return false;
+}
+/////////////////////////////////////////////////////////////////////////////
+
+/**
  * @brief      Python like min().
  * @tparam     ITERABLE: iterable object. ex.) STL container and array
  * @tparam     COMPARE: compare function
@@ -84,7 +170,6 @@ struct TypeError : public std::runtime_error
  * @throw      ValueError: in case iterable is empty
  * @note       unfortunately argument default in Python's min() is not supported.
  */
-//template <typename ITERABLE, typename COMPARE = std::less<const decltype(*std::begin(iterable))&>>
 template <typename ITERABLE,
           typename COMPARE=std::less<const decltype(*std::begin(std::declval<const ITERABLE&>()))&>>
 const decltype(*std::begin(std::declval<const ITERABLE&>()))& min(const ITERABLE& iterable, COMPARE compare=COMPARE())
@@ -108,7 +193,6 @@ const decltype(*std::begin(std::declval<const ITERABLE&>()))& min(const ITERABLE
  * @throw      ValueError: in case iterable is empty
  * @note       unfortunately argument default in Python's max() is not supported.
  */
-//template <typename ITERABLE, typename COMPARE = std::less<const decltype(*std::begin(iterable))&>>
 template <typename ITERABLE,
           typename COMPARE=std::less<const decltype(*std::begin(std::declval<const ITERABLE&>()))&>>
 const decltype(*std::begin(std::declval<const ITERABLE&>()))& max(const ITERABLE& iterable, COMPARE compare=COMPARE())
@@ -133,7 +217,7 @@ template <typename ITERABLE>
 bool all(const ITERABLE& iterable)
 {
     using item_type = const decltype(*std::begin(iterable))&;
-    return std::all_of(std::begin(iterable), std::end(iterable), [](item_type x) { return static_cast<bool>(x); });
+    return std::all_of(std::begin(iterable), std::end(iterable), [](item_type x) { return bool_cast(x); });
 }
 /////////////////////////////////////////////////////////////////////////////
 
@@ -148,7 +232,7 @@ template <typename ITERABLE>
 bool any(const ITERABLE& iterable)
 {
     using item_type = const decltype(*std::begin(iterable))&;
-    return std::any_of(std::begin(iterable), std::end(iterable), [](item_type x) { return static_cast<bool>(x); });
+    return std::any_of(std::begin(iterable), std::end(iterable), [](item_type x) { return bool_cast(x); });
 }
 /////////////////////////////////////////////////////////////////////////////
 

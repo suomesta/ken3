@@ -22,6 +22,57 @@
 const lest::test specification[] =
 {
 
+    CASE("bool_cast()")
+    {
+        using ken3::pyfunc::bool_cast;
+
+        {
+            EXPECT(false == bool_cast(0));
+            EXPECT(true == bool_cast(1));
+        }
+        {
+            EXPECT(false == bool_cast(0.0));
+            EXPECT(true == bool_cast(1.0));
+        }
+        {
+            EXPECT(false == bool_cast(false));
+            EXPECT(true == bool_cast(true));
+        }
+        {
+            int i;
+            int* p1 = NULL;
+            int* p2 = &i;
+            EXPECT(false == bool_cast(nullptr));
+            EXPECT(false == bool_cast(p1));
+            EXPECT(true == bool_cast(p2));
+        }
+        {
+            std::vector<int> v1{};
+            std::vector<int> v2{0};
+            std::vector<int> v3{1};
+            EXPECT(false == bool_cast(v1));
+            EXPECT(true == bool_cast(v2));
+            EXPECT(true == bool_cast(v3));
+        }
+        {
+            std::string s1;
+            std::string s2(1, '\0');
+            std::string s3 = "abc";
+            EXPECT(false == bool_cast(s1));
+            EXPECT(true == bool_cast(s2));
+            EXPECT(true == bool_cast(s3));
+        }
+        {
+            int a[3] = {1, 2, 3};
+            EXPECT(true == bool_cast(a));
+        }
+        {
+            struct tmp {};
+            tmp a[3];
+            EXPECT(true == bool_cast(a));
+        }
+    },
+
     CASE("min() with one argument")
     {
         using ken3::pyfunc::min;
@@ -453,6 +504,22 @@ const lest::test specification[] =
             std::vector<int> v;
             EXPECT(true == all(v));
         }
+        {
+            std::vector<std::vector<int>> v{};
+            EXPECT(true == all(v));
+        }
+        {
+            std::vector<std::vector<int>> v{std::vector<int>{}, std::vector<int>{}};
+            EXPECT(false == all(v));
+        }
+        {
+            std::vector<std::vector<int>> v{std::vector<int>{}, std::vector<int>{0}};
+            EXPECT(false == all(v));
+        }
+        {
+            std::vector<std::vector<int>> v{std::vector<int>{0}, std::vector<int>{0}};
+            EXPECT(true == all(v));
+        }
     },
 
     CASE("any()")
@@ -556,6 +623,22 @@ const lest::test specification[] =
         {
             std::vector<int> v;
             EXPECT(false == any(v));
+        }
+        {
+            std::vector<std::vector<int>> v{};
+            EXPECT(false == any(v));
+        }
+        {
+            std::vector<std::vector<int>> v{std::vector<int>{}, std::vector<int>{}};
+            EXPECT(false == any(v));
+        }
+        {
+            std::vector<std::vector<int>> v{std::vector<int>{}, std::vector<int>{0}};
+            EXPECT(true == any(v));
+        }
+        {
+            std::vector<std::vector<int>> v{std::vector<int>{0}, std::vector<int>{0}};
+            EXPECT(true == any(v));
         }
     },
 
@@ -832,8 +915,6 @@ const lest::test specification[] =
         }
     },
 
-
-
     CASE("filter() with three arguments")
     {
         using ken3::pyfunc::filter;
@@ -883,7 +964,7 @@ const lest::test specification[] =
         }
         {
             auto f = [](char c) -> bool {
-                return static_cast<char>(c);
+                return static_cast<bool>(c);
             };
             std::string s = "ABCD";
             s[2] = '\0';
@@ -891,7 +972,7 @@ const lest::test specification[] =
         }
         {
             auto f = [](char c) -> bool {
-                return static_cast<char>(c);
+                return static_cast<bool>(c);
             };
             std::string tmp = "ABCD";
             tmp[2] = '\0';
@@ -899,8 +980,6 @@ const lest::test specification[] =
             EXPECT((std::is_same<std::string, decltype(filter(f, s))>::value));
         }
     },
-
-
 
 };
 

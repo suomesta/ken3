@@ -14,6 +14,23 @@
 
 #elif defined D0001_TEST_FUNC_ACTIVATED
 /**
+ * @brief      test that compile error occurs when bool_cast() is neither bool castable nor iterable.
+ */
+int test_func(void)
+{
+    using namespace ken3::pyfunc;
+
+    // first argument is neither bool castable nor iterable
+    struct tmp {};
+    tmp t;
+    bool_cast(t);
+
+    return 0;
+}
+/////////////////////////////////////////////////////////////////////////////
+
+#elif defined D0002_TEST_FUNC_ACTIVATED
+/**
  * @brief      test that compile error occurs when min() first argument is not iterable.
  */
 int test_func(void)
@@ -27,7 +44,7 @@ int test_func(void)
 }
 /////////////////////////////////////////////////////////////////////////////
 
-#elif defined D0002_TEST_FUNC_ACTIVATED
+#elif defined D0003_TEST_FUNC_ACTIVATED
 /**
  * @brief      test that compile error occurs when min() first argument does not have operator<.
  */
@@ -44,7 +61,7 @@ int test_func(void)
 }
 /////////////////////////////////////////////////////////////////////////////
 
-#elif defined D0003_TEST_FUNC_ACTIVATED
+#elif defined D0004_TEST_FUNC_ACTIVATED
 /**
  * @brief      test that compile error occurs when min() second argument is not function.
  */
@@ -60,7 +77,7 @@ int test_func(void)
 }
 /////////////////////////////////////////////////////////////////////////////
 
-#elif defined D0004_TEST_FUNC_ACTIVATED
+#elif defined D0005_TEST_FUNC_ACTIVATED
 /**
  * @brief      test that compile error occurs when min() second argument does not have return value.
  */
@@ -79,7 +96,7 @@ int test_func(void)
 }
 /////////////////////////////////////////////////////////////////////////////
 
-#elif defined D0005_TEST_FUNC_ACTIVATED
+#elif defined D0006_TEST_FUNC_ACTIVATED
 /**
  * @brief      test that compile error occurs when max() first argument is not iterable.
  */
@@ -94,7 +111,7 @@ int test_func(void)
 }
 /////////////////////////////////////////////////////////////////////////////
 
-#elif defined D0006_TEST_FUNC_ACTIVATED
+#elif defined D0007_TEST_FUNC_ACTIVATED
 /**
  * @brief      test that compile error occurs when max() first argument does not have operator<.
  */
@@ -111,7 +128,7 @@ int test_func(void)
 }
 /////////////////////////////////////////////////////////////////////////////
 
-#elif defined D0007_TEST_FUNC_ACTIVATED
+#elif defined D0008_TEST_FUNC_ACTIVATED
 /**
  * @brief      test that compile error occurs when max() second argument is not function.
  */
@@ -127,7 +144,7 @@ int test_func(void)
 }
 /////////////////////////////////////////////////////////////////////////////
 
-#elif defined D0008_TEST_FUNC_ACTIVATED
+#elif defined D0009_TEST_FUNC_ACTIVATED
 /**
  * @brief      test that compile error occurs when max() second argument does not have return value.
  */
@@ -146,7 +163,7 @@ int test_func(void)
 }
 /////////////////////////////////////////////////////////////////////////////
 
-#elif defined D0009_TEST_FUNC_ACTIVATED
+#elif defined D0010_TEST_FUNC_ACTIVATED
 /**
  * @brief      test that compile error occurs when all() the argument is not iterable.
  */
@@ -161,7 +178,7 @@ int test_func(void)
 }
 /////////////////////////////////////////////////////////////////////////////
 
-#elif defined D0010_TEST_FUNC_ACTIVATED
+#elif defined D0011_TEST_FUNC_ACTIVATED
 /**
  * @brief      test that compile error occurs when all() the argument cannot be converted into bool.
  */
@@ -178,7 +195,7 @@ int test_func(void)
 }
 /////////////////////////////////////////////////////////////////////////////
 
-#elif defined D0011_TEST_FUNC_ACTIVATED
+#elif defined D0012_TEST_FUNC_ACTIVATED
 /**
  * @brief      test that compile error occurs when any() the argument is not iterable.
  */
@@ -193,7 +210,7 @@ int test_func(void)
 }
 /////////////////////////////////////////////////////////////////////////////
 
-#elif defined D0012_TEST_FUNC_ACTIVATED
+#elif defined D0013_TEST_FUNC_ACTIVATED
 /**
  * @brief      test that compile error occurs when any() the argument cannot be converted into bool.
  */
@@ -210,7 +227,7 @@ int test_func(void)
 }
 /////////////////////////////////////////////////////////////////////////////
 
-#elif defined D0013_TEST_FUNC_ACTIVATED
+#elif defined D0014_TEST_FUNC_ACTIVATED
 /**
  * @brief      test that compile error occurs when sum() first argument is not iterable.
  */
@@ -225,7 +242,7 @@ int test_func(void)
 }
 /////////////////////////////////////////////////////////////////////////////
 
-#elif defined D0014_TEST_FUNC_ACTIVATED
+#elif defined D0015_TEST_FUNC_ACTIVATED
 /**
  * @brief      test that compile error occurs when sum() first argument does not accept accumulate.
  */
@@ -242,7 +259,7 @@ int test_func(void)
 }
 /////////////////////////////////////////////////////////////////////////////
 
-#elif defined D0015_TEST_FUNC_ACTIVATED
+#elif defined D0016_TEST_FUNC_ACTIVATED
 /**
  * @brief      test that compile error occurs when sum() second argument does not match.
  */
@@ -260,7 +277,7 @@ int test_func(void)
 }
 /////////////////////////////////////////////////////////////////////////////
 
-#elif defined D0016_TEST_FUNC_ACTIVATED
+#elif defined D0017_TEST_FUNC_ACTIVATED
 /**
  * @brief      test that compile error occurs when reduce() first argument is not function.
  */
@@ -276,7 +293,7 @@ int test_func(void)
 }
 /////////////////////////////////////////////////////////////////////////////
 
-#elif defined D0017_TEST_FUNC_ACTIVATED
+#elif defined D0018_TEST_FUNC_ACTIVATED
 /**
  * @brief      test that compile error occurs when reduce() first argument does not have return value.
  */
@@ -295,7 +312,7 @@ int test_func(void)
 }
 /////////////////////////////////////////////////////////////////////////////
 
-#elif defined D0018_TEST_FUNC_ACTIVATED
+#elif defined D0019_TEST_FUNC_ACTIVATED
 /**
  * @brief      test that compile error occurs when reduce() second argument is not iterable.
  */
@@ -310,7 +327,7 @@ int test_func(void)
 }
 /////////////////////////////////////////////////////////////////////////////
 
-#elif defined D0019_TEST_FUNC_ACTIVATED
+#elif defined D0020_TEST_FUNC_ACTIVATED
 /**
  * @brief      test that compile error occurs when reduce() third argument does not match.
  */
@@ -328,7 +345,7 @@ int test_func(void)
 }
 /////////////////////////////////////////////////////////////////////////////
 
-#elif defined D0020_TEST_FUNC_ACTIVATED
+#elif defined D0021_TEST_FUNC_ACTIVATED
 /**
  * @brief      test that compile error occurs when map() first argument is not function.
  */
@@ -344,7 +361,7 @@ int test_func(void)
 }
 /////////////////////////////////////////////////////////////////////////////
 
-#elif defined D0021_TEST_FUNC_ACTIVATED
+#elif defined D0022_TEST_FUNC_ACTIVATED
 /**
  * @brief      test that compile error occurs when map() first argument does not have return value.
  */
@@ -363,7 +380,7 @@ int test_func(void)
 }
 /////////////////////////////////////////////////////////////////////////////
 
-#elif defined D0022_TEST_FUNC_ACTIVATED
+#elif defined D0023_TEST_FUNC_ACTIVATED
 /**
  * @brief      test that compile error occurs when map() second argument is not iterable.
  */
@@ -381,7 +398,7 @@ int test_func(void)
 }
 /////////////////////////////////////////////////////////////////////////////
 
-#elif defined D0023_TEST_FUNC_ACTIVATED
+#elif defined D0024_TEST_FUNC_ACTIVATED
 /**
  * @brief      test that compile error occurs when filter() first argument is not function.
  */
@@ -397,7 +414,7 @@ int test_func(void)
 }
 /////////////////////////////////////////////////////////////////////////////
 
-#elif defined D0024_TEST_FUNC_ACTIVATED
+#elif defined D0025_TEST_FUNC_ACTIVATED
 /**
  * @brief      test that compile error occurs when filter() first argument does not have return value.
  */
@@ -416,7 +433,7 @@ int test_func(void)
 }
 /////////////////////////////////////////////////////////////////////////////
 
-#elif defined D0025_TEST_FUNC_ACTIVATED
+#elif defined D0026_TEST_FUNC_ACTIVATED
 /**
  * @brief      test that compile error occurs when filter() second argument is not iterable.
  */
