@@ -7,7 +7,8 @@
  * @author  toda
  * @date    2018-03-13
  * @version 0.1.0
- * @remark  the target is C++11 or more
+ * @remark  the target is C++11 or more.
+ * @remark  this module works only with this header file.
  *
  * @note
  * Typical usage is;

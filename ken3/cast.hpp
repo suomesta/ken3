@@ -6,8 +6,8 @@
  * @author  toda
  * @date    2018-02-18
  * @version 0.1.0
- * @remark  the target is C++11 or more
- * @remark  type_util works only with header files
+ * @remark  the target is C++11 or more.
+ * @remark  this module works only with header files.
  *
  * @note
  * Typical usage of ken3::int_cast() is;
@@ -31,6 +31,20 @@
  *     std::cout << ken3::int_cast<int>(true); // compile error!
  *     // parameters shall be integer
  *     std::cout << ken3::int_cast<int>(1.0); // compile error!
+ *
+ * Typical usage of ken3::string_to() is;
+ *     // try to convert "70000" into long.
+ *     // conversion result is OK
+ *     long l = ken3::string_to<long>("70000");
+ *
+ *     // try to convert "70000" into char.
+ *     // conversion result is NG, because 70000 is too large for char
+ *     try {
+ *         char c = ken3::string_to<char>("70000");
+ *     }
+ *     catch (const std::out_of_range& e) {
+ *         std::cout << "out_of_range"; // => "out_of_range"
+ *     }
  */
 
 #ifndef INCLUDE_GUARD_KEN3_CAST_HPP

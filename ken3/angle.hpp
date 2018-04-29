@@ -7,7 +7,7 @@
  * @author  toda
  * @date    2018-02-13
  * @version 0.1.0
- * @remark  the target is C++11 or more
+ * @remark  the target is C++11 or more.
  * @remark  angle class is exception free as long as std::fmod() does not throw any exceptions.
  *
  * @note
@@ -16,7 +16,7 @@
  *     deg += angle<true>(45.0);
  *     std::cout << deg(); // => 90
  *     std::cout << deg.degree(); // => 90
- *     std::cout << deg.radian(); // => 90
+ *     std::cout << deg.radian(); // => 1.57079
  *     deg += 350.0;
  *     std::cout << deg(); // => 80
  *

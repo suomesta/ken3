@@ -4,7 +4,7 @@
  * @author  toda
  * @date    2018-02-18
  * @version 0.1.0
- * @remark  the target is C++11 or more
+ * @remark  the target is C++11 or more.
  */
 
 #ifndef INCLUDE_GUARD_KEN3_CAST_STRING_TO_HPP

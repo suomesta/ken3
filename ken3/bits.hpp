@@ -5,7 +5,7 @@
  * @author  toda
  * @date    2018-01-29
  * @version 0.1.0
- * @remark  the target is C++11 or more
+ * @remark  the target is C++11 or more.
  *
  * @note
  * Typical usage is;
@@ -36,7 +36,7 @@ namespace ken3 {
  * @brief   bits class deals with multiple bit data.
  *          bits supports basic operations (+, &, |, ^, ~), and some functions
  *          to get integer.
- *          integer value used in this class is uint64_t.
+ *          integer value type used in this class is uint64_t.
  */
 class bits
 {

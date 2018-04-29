@@ -6,8 +6,8 @@
  * @author  toda
  * @date    2017-01-24
  * @version 0.1.0
- * @remark  the target is C++11 or more
- * @remark  metric works only with this header file
+ * @remark  the target is C++11 or more.
+ * @remark  this module works only with this header file.
  *
  * @note
  * Typical usage is;

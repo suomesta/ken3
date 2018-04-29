@@ -10,8 +10,8 @@
  * @author  toda
  * @date    2017-07-04
  * @version 0.1.0
- * @remark  the target is C++11 or more
- * @remark  type_util works only with this header file
+ * @remark  the target is C++11 or more.
+ * @remark  this module works only with this header file.
  *
  * @note
  * usage of ken3::array_size<> is,

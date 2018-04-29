@@ -5,14 +5,14 @@
  * @author  toda
  * @date    2017-08-25
  * @version 0.1.0
- * @remark  the target is C++11 or more
- * @remark  type_util works only with header files
+ * @remark  the target is C++11 or more.
+ * @remark  this module works only with this header file.
  *
  * @note
  * Typical usage of ken3::pyloop::enumerate is;
  *     std::vector<int> v{1, 22, 333};
  *     for (auto i: ken3::pyloop::enumerate(v)) {
- *         std::cout << i.first << " " << i.second;
+ *         std::cout << i.first << " " << i.second << std::endl;
  *         // => "0 1"
  *         // => "1 22"
  *         // => "2 333"
@@ -21,24 +21,24 @@
  * Typical usage of ken3::pyloop::range is;
  *     for (auto i: ken3::pyloop::range(3)) {
  *         std::cout << i << " ";
- *         // => "0 1 2"
+ *         // => "0 1 2 "
  *     }
  *
  *     for (auto i: ken3::pyloop::range(1, 4)) {
  *         std::cout << i << " ";
- *         // => "1 2 3"
+ *         // => "1 2 3 "
  *     }
  *
  *     for (auto i: ken3::pyloop::range(1, 4, 2)) {
  *         std::cout << i << " ";
- *         // => "1 3"
+ *         // => "1 3 "
  *     }
  *
  * Typical usage of ken3::pyloop::zip is;
  *     std::vector<int> v1{1, 2, 3};
  *     std::vector<int> v2{4, 5, 6};
  *     for (auto i: ken3::pyloop::zip(v1, v2)) {
- *         std::cout << i.first << " " << i.second;
+ *         std::cout << i.first << " " << i.second << std::endl;
  *         // => "1 4"
  *         // => "2 5"
  *         // => "3 6"
@@ -47,7 +47,7 @@
  *     int a1[3] = {7, 8, 9};
  *     int a2[4] = {10, 11, 12, 13};
  *     for (auto i: ken3::pyloop::zip(a1, a2)) {
- *         std::cout << i.first << " " << i.second;
+ *         std::cout << i.first << " " << i.second << std::endl;
  *         // => "7 10"
  *         // => "8 11"
  *         // => "9 12"

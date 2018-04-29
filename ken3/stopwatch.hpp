@@ -5,8 +5,8 @@
  * @author  toda
  * @date    2018-01-17
  * @version 0.1.0
- * @remark  the target is C++11 or more
- * @remark  stopwatch class is completely exception free
+ * @remark  the target is C++11 or more.
+ * @remark  stopwatch class is completely exception free.
  *
  * @note
  * Typical usage is;
