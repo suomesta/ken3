@@ -2,23 +2,22 @@
 """ stylecheck
 
 check all header and source files are written in common style.
-
 """
 
+from collections import namedtuple
 import glob
-import os
 import sys
 
 __author__ = 'toda'
 __version__ = '1.0.0'
 
 
-def filenames(root_dir):
+def pick_names(root_dir):
     """ pick hpp and cpp files from root_dir
 
     param[in]  root_dir: appointed path of root directory.
-                         normaly source root directory ("ken3")
-    return     targer file names in string-list
+                         normaly source root directory "../../ken3/"
+    yield      target file names in string-list
     """
     yield from glob.glob(root_dir + '*.hpp')
     yield from glob.glob(root_dir + '*.cpp')
@@ -26,18 +25,25 @@ def filenames(root_dir):
     yield from glob.glob(root_dir + '*/*.cpp')
 
 
-def check(filename, lines):
+def create_indices(filename, lines):
+    """ create index list from lines
+
+    param[in]  filename: appointed file name in str. already processed to
+                         handle easier.
+    param[in]  lines: lines in file.
+    return     index numbers in tuple.
+    """
     def find(key, condition):
+        """ find and return index from str-list """
         for i, line in enumerate(lines):
             if condition(line, key):
                 return i
         return None
 
-    filename = filename.replace('\\', '/')
-    guard = ('INCLUDE_GUARD_KEN3_'
-             + filename.replace('/', '_').replace('.', '_').upper())
+    guard = ('INCLUDE_GUARD_KEN3_' +
+             filename.replace('/', '_').replace('.', '_').upper())
 
-    indices = ((
+    return (
         # doxygen comment in header. [0] to [7]
         find('/**\n', str.__eq__),
         find(' * @file    ken3/{0}\n'.format(filename), str.__eq__),
@@ -59,125 +65,104 @@ def check(filename, lines):
         find('} // namespace ken3 {\n', str.__eq__),
         # end include guard (only in .hpp files). [14]
         find('#endif // #ifndef {0}\n'.format(guard), str.__eq__),
-    ))
+    )
+
+
+def check(filename, lines):
+    """ check a file and yield found problem.
+
+    param[in]  filename: appointed file name in str.
+    param[in]  lines: lines in file.
+    yield      (filename, message)
+               if no problem is found then empty.
+    """
+    Condition = namedtuple('Condition', ('mandatory', 'fix', 'message'))
+    conditions = (
+        # doxygen comment in header. [0] to [7]
+        Condition(True, True, 'doxygen comments are not from 1st line.'),
+        Condition(True, True, '@file is not in 2nd line.'),
+        Condition(True, True, '@brief is not in 3rd line.'),
+        Condition(True, False, '@author is not mentioned.'),
+        Condition(True, False, '@date is not mentioned.'),
+        Condition(True, False, '@version is not mentioned.'),
+        Condition(True, False, '@remark is not mentioned.'),
+        Condition(True, False, 'doxygen comments do not close.'),
+        Condition(True, False, 'no blank line after doxygen comment.'),
+        # start include guard (only in .hpp files). [9] and [10]
+        Condition(False, False, 'wrong place include guard check.'),
+        Condition(False, True, 'wrong place include guard start.'),
+        # include macro (optional). [11]
+        Condition(False, False, '#include is not in correct place.'),
+        # start and end namespace ken3. [12] and [13]
+        Condition(True, False, 'namespace ken3 does not start.'),
+        Condition(True, False, 'namespace ken3 does not end.'),
+        # end include guard (only in .hpp files). [14]
+        Condition(False, False, 'wrong place include guard end.'),
+    )
+
+    indices = create_indices(filename, lines)
+    assert len(conditions) == len(indices)
 
     last_index = -1
-    # doxygen comment in header. [0] to [7]
-    index = indices[0]
-    if index is not None and index == 0:
-        last_index = index
-    else:
-        yield (filename, 'doxygen comment does not start from 1st line.')
-    index = indices[1]
-    if index is not None and index == 1:
-        last_index = index
-    else:
-        yield (filename, '@file does not in 2nd line.')
-    index = indices[2]
-    if index is not None and index == 2:
-        last_index = index
-    else:
-        yield (filename, '@brief does not in 3rd line.')
-    index = indices[3]
-    if index is not None and index > last_index:
-        last_index = index
-    else:
-        yield (filename, '@author is not mentioned.')
-    index = indices[4]
-    if index is not None and index > last_index:
-        last_index = index
-    else:
-        yield (filename, '@date is not mentioned.')
-    index = indices[5]
-    if index is not None and index > last_index:
-        last_index = index
-    else:
-        yield (filename, '@version is not mentioned.')
-    index = indices[6]
-    if index is not None and index > last_index:
-        last_index = index
-    else:
-        yield (filename, '@remark is not mentioned.')
-    index = indices[7]
-    if index is not None and index > last_index:
-        last_index = index
-    else:
-        yield (filename, 'doxygen comment does not close.')
-    # first blank line. [8]
-    index = indices[8]
-    if index is not None and index > last_index:
-        last_index = index
-    else:
-        yield (filename, 'no blank line after doxygen comment.')
-    # start include guard (only in .hpp files). [9] and [10]
+    for index, condition in zip(indices, conditions):
+        if index is None:
+            if condition.mandatory:
+                yield (filename, condition.message)
+            else:
+                pass
+        else:
+            if condition.fix and index == (last_index + 1):
+                last_index = index
+            elif (not condition.fix) and index > last_index:
+                last_index = index
+            else:
+                yield (filename, condition.message)
+
     if filename.endswith('.hpp'):
-        index = indices[9]
-        if index is not None and index > last_index:
-            last_index = index
-        else:
-            yield (filename, 'no include gurad check.')
-        index = indices[10]
-        if index is not None and index == (last_index + 1):
-            last_index = index
-        else:
-            yield (filename, 'not include gurad start.')
-    # include macro (optional). [11]
-    index = indices[11]
-    if index is not None:
-        if index > last_index:
-            last_index = index
-        else:
-            yield (filename, '#include is not in correct place.')
-    # start and end namespace ken3. [12] and [13]
-    index = indices[12]
-    if index is not None and index > last_index:
-        last_index = index
+        if any(indices[i] is None for i in (9, 10, 14)):
+            yield (filename, 'not correct include guard.')
     else:
-        yield (filename, 'namespace ken3 does not start.')
-    index = indices[13]
-    if index is not None and index > last_index:
-        last_index = index
-    else:
-        yield (filename, 'namespace ken3 does not end.')
-    # end include guard (only in .hpp files). [14]
-    if filename.endswith('.hpp'):
-        index = indices[14]
-        if index is not None and index > last_index:
-            last_index = index
-        else:
-            yield (filename, 'not include gurad end.')
+        if any(indices[i] is not None for i in (9, 10, 14)):
+            yield (filename, 'not necessary include guard.')
 
     if any('\t' in line for line in lines):
         yield (filename, 'includes \\t.')
 
 
-def run(files):
-    """ run each test programs.
+def run(filenames, root_dir):
+    """ check for all files.
 
-    param[in]  names: appointed target file names. normally .cpp files.
-    param[in]  full_description: a flag to show detailed message and
-                                 compiler's message
+    param[in]  filenames: appointed target file names.
+    param[in]  root_dir: appointed path of root directory.
+                         normaly source root directory "../../ken3/"
+    yield      (filename, message)
+               if no problem is found then empty.
     """
-    for i in files:
-        with open(i, 'r', encoding='utf-8') as file:
-            yield from check(i, file.readlines())
+    for filename in filenames:
+        with open(filename, encoding='utf-8') as file:
+            filename = filename.replace('\\', '/')[len(root_dir)::]
+            yield from check(filename, file.readlines())
 
 
 def main():
-    """ main function """
+    """ main function
+
+    return     the number of problems.
+    """
     import argparse
 
     # parse sys.argv
     parser = argparse.ArgumentParser(description='stylecheck')
     parser.add_argument('-v', '--version', action='version',
                         version=('%(prog)s ' + __version__))
-    parser.add_argument('-r', '--root_dir', type=str, default='',
-                        help='root dir path (default: \'\')')
+    parser.add_argument('-r', '--root_dir', type=str, default='../../ken3/',
+                        help='root dir path (default: \'../../ken3/\')')
     args = parser.parse_args()
 
     # run each test
-    result = list(run(filenames(args.root_dir)))
-    print(result)
+    result = list(run(pick_names(args.root_dir), args.root_dir))
+    if result:
+        print(result)
     return len(result)
 
 if __name__ == "__main__":
