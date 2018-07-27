@@ -44,7 +44,7 @@ namespace ken3 {
 class stopwatch
 {
 public:
-    // type defines
+    // type definitions
     using duration = std::chrono::steady_clock::duration;
     using time_point = std::chrono::steady_clock::time_point;
     /////////////////////////////////////////////////////////////////////////////
@@ -137,9 +137,8 @@ public:
     /////////////////////////////////////////////////////////////////////////////
 
 private:
-    bool running_; // a flag which indicates stopwatch is running or stopped
-    time_point started_; // start time point. this is valid only when running_ is true
-    duration accumulation_; // accumulation time. this is valid only when running_ is false
+    time_point started_; // start time point. if not started, then holds epoch time
+    duration accumulation_; // accumulation time. this value is valid only when now running
 };
 /////////////////////////////////////////////////////////////////////////////
 

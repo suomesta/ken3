@@ -40,7 +40,6 @@ namespace ken3 {
  * @param[in]  start: if true, stopwatch starts in this constructor
  */
 stopwatch::stopwatch(bool start/*=true*/) noexcept :
-    running_(start),
     started_(start ? std::chrono::steady_clock::now() : time_point()),
     accumulation_(duration::zero())
 {
@@ -55,7 +54,7 @@ stopwatch::stopwatch(bool start/*=true*/) noexcept :
  */
 stopwatch::duration stopwatch::operator()(void) const noexcept
 {
-    if (running_) {
+    if (started_ != time_point()) { // now running
         return (std::chrono::steady_clock::now() - started_) + accumulation_;
     }
     else {
@@ -70,7 +69,6 @@ stopwatch::duration stopwatch::operator()(void) const noexcept
  */
 void stopwatch::swap(stopwatch& rhs) noexcept
 {
-    std::swap(running_, rhs.running_);
     std::swap(started_, rhs.started_);
     std::swap(accumulation_, rhs.accumulation_);
 }
@@ -82,11 +80,10 @@ void stopwatch::swap(stopwatch& rhs) noexcept
  */
 void stopwatch::start(void) noexcept
 {
-    if (running_) {
+    if (started_ != time_point()) { // now running
         ; // do nothing here
     }
     else {
-        running_ = true;
         started_ = std::chrono::steady_clock::now();
     }
 }
@@ -98,9 +95,9 @@ void stopwatch::start(void) noexcept
  */
 void stopwatch::stop(void) noexcept
 {
-    if (running_) {
-        running_ = false;
+    if (started_ != time_point()) { // now running
         accumulation_ += std::chrono::steady_clock::now() - started_;
+        started_ = time_point();
     }
     else {
         ; // do nothing here
@@ -114,7 +111,6 @@ void stopwatch::stop(void) noexcept
  */
 void stopwatch::clear(bool start/*=true*/) noexcept
 {
-    running_ = start;
     started_ = start ? std::chrono::steady_clock::now() : time_point();
     accumulation_ = duration::zero();
 }
