@@ -7,6 +7,7 @@
  * @remark  the target is C++11 or more.
  */
 
+#include <stdio.h>
 #include <string.h>
 #include <algorithm>
 #include <cctype>
@@ -236,7 +237,7 @@ std::string add(const std::string& self, const std::string& x)
  * @brief str.__contains__()
  *        pystr.contains("abc", "a") <=> 'a' in 'abc' or 'abc'.__contains__('a')
  */
-bool contains(const std::string& self, const std::string& x)
+bool contains(const std::string& self, const std::string& x) noexcept
 {
     return self.find(x) != std::string::npos;
 }
@@ -246,7 +247,7 @@ bool contains(const std::string& self, const std::string& x)
  * @brief str.__eq__()
  *        pystr.eq("abc", "a") <=> 'abc' == 'a' or 'abc'.__eq__('a')
  */
-bool eq(const std::string& self, const std::string& x)
+bool eq(const std::string& self, const std::string& x) noexcept
 {
     return self.compare(x) == 0;
 }
@@ -256,7 +257,7 @@ bool eq(const std::string& self, const std::string& x)
  * @brief str.__ge__()
  *        pystr.ge("abc", "a") <=> 'abc' >= 'a' or 'abc'.__ge__('a')
  */
-bool ge(const std::string& self, const std::string& x)
+bool ge(const std::string& self, const std::string& x) noexcept
 {
     return self.compare(x) >= 0;
 }
@@ -284,7 +285,6 @@ std::string getitem(const std::string& self, index_type index)
  * @brief str.__getitem__() with slice
  *        pystr.slice("abcde", 1, 4, 2) <=> 'abcde'[1:4:2] or 'abcde'.__getitem__(slice(1, 4, 2))
  * @throw ken3::pystr::ValueError: when step is 0
- * @note  the return value is std::string (not char)
  */
 std::string slice(const std::string& self, index_type start/*=None*/, index_type end/*=None*/, index_type step/*=None*/)
 {
@@ -318,7 +318,7 @@ std::string slice(const std::string& self, index_type start/*=None*/, index_type
  * @brief str.__gt__()
  *        pystr.gt("abc", "a") <=> 'abc' > 'a' or 'abc'.__gt__('a')
  */
-bool gt(const std::string& self, const std::string& x)
+bool gt(const std::string& self, const std::string& x) noexcept
 {
     return self.compare(x) > 0;
 }
@@ -328,7 +328,7 @@ bool gt(const std::string& self, const std::string& x)
  * @brief str.__le__()
  *        pystr.le("abc", "a") <=> 'abc' <= 'a' or 'abc'.__le__('a')
  */
-bool le(const std::string& self, const std::string& x)
+bool le(const std::string& self, const std::string& x) noexcept
 {
     return self.compare(x) <= 0;
 }
@@ -348,7 +348,7 @@ index_type len(const std::string& self) noexcept
  * @brief str.__lt__()
  *        pystr.lt("abc", "a") <=> 'abc' < 'a' or 'abc'.__lt__('a')
  */
-bool lt(const std::string& self, const std::string& x)
+bool lt(const std::string& self, const std::string& x) noexcept
 {
     return self.compare(x) < 0;
 }
@@ -377,7 +377,7 @@ std::string mul(const std::string& self, index_type n)
  * @brief str.__ne__()
  *        pystr.ne("abc", "a") <=> 'abc' != 'a' or 'abc'.__ne__('a')
  */
-bool ne(const std::string& self, const std::string& x)
+bool ne(const std::string& self, const std::string& x) noexcept
 {
     return self.compare(x) != 0; 
 }
@@ -431,7 +431,6 @@ std::string capitalize(const std::string& self)
 
 /**
  * @brief str.center()
- *        pystr.center("abc", 5) <=> 'abc'.center(5)
  *        pystr.center("abc", 5) <=> 'abc'.center(5)
  * @throw ken3::pystr::TypeError: when fillchar is not one character
  * @note  the behavior of str.centor() is little bit strange.
@@ -594,16 +593,10 @@ index_type index(const std::string& self, const std::string& sub, index_type sta
  */
 bool isalnum(const std::string& self)
 {
-    if (self.empty()) {
-        return false;
-    }
-
-    for (const auto& i: self) {
-        if (std::isalnum(i) == 0) {
-            return false;
-        }
-    }
-    return true;
+    return (
+        not self.empty() &&
+        std::all_of(self.begin(), self.end(), ::isalnum)
+    );
 }
 /////////////////////////////////////////////////////////////////////////////
 
@@ -613,16 +606,10 @@ bool isalnum(const std::string& self)
  */
 bool isalpha(const std::string& self)
 {
-    if (self.empty()) {
-        return false;
-    }
-
-    for (const auto& i: self) {
-        if (std::isalpha(i) == 0) {
-            return false;
-        }
-    }
-    return true;
+    return (
+        not self.empty() &&
+        std::all_of(self.begin(), self.end(), ::isalpha)
+    );
 }
 /////////////////////////////////////////////////////////////////////////////
 
@@ -632,16 +619,10 @@ bool isalpha(const std::string& self)
  */
 bool isdigit(const std::string& self)
 {
-    if (self.empty()) {
-        return false;
-    }
-
-    for (const auto& i: self) {
-        if (std::isdigit(i) == 0) {
-            return false;
-        }
-    }
-    return true;
+    return (
+        not self.empty() &&
+        std::all_of(self.begin(), self.end(), ::isdigit)
+    );
 }
 /////////////////////////////////////////////////////////////////////////////
 
@@ -651,19 +632,10 @@ bool isdigit(const std::string& self)
  */
 bool islower(const std::string& self)
 {
-    index_type counter = 0;
-
-    for (const auto& i: self) {
-        if (std::isalpha(i) != 0) {
-            if (std::islower(i) != 0) {
-                counter++;
-            }
-            else {
-                return false;
-            }
-        }
-    }
-    return (counter > 0);
+    return (
+        std::any_of(self.begin(), self.end(), ::islower) &&
+        std::none_of(self.begin(), self.end(), ::isupper)
+    );
 }
 /////////////////////////////////////////////////////////////////////////////
 
@@ -673,16 +645,10 @@ bool islower(const std::string& self)
  */
 bool isspace(const std::string& self)
 {
-    if (self.empty()) {
-        return false;
-    }
-
-    for (const auto& i: self) {
-        if (std::isspace(i) == 0) {
-            return false;
-        }
-    }
-    return true;
+    return (
+        not self.empty() &&
+        std::all_of(self.begin(), self.end(), ::isspace)
+    );
 }
 /////////////////////////////////////////////////////////////////////////////
 
@@ -719,19 +685,10 @@ bool istitle(const std::string& self)
  */
 bool isupper(const std::string& self)
 {
-    index_type counter = 0;
-
-    for (const auto& i: self) {
-        if (std::isalpha(i) != 0) {
-            if (std::isupper(i) != 0) {
-                counter++;
-            }
-            else {
-                return false;
-            }
-        }
-    }
-    return (counter > 0);
+    return (
+        std::any_of(self.begin(), self.end(), ::isupper) &&
+        std::none_of(self.begin(), self.end(), ::islower)
+    );
 }
 /////////////////////////////////////////////////////////////////////////////
 
@@ -752,9 +709,8 @@ std::string join(const std::string& self, const std::vector<std::string>& strs)
 
     std::string retval;
     retval.reserve(size);
-    typedef std::vector<std::string>::const_iterator Iter;
-    for (Iter i = strs.begin(); i != strs.end(); ++i) {
-        if (i != strs.begin()) {
+    for (auto i = strs.cbegin(); i != strs.cend(); ++i) {
+        if (i != strs.cbegin()) {
             retval += self;
         }
         retval += *i;
