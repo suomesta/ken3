@@ -225,7 +225,7 @@ TypeError::TypeError(const std::string& msg) :
 
 /**
  * @brief str.__add__()
- *        pystr.add("abc", "a") <=> 'abc' + 'a' or 'abc'.__add__('a')
+ *        pystr::add("abc", "a") <=> 'abc' + 'a' or 'abc'.__add__('a')
  */
 std::string add(const std::string& self, const std::string& x)
 {
@@ -235,7 +235,7 @@ std::string add(const std::string& self, const std::string& x)
 
 /**
  * @brief str.__contains__()
- *        pystr.contains("abc", "a") <=> 'a' in 'abc' or 'abc'.__contains__('a')
+ *        pystr::contains("abc", "a") <=> 'a' in 'abc' or 'abc'.__contains__('a')
  */
 bool contains(const std::string& self, const std::string& x) noexcept
 {
@@ -245,7 +245,7 @@ bool contains(const std::string& self, const std::string& x) noexcept
 
 /**
  * @brief str.__eq__()
- *        pystr.eq("abc", "a") <=> 'abc' == 'a' or 'abc'.__eq__('a')
+ *        pystr::eq("abc", "a") <=> 'abc' == 'a' or 'abc'.__eq__('a')
  */
 bool eq(const std::string& self, const std::string& x) noexcept
 {
@@ -255,7 +255,7 @@ bool eq(const std::string& self, const std::string& x) noexcept
 
 /**
  * @brief str.__ge__()
- *        pystr.ge("abc", "a") <=> 'abc' >= 'a' or 'abc'.__ge__('a')
+ *        pystr::ge("abc", "a") <=> 'abc' >= 'a' or 'abc'.__ge__('a')
  */
 bool ge(const std::string& self, const std::string& x) noexcept
 {
@@ -265,7 +265,7 @@ bool ge(const std::string& self, const std::string& x) noexcept
 
 /**
  * @brief str.__getitem__()
- *        pystr.getitem("abc", 1) <=> 'abc'[1] or 'abc'.__getitem__(1)
+ *        pystr::getitem("abc", 1) <=> 'abc'[1] or 'abc'.__getitem__(1)
  * @throw ken3::pystr::IndexError: when index is out of range
  * @note  the return value is std::string (not char)
  */
@@ -283,7 +283,7 @@ std::string getitem(const std::string& self, index_type index)
 
 /**
  * @brief str.__getitem__() with slice
- *        pystr.slice("abcde", 1, 4, 2) <=> 'abcde'[1:4:2] or 'abcde'.__getitem__(slice(1, 4, 2))
+ *        pystr::slice("abcde", 1, 4, 2) <=> 'abcde'[1:4:2] or 'abcde'.__getitem__(slice(1, 4, 2))
  * @throw ken3::pystr::ValueError: when step is 0
  */
 std::string slice(const std::string& self, index_type start/*=None*/, index_type end/*=None*/, index_type step/*=None*/)
@@ -316,7 +316,7 @@ std::string slice(const std::string& self, index_type start/*=None*/, index_type
 
 /**
  * @brief str.__gt__()
- *        pystr.gt("abc", "a") <=> 'abc' > 'a' or 'abc'.__gt__('a')
+ *        pystr::gt("abc", "a") <=> 'abc' > 'a' or 'abc'.__gt__('a')
  */
 bool gt(const std::string& self, const std::string& x) noexcept
 {
@@ -326,7 +326,7 @@ bool gt(const std::string& self, const std::string& x) noexcept
 
 /**
  * @brief str.__le__()
- *        pystr.le("abc", "a") <=> 'abc' <= 'a' or 'abc'.__le__('a')
+ *        pystr::le("abc", "a") <=> 'abc' <= 'a' or 'abc'.__le__('a')
  */
 bool le(const std::string& self, const std::string& x) noexcept
 {
@@ -336,7 +336,7 @@ bool le(const std::string& self, const std::string& x) noexcept
 
 /**
  * @brief str.__len__()
- *        pystr.len("abc") <=> len('abc') or 'abc'.__len__()
+ *        pystr::len("abc") <=> len('abc') or 'abc'.__len__()
  */
 index_type len(const std::string& self) noexcept
 {
@@ -346,7 +346,7 @@ index_type len(const std::string& self) noexcept
 
 /**
  * @brief str.__lt__()
- *        pystr.lt("abc", "a") <=> 'abc' < 'a' or 'abc'.__lt__('a')
+ *        pystr::lt("abc", "a") <=> 'abc' < 'a' or 'abc'.__lt__('a')
  */
 bool lt(const std::string& self, const std::string& x) noexcept
 {
@@ -356,7 +356,7 @@ bool lt(const std::string& self, const std::string& x) noexcept
 
 /**
  * @brief str.__mul__()
- *        pystr.mul("abc", 3) <=> 'abc' * 3 or 'abc'.__mul__(3)
+ *        pystr::mul("abc", 3) <=> 'abc' * 3 or 'abc'.__mul__(3)
  */
 std::string mul(const std::string& self, index_type n)
 {
@@ -375,7 +375,7 @@ std::string mul(const std::string& self, index_type n)
 
 /**
  * @brief str.__ne__()
- *        pystr.ne("abc", "a") <=> 'abc' != 'a' or 'abc'.__ne__('a')
+ *        pystr::ne("abc", "a") <=> 'abc' != 'a' or 'abc'.__ne__('a')
  */
 bool ne(const std::string& self, const std::string& x) noexcept
 {
@@ -385,7 +385,7 @@ bool ne(const std::string& self, const std::string& x) noexcept
 
 /**
  * @brief str.__repr__()
- *        pystr.repr("abc") <=> repr('abc') or 'abc'.__repr__()
+ *        pystr::repr("abc") <=> repr('abc') or 'abc'.__repr__()
  */
 std::string repr(const std::string& self)
 {
@@ -414,7 +414,7 @@ std::string repr(const std::string& self)
 
 /**
  * @brief str.capitalize()
- *        pystr.capitalize("abc") <=> 'abc'.capitalize()
+ *        pystr::capitalize("abc") <=> 'abc'.capitalize()
  */
 std::string capitalize(const std::string& self)
 {
@@ -431,7 +431,7 @@ std::string capitalize(const std::string& self)
 
 /**
  * @brief str.center()
- *        pystr.center("abc", 5) <=> 'abc'.center(5)
+ *        pystr::center("abc", 5) <=> 'abc'.center(5)
  * @throw ken3::pystr::TypeError: when fillchar is not one character
  * @note  the behavior of str.centor() is little bit strange.
  *        see http://bugs.python.org/issue23624
@@ -460,7 +460,7 @@ std::string center(const std::string& self, index_type width, const std::string&
 
 /**
  * @brief str.count()
- *        pystr.count("abc", "a") <=> 'abc'.count('a')
+ *        pystr::count("abc", "a") <=> 'abc'.count('a')
  */
 index_type count(const std::string& self, const std::string& sub, index_type start/*=None*/, index_type end/*=None*/)
 {
@@ -485,7 +485,7 @@ index_type count(const std::string& self, const std::string& sub, index_type sta
 
 /**
  * @brief str.endswith() with str
- *        pystr.endswith("abc", "a") <=> 'abc'.endswith('a')
+ *        pystr::endswith("abc", "a") <=> 'abc'.endswith('a')
  */
 bool endswith(const std::string& self, const std::string& suffix, index_type start/*=None*/, index_type end/*=None*/)
 {
@@ -498,7 +498,7 @@ bool endswith(const std::string& self, const std::string& suffix, index_type sta
 
 /**
  * @brief str.endswith() with tuple
- *        pystr.endswith("abc", std::vector({"a", "b"})) <=> 'abc'.endswith(('a', 'b'))
+ *        pystr::endswith("abc", std::vector({"a", "b"})) <=> 'abc'.endswith(('a', 'b'))
  */
 bool endswith(const std::string& self, const std::vector<std::string>& suffix, index_type start/*=None*/, index_type end/*=None*/)
 {
@@ -516,7 +516,7 @@ bool endswith(const std::string& self, const std::vector<std::string>& suffix, i
 
 /**
  * @brief str.expandtabs()
- *        pystr.expandtabs("abc") <=> 'abc'.expandtabs()
+ *        pystr::expandtabs("abc") <=> 'abc'.expandtabs()
  */
 std::string expandtabs(const std::string& self, index_type tabsize/*=8*/)
 {
@@ -550,7 +550,7 @@ std::string expandtabs(const std::string& self, index_type tabsize/*=8*/)
 
 /**
  * @brief str.find()
- *        pystr.find("abc", "a") <=> 'abc'.find('a')
+ *        pystr::find("abc", "a") <=> 'abc'.find('a')
  */
 index_type find(const std::string& self, const std::string& sub, index_type start/*=None*/, index_type end/*=None*/)
 {
@@ -569,7 +569,7 @@ index_type find(const std::string& self, const std::string& sub, index_type star
 
 /**
  * @brief str.index()
- *        pystr.index("abc", "a") <=> 'abc'.index('a')
+ *        pystr::index("abc", "a") <=> 'abc'.index('a')
  * @throw ken3::pystr::ValueError: when sub is not found in self
  */
 index_type index(const std::string& self, const std::string& sub, index_type start/*=None*/, index_type end/*=None*/)
@@ -589,7 +589,7 @@ index_type index(const std::string& self, const std::string& sub, index_type sta
 
 /**
  * @brief str.isalnum()
- *        pystr.isalnum("abc") <=> 'abc'.isalnum()
+ *        pystr::isalnum("abc") <=> 'abc'.isalnum()
  */
 bool isalnum(const std::string& self)
 {
@@ -602,7 +602,7 @@ bool isalnum(const std::string& self)
 
 /**
  * @brief str.isalpha()
- *        pystr.isalpha("abc") <=> 'abc'.isalpha()
+ *        pystr::isalpha("abc") <=> 'abc'.isalpha()
  */
 bool isalpha(const std::string& self)
 {
@@ -615,7 +615,7 @@ bool isalpha(const std::string& self)
 
 /**
  * @brief str.isdigit()
- *        pystr.isdigit("abc") <=> 'abc'.isdigit()
+ *        pystr::isdigit("abc") <=> 'abc'.isdigit()
  */
 bool isdigit(const std::string& self)
 {
@@ -628,7 +628,7 @@ bool isdigit(const std::string& self)
 
 /**
  * @brief str.islower()
- *        pystr.islower("abc") <=> 'abc'.islower()
+ *        pystr::islower("abc") <=> 'abc'.islower()
  */
 bool islower(const std::string& self)
 {
@@ -641,7 +641,7 @@ bool islower(const std::string& self)
 
 /**
  * @brief str.isspace()
- *        pystr.isspace("abc") <=> 'abc'.isspace()
+ *        pystr::isspace("abc") <=> 'abc'.isspace()
  */
 bool isspace(const std::string& self)
 {
@@ -654,7 +654,7 @@ bool isspace(const std::string& self)
 
 /**
  * @brief str.istitle()
- *        pystr.istitle("abc") <=> 'abc'.istitle()
+ *        pystr::istitle("abc") <=> 'abc'.istitle()
  */
 bool istitle(const std::string& self)
 {
@@ -681,7 +681,7 @@ bool istitle(const std::string& self)
 
 /**
  * @brief str.isupper()
- *        pystr.isupper("abc") <=> 'abc'.isupper()
+ *        pystr::isupper("abc") <=> 'abc'.isupper()
  */
 bool isupper(const std::string& self)
 {
@@ -694,7 +694,7 @@ bool isupper(const std::string& self)
 
 /**
  * @brief str.join()
- *        pystr.join("abc", std::vector({"a", "b"})) <=> 'abc'.join(['a', 'b'])
+ *        pystr::join("abc", std::vector({"a", "b"})) <=> 'abc'.join(['a', 'b'])
  */
 std::string join(const std::string& self, const std::vector<std::string>& strs)
 {
@@ -721,7 +721,7 @@ std::string join(const std::string& self, const std::vector<std::string>& strs)
 
 /**
  * @brief str.ljust()
- *        pystr.ljust("abc", 5) <=> 'abc'.ljust(5)
+ *        pystr::ljust("abc", 5) <=> 'abc'.ljust(5)
  * @throw ken3::pystr::TypeError: when fillchar is not one character
  * @note  the type of fillchar is not char.
  */
@@ -743,7 +743,7 @@ std::string ljust(const std::string& self, index_type width, const std::string& 
 
 /**
  * @brief str.lower()
- *        pystr.lower("abc") <=> 'abc'.lower()
+ *        pystr::lower("abc") <=> 'abc'.lower()
  */
 std::string lower(const std::string& self)
 {
@@ -755,7 +755,7 @@ std::string lower(const std::string& self)
 
 /**
  * @brief str.lstrip()
- *        pystr.lstrip("  abc") <=> '  abc'.lstrip()
+ *        pystr::lstrip("  abc") <=> '  abc'.lstrip()
  * @note  chars always str, None is not supported.
  */
 std::string lstrip(const std::string& self, const std::string& chars/*=std::string(" ")*/)
@@ -773,7 +773,7 @@ std::string lstrip(const std::string& self, const std::string& chars/*=std::stri
 
 /**
  * @brief str.partition()
- *        pystr.partition("abc", "b") <=> 'abc'.partition('b')
+ *        pystr::partition("abc", "b") <=> 'abc'.partition('b')
  * @throw ken3::pystr::ValueError: when sep is empty
  */
 std::vector<std::string> partition(const std::string& self, const std::string& sep)
@@ -800,7 +800,7 @@ std::vector<std::string> partition(const std::string& self, const std::string& s
 
 /**
  * @brief str.replace()
- *        pystr.replace("abc", "a", "b") <=> 'abc'.replace('a', 'b')
+ *        pystr::replace("abc", "a", "b") <=> 'abc'.replace('a', 'b')
  */
 std::string replace(const std::string& self, const std::string& old, const std::string& new_, index_type count/*=None*/)
 {
@@ -825,7 +825,7 @@ std::string replace(const std::string& self, const std::string& old, const std::
 
 /**
  * @brief str.rfind()
- *        pystr.rfind("abc", "a") <=> 'abc'.rfind('a')
+ *        pystr::rfind("abc", "a") <=> 'abc'.rfind('a')
  */
 index_type rfind(const std::string& self, const std::string& sub, index_type start/*=None*/, index_type end/*=None*/)
 {
@@ -844,7 +844,7 @@ index_type rfind(const std::string& self, const std::string& sub, index_type sta
 
 /**
  * @brief str.rindex()
- *        pystr.rindex("abc", "a") <=> 'abc'.rindex('a')
+ *        pystr::rindex("abc", "a") <=> 'abc'.rindex('a')
  * @throw ken3::pystr::ValueError: when sub is not found in self
  */
 index_type rindex(const std::string& self, const std::string& sub, index_type start/*=None*/, index_type end/*=None*/)
@@ -864,7 +864,7 @@ index_type rindex(const std::string& self, const std::string& sub, index_type st
 
 /**
  * @brief str.rjust()
- *        pystr.rjust("abc", 5) <=> 'abc'.rjust(5)
+ *        pystr::rjust("abc", 5) <=> 'abc'.rjust(5)
  * @throw ken3::pystr::TypeError: when fill char is not one character
  * @note  the type of fillchar is not char.
  */
@@ -886,7 +886,7 @@ std::string rjust(const std::string& self, index_type width, const std::string& 
 
 /**
  * @brief str.rpartition()
- *        pystr.rpartition("abc", "b") <=> 'abc'.rpartition('b')
+ *        pystr::rpartition("abc", "b") <=> 'abc'.rpartition('b')
  * @throw ken3::pystr::ValueError: when sep is empty
  */
 std::vector<std::string> rpartition(const std::string& self, const std::string& sep)
@@ -913,7 +913,7 @@ std::vector<std::string> rpartition(const std::string& self, const std::string& 
 
 /**
  * @brief str.rsplit()
- *        pystr.rsplit("abc", "b") <=> 'abc'.rsplit('b')
+ *        pystr::rsplit("abc", "b") <=> 'abc'.rsplit('b')
  * @throw ken3::pystr::ValueError: when sep is empty
  * @note  this function corresponds to str.rsplit(sep).
  */
@@ -957,7 +957,7 @@ std::vector<std::string> rsplit(const std::string& self, const std::string& sep,
 
 /**
  * @brief str.rsplit()
- *        pystr.rsplit("abc") <=> 'abc'.rsplit()
+ *        pystr::rsplit("abc") <=> 'abc'.rsplit()
  * @note  this function corresponds to str.rsplit() (without sep).
  */
 std::vector<std::string> rsplit(const std::string& self, index_type maxsplit/*=None*/)
@@ -1002,7 +1002,7 @@ std::vector<std::string> rsplit(const std::string& self, index_type maxsplit/*=N
 
 /**
  * @brief str.rstrip()
- *        pystr.rstrip("abc  ") <=> 'abc  '.rstrip()
+ *        pystr::rstrip("abc  ") <=> 'abc  '.rstrip()
  * @note  chars always str, None is not supported.
  */
 std::string rstrip(const std::string& self, const std::string& chars/*=std::string(" ")*/)
@@ -1017,7 +1017,7 @@ std::string rstrip(const std::string& self, const std::string& chars/*=std::stri
 
 /**
  * @brief str.split()
- *        pystr.split("abc", "b") <=> 'abc'.split('b')
+ *        pystr::split("abc", "b") <=> 'abc'.split('b')
  * @throw ken3::pystr::ValueError: when sep is empty
  * @note  this function corresponds to str.split(sep).
  */
@@ -1048,7 +1048,7 @@ std::vector<std::string> split(const std::string& self, const std::string& sep, 
 
 /**
  * @brief str.split()
- *        pystr.split("abc") <=> 'abc'.split()
+ *        pystr::split("abc") <=> 'abc'.split()
  * @note  this function corresponds to str.split() (without sep).
  */
 std::vector<std::string> split(const std::string& self, index_type maxsplit/*=None*/)
@@ -1080,7 +1080,7 @@ std::vector<std::string> split(const std::string& self, index_type maxsplit/*=No
 
 /**
  * @brief str.splitlines()
- *        pystr.splitlines("ab\nc\n") <=> 'ab\nc\n'.splitlines()
+ *        pystr::splitlines("ab\nc\n") <=> 'ab\nc\n'.splitlines()
  */
 std::vector<std::string> splitlines(const std::string& self, bool keepends/*=false*/)
 {
@@ -1125,7 +1125,7 @@ std::vector<std::string> splitlines(const std::string& self, bool keepends/*=fal
 
 /**
  * @brief str.startswith() with str
- *        pystr.startswith("abc", "a") <=> 'abc'.startswith('a')
+ *        pystr::startswith("abc", "a") <=> 'abc'.startswith('a')
  */
 bool startswith(const std::string& self, const std::string& preffix, index_type start/*=None*/, index_type end/*=None*/)
 {
@@ -1138,7 +1138,7 @@ bool startswith(const std::string& self, const std::string& preffix, index_type 
 
 /**
  * @brief str.startswith() with tuple
- *        pystr.startswith("abc", std::vector({"a", "b"})) <=> 'abc'.startswith(('a', 'b'))
+ *        pystr::startswith("abc", std::vector({"a", "b"})) <=> 'abc'.startswith(('a', 'b'))
  */
 bool startswith(const std::string& self, const std::vector<std::string>& preffix, index_type start/*=None*/, index_type end/*=None*/)
 {
@@ -1156,7 +1156,7 @@ bool startswith(const std::string& self, const std::vector<std::string>& preffix
 
 /**
  * @brief str.strip()
- *        pystr.strip(" abc ") <=> ' abc '.strip()
+ *        pystr::strip(" abc ") <=> ' abc '.strip()
  * @note  chars always str, None is not supported.
  */
 std::string strip(const std::string& self, const std::string& chars/*=std::string(" ")*/)
@@ -1167,7 +1167,7 @@ std::string strip(const std::string& self, const std::string& chars/*=std::strin
 
 /**
  * @brief str.swapcase()
- *        pystr.swapcase("abc") <=> 'abc'.swapcase()
+ *        pystr::swapcase("abc") <=> 'abc'.swapcase()
  */
 std::string swapcase(const std::string& self)
 {
@@ -1190,7 +1190,7 @@ std::string swapcase(const std::string& self)
 
 /**
  * @brief str.title()
- *        pystr.title("abc") <=> 'abc'.title()
+ *        pystr::title("abc") <=> 'abc'.title()
  */
 std::string title(const std::string& self)
 {
@@ -1218,7 +1218,7 @@ std::string title(const std::string& self)
 
 /**
  * @brief str.upper()
- *        pystr.upper("abc") <=> 'abc'.upper()
+ *        pystr::upper("abc") <=> 'abc'.upper()
  */
 std::string upper(const std::string& self)
 {
@@ -1230,7 +1230,7 @@ std::string upper(const std::string& self)
 
 /**
  * @brief str.zfill()
- *        pystr.zfill("abc", 5) <=> 'abc'.zfill(5)
+ *        pystr::zfill("abc", 5) <=> 'abc'.zfill(5)
  */
 std::string zfill(const std::string& self, index_type width)
 {
