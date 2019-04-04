@@ -24,6 +24,12 @@ cc_library(
 )
 
 cc_library(
+    name = "counter",
+    hdrs = ["counter.hpp"],
+    visibility = ["//unittest:__pkg__"],
+)
+
+cc_library(
     name = "metric",
     hdrs = ["metric.hpp"],
     visibility = ["//unittest:__pkg__"],
@@ -60,4 +66,3 @@ cc_library(
     hdrs = ["type_util.hpp"],
     visibility = ["//unittest:__pkg__"],
 )
-

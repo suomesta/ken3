@@ -27,6 +27,13 @@ cc_test(
 )
 
 cc_test(
+    name = "counter_test",
+    srcs = ["counter_test.cpp", "lest.hpp"],
+    deps = ["//ken3:counter"],
+    size = "small",
+)
+
+cc_test(
     name = "metric_test",
     srcs = ["metric_test.cpp", "lest.hpp"],
     deps = ["//ken3:metric"],
