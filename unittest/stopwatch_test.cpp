@@ -22,7 +22,7 @@ namespace {
  */
 bool within_range(double elapsed, double estimated)
 {
-    return ((estimated <= elapsed) && (elapsed <= estimated * 1.05));
+    return ((estimated <= elapsed) && (elapsed <= estimated * 1.1));
 }
 
 } // namespace {
@@ -70,6 +70,7 @@ const lest::test specification[] =
         {
             stopwatch sw;
             std::this_thread::sleep_for(std::chrono::milliseconds(100));
+std::cout << sw.ms() << std::endl;
             EXPECT(within_range(sw.ms(), 100.0));
         }
     },
