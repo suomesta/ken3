@@ -497,4 +497,3 @@ bits::int_type bits::refer(size_type start, size_type length) const noexcept
 /////////////////////////////////////////////////////////////////////////////
 
 } // namespace ken3 {
-

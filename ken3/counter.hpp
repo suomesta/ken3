@@ -7,6 +7,7 @@
  * @version 0.1.0
  * @remark  the target is C++11 or more.
  * @remark  this module works only with this header file.
+ * @remark  stopwatch class is completely exception free.
  *
  * @note
  * Typical usage is;
@@ -55,7 +56,7 @@ public:
      * @brief      default-constructor
      *             value is set to MINIMUM.
      */
-    counter(void) :
+    counter(void) noexcept :
         value_(MINIMUM)
     {
         ;
@@ -67,7 +68,7 @@ public:
      *             value is set to ini.
      * @param[in]  ini: appointed initial value
       */
-    explicit counter(size_t ini)
+    explicit counter(size_t ini) noexcept
     {
         if (ini < MINIMUM) {
             value_ = MINIMUM;
@@ -85,18 +86,18 @@ public:
      * @brief      copy-constructor, move-constructor, destructor,
      *             copy-operator=, and move-operator= are default.
      */
-    counter(const self_type& src) = default;
-    counter(self_type&& src) = default;
-    self_type& operator=(const self_type& rhs) = default;
-    self_type& operator=(self_type&& rhs) = default;
-    ~counter(void) = default;
+    counter(const self_type& src) noexcept = default;
+    counter(self_type&& src) noexcept = default;
+    ~counter(void) noexcept = default;
+    self_type& operator=(const self_type& rhs) noexcept = default;
+    self_type& operator=(self_type&& rhs) noexcept = default;
     /////////////////////////////////////////////////////////////////////////////
 
     /**
      * @brief      operator()
      * @return     current counter value
      */
-    size_t operator()(void) const
+    size_t operator()(void) const noexcept
     {
         return value_;
     }
@@ -107,7 +108,7 @@ public:
      *             counter value increase. if counter value has reached MAXIMUM, then nothing happens.
      * @return     own reference
      */
-    self_type& operator++()
+    self_type& operator++() noexcept
     {
         if (value_ < MAXIMUM) {
             value_++;
@@ -122,7 +123,7 @@ public:
      * @return     own value
      * @note       pre-increment is faster than this function. if return value is not used, should use pre-increment instead.
      */
-    const self_type operator++(int)
+    const self_type operator++(int) noexcept
     {
         self_type prev = *this; 
         operator++();
@@ -135,7 +136,7 @@ public:
      *             counter value decrease. if counter value is 0, then nothing happens.
      * @return     own reference
      */
-    self_type& operator--()
+    self_type& operator--() noexcept
     {
         if (value_ > MINIMUM) {
             value_--;
@@ -150,7 +151,7 @@ public:
      * @return     own value
      * @note       pre-decrement is faster than this function. if return value is not used, should use pre-decrement instead.
      */
-    const self_type operator--(int)
+    const self_type operator--(int) noexcept
     {
         self_type prev = *this; 
         operator--();
@@ -161,7 +162,7 @@ public:
     /**
      * @brief      reset counter value to MINIMUM.
      */
-    void reset(void)
+    void reset(void) noexcept
     {
         value_ = MINIMUM;
     }
@@ -172,7 +173,7 @@ public:
      *             counter value never exceeds MAXIMUM.
      * @param[in]  n: appointed increment value
      */
-    void advance(size_t n)
+    void advance(size_t n) noexcept
     {
         if ((MAXIMUM - value_) > n) {
             value_ += n;
@@ -188,7 +189,7 @@ public:
      *             counter value never exceeds 0.
      * @param[in]  n: appointed decrement value
      */
-    void retreat(size_t n)
+    void retreat(size_t n) noexcept
     {
         if (value_ > n) {
             value_ -= n;
@@ -203,7 +204,7 @@ public:
      * @brief      get MINIMUM
      * @return     minimum counter value. same as tparam MINIMUM
      */
-    constexpr size_t minimum(void) const
+    constexpr size_t minimum(void) const noexcept
     {
         return MINIMUM;
     }
@@ -213,7 +214,7 @@ public:
      * @brief      get MAXIMUM
      * @return     maximum counter value. same as tparam MAXIMUM
      */
-    constexpr size_t maximum(void) const
+    constexpr size_t maximum(void) const noexcept
     {
         return MAXIMUM;
     }
@@ -223,7 +224,7 @@ public:
      * @brief      check whether current counter value is equal to MINIMUM or not
      * @return     true: counter value == MINIMUM, false: counter value != MINIMUM
      */
-    bool is_minimum(void) const
+    bool is_minimum(void) const noexcept
     {
         return (value_ == MINIMUM);
     }
@@ -233,7 +234,7 @@ public:
      * @brief      check whether current counter value is equal to MAXIMUM or not
      * @return     true: counter value == MAXIMUM, false: counter value != MAXIMUM
      */
-    bool is_maximum(void) const
+    bool is_maximum(void) const noexcept
     {
         return (value_ == MAXIMUM);
     }

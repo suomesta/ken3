@@ -104,4 +104,3 @@ T string_to(const std::string& str, std::size_t* pos=0, int base=10)
 } // namespace ken3 {
 
 #endif // #ifndef INCLUDE_GUARD_KEN3_CAST_HPP
-

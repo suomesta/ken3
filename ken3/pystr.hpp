@@ -502,4 +502,3 @@ std::string zfill(const std::string& self, index_type width);
 } // namespace ken3 {
 
 #endif // #ifndef INCLUDE_GUARD_KEN3_PYSTR_HPP
-

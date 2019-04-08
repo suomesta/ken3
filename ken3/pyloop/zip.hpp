@@ -83,4 +83,3 @@ private:
 } // namespace ken3 {
 
 #endif // #ifndef INCLUDE_GUARD_KEN3_PYLOOP_ZIP_HPP
-

@@ -210,4 +210,3 @@ T string_to(const std::string& str, size_t* pos, int base, factory<10> dummy)
 } // namespace ken3 {
 
 #endif // #ifndef INCLUDE_GUARD_KEN3_CAST_STRING_TO_HPP
-

@@ -167,4 +167,3 @@ zip_detail::zip_object<ITERABLE1, ITERABLE2> zip(ITERABLE1& iterable1, ITERABLE2
 } // namespace ken3 {
 
 #endif // #ifndef INCLUDE_GUARD_KEN3_PYLOOP_HPP
-

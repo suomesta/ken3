@@ -350,12 +350,10 @@ public:
      */
     bool has_s(const S& s) const
     {
-        for (const auto& i: m_) {
-            if (s == i.second) {
-                return true;
-            }
-        }
-        return false;
+        auto pred = [&s](const value_type& i) -> bool {
+            return s == i.second;
+        };
+        return std::any_of(m_.begin(), m_.end(), pred);
     }
     /////////////////////////////////////////////////////////////////////////////
 
@@ -569,4 +567,3 @@ private:
 } // namespace ken3 {
 
 #endif // #ifndef INCLUDE_GUARD_KEN3_BIUNIQUE_MAP_HPP
-

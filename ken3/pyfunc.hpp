@@ -333,4 +333,3 @@ ITERABLE filter(FUNC func, const ITERABLE& iterable)
 } // namespace ken3 {
 
 #endif // #ifndef INCLUDE_GUARD_KEN3_PYFUNC_HPP
-

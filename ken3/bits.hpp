@@ -353,4 +353,3 @@ private:
 } // namespace ken3 {
 
 #endif // #ifndef INCLUDE_GUARD_KEN3_BITS_HPP
-

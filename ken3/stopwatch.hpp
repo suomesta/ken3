@@ -61,11 +61,11 @@ public:
      * @brief      copy-constructor, move-constructor, destructor, copy-operator=,
      *             and move-operator= are default.
      */
-    stopwatch(const stopwatch& src) = default;
-    stopwatch(stopwatch&& src) = default;
-    ~stopwatch(void) = default;
-    stopwatch& operator=(const stopwatch& rhs) = default;
-    stopwatch& operator=(stopwatch&& rhs) = default;
+    stopwatch(const stopwatch& src) noexcept = default;
+    stopwatch(stopwatch&& src) noexcept = default;
+    ~stopwatch(void) noexcept = default;
+    stopwatch& operator=(const stopwatch& rhs) noexcept = default;
+    stopwatch& operator=(stopwatch&& rhs) noexcept = default;
     /////////////////////////////////////////////////////////////////////////////
 
     /**
@@ -145,4 +145,3 @@ private:
 } // namespace ken3 {
 
 #endif // #ifndef INCLUDE_GUARD_KEN3_STOPWATCH_HPP
-

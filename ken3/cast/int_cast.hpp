@@ -129,4 +129,3 @@ TO int_cast(FROM i, factory<7> s)
 } // namespace ken3 {
 
 #endif // #ifndef INCLUDE_GUARD_KEN3_CAST_INT_CAST_HPP
-

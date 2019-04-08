@@ -153,4 +153,3 @@ typename std::common_type<VALUE, double>::type convert(VALUE value)
 } // namespace ken3 {
 
 #endif // #ifndef INCLUDE_GUARD_KEN3_METRIC_HPP
-

@@ -81,10 +81,12 @@ public:
      * @param[in] step: step of slice
      * @throw     ken3::pystr::ValueError: when step is 0
      */
-    explicit slice_object(index_type size, index_type start=None, index_type end=None, index_type step=None)
+    explicit slice_object(index_type size, index_type start=None, index_type end=None, index_type step=None) :
+        start_(start),
+        end_(end),
+        step_(step)
     {
         // set step
-        step_ = step;
         if (step_ == 0) {
             throw ValueError("slice step cannot be zero");
         }
@@ -93,7 +95,6 @@ public:
         }
 
         // set start
-        start_ = start;
         if (start_ == None) {
             start_ = (step_ >= 0) ? 0 : size - 1;
         }
@@ -110,7 +111,6 @@ public:
         }
 
         // set end
-        end_ = end;
         if (end_ == None) {
             end_ = (step_ >= 0) ? size : -1;
         }
@@ -930,25 +930,24 @@ std::vector<std::string> rsplit(const std::string& self, const std::string& sep,
     bool no_max = ((maxsplit == None) || (maxsplit < 0));
     index_type counter = 0;
     std::size_t start = self.size();
-    std::size_t end = std::string::npos;
-    bool        reach_end = false;
-    while ((end = self.rfind(sep, start)) != std::string::npos) {
+    std::size_t end = self.rfind(sep, start);
+    while (end != std::string::npos) {
         counter++;
         if (!no_max && (counter > maxsplit)) {
+            end = std::string::npos;
             break;
         }
 
         ret.push_back(self.substr(end + sep.size(), start - end - (sep.size() - 1)));
         if (end == 0) {
-            reach_end = true;
             break;
         }
-        else {
-            start = end - 1;
-        }
+
+        start = end - 1;
+        end = self.rfind(sep, start);
     }
-    ret.push_back(reach_end ? std::string()
-                            : self.substr(0, start + 1));
+    ret.push_back((end == 0) ? std::string()
+                             : self.substr(0, start + 1));
 
     std::reverse(ret.begin(), ret.end());
     return ret;
@@ -971,27 +970,26 @@ std::vector<std::string> rsplit(const std::string& self, index_type maxsplit/*=N
     bool no_max = ((maxsplit == None) || (maxsplit < 0));
     index_type counter = 0;
     std::size_t start = str.size();
-    std::size_t end = std::string::npos;
-    bool        reach_end = false;
-    while ((end = str.rfind(" ", start)) != std::string::npos) {
+    std::size_t end = str.rfind(" ", start);
+    while (end != std::string::npos) {
         counter++;
         if (!no_max && (counter > maxsplit)) {
+            end = std::string::npos;
             break;
         }
 
         ret.push_back(str.substr(end + 1, start - end));
         if (end == 0) {
-            reach_end = true;
             break;
         }
-        else {
-            start = end - 1;
-            while ((0 < start) && (start < str.size()) && (str.at(start) == ' ')) {
-                start--;
-            }
+
+        start = end - 1;
+        while ((0 < start) && (start < str.size()) && (str.at(start) == ' ')) {
+            start--;
         }
+        end = str.rfind(" ", start);
     }
-    if (!reach_end) {
+    if (end != 0) {
         ret.push_back(str.substr(0, start + 1));
     }
 
@@ -1031,15 +1029,17 @@ std::vector<std::string> split(const std::string& self, const std::string& sep, 
     bool no_max = ((maxsplit == None) || (maxsplit < 0));
     index_type counter = 0;
     std::size_t start = 0;
-    std::size_t end = std::string::npos;
-    while ((end = self.find(sep, start)) != std::string::npos) {
+    std::size_t end = self.find(sep, start);
+    while (end != std::string::npos) {
         counter++;
         if (!no_max && (counter > maxsplit)) {
             break;
         }
 
         ret.push_back(self.substr(start, end - start));
+
         start = end + sep.size();
+        end = self.find(sep, start);
     }
     ret.push_back(self.substr(start));
     return ret;
@@ -1058,18 +1058,20 @@ std::vector<std::string> split(const std::string& self, index_type maxsplit/*=No
     bool no_max = ((maxsplit == None) || (maxsplit < 0));
     index_type counter = 0;
     std::size_t start = 0;
-    std::size_t end = std::string::npos;
-    while ((end = str.find(" ", start)) != std::string::npos) {
+    std::size_t end = str.find(" ", start);
+    while (end != std::string::npos) {
         counter++;
         if (!no_max && (counter > maxsplit)) {
             break;
         }
 
         ret.push_back(str.substr(start, end - start));
+
         start = end + 1;
         while ((start < str.size()) && (str.at(start) == ' ')) {
             start++;
         }
+        end = str.find(" ", start);
     }
     if (start != str.size()) {
         ret.push_back(str.substr(start));
@@ -1245,4 +1247,3 @@ std::string zfill(const std::string& self, index_type width)
 
 } // namespace pystr {
 } // namespace ken3 {
-

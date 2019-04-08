@@ -87,7 +87,7 @@ public:
      * @brief      constructor with one argument. initialized by argument
      * @param[in]  value: initial value
      */
-    explicit angle(double value) noexcept :
+    explicit angle(double value) :
         v_(normalize(value))
     {
         ;
@@ -98,18 +98,18 @@ public:
      * @brief      copy-constructor, move-constructor, destructor, copy-operator=,
      *             and move-operator= are default.
      */
-    angle(const self_type& src) = default;
-    angle(self_type&& src) = default;
-    ~angle(void) = default;
-    self_type& operator=(const self_type& rhs) = default;
-    self_type& operator=(self_type&& rhs) = default;
+    angle(const self_type& src) noexcept = default;
+    angle(self_type&& src) noexcept = default;
+    ~angle(void) noexcept = default;
+    self_type& operator=(const self_type& rhs) noexcept = default;
+    self_type& operator=(self_type&& rhs) noexcept = default;
     /////////////////////////////////////////////////////////////////////////////
 
     /**
      * @brief      operator= with one double argument
      * @param[in]  value: new value to be assigned
      */
-    self_type& operator=(double value) noexcept
+    self_type& operator=(double value)
     {
         v_ = normalize(value);
         return *this;
@@ -339,7 +339,7 @@ public:
      * @brief      set value in own unit
      * @param[in]  value: appointed value in own unit
      */
-    void set(double value) noexcept
+    void set(double value)
     {
         v_ = normalize(value);
     }
@@ -349,7 +349,7 @@ public:
      * @brief      set value in degrees
      * @param[in]  degree: appointed value in degrees
      */
-    void set_degree(double degree) noexcept
+    void set_degree(double degree)
     {
         v_ = normalize(DEGREE ? degree : deg2rad(degree));
     }
@@ -359,7 +359,7 @@ public:
      * @brief      set value in radians
      * @param[in]  radian: appointed value in radians
      */
-    void set_radian(double radian) noexcept
+    void set_radian(double radian)
     {
         v_ = normalize(DEGREE ? rad2deg(radian) : radian);
     }
@@ -371,7 +371,7 @@ private:
      * @param[in]  value: appointed value in own unit
      * @return     normalized value
      */
-    double normalize(double value) const noexcept
+    double normalize(double value) const
     {
         static constexpr double unit = DEGREE ? 180.0 : pi;
 
@@ -423,4 +423,3 @@ private:
 } // namespace ken3 {
 
 #endif // #ifndef INCLUDE_GUARD_KEN3_ANGLE_HPP
-
