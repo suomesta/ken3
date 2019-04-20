@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
-""" error test
+"""errortest does tests of an intended compile error.
 
 run compiler with test code, which causes compile error.
-
 """
 
 import glob
@@ -24,7 +23,7 @@ DEF_SUFFIX = '_TEST_FUNC_ACTIVATED'
 
 
 def filenames(targets, exclude):
-    """ pick cpp files from current directory
+    """Pick cpp files from current directory.
 
     param[in]  targets: appointed targets file names.
                         if None, pick all files with extension '.cpp'
@@ -46,11 +45,11 @@ def filenames(targets, exclude):
 
 
 def execute(name, full_description):
-    """ execute test program.
+    """Execute test program.
 
     param[in]  name: appointed target file name. normally .cpp file.
     param[in]  full_description: a flag to show detailed message and
-                                 compiler's message
+                                 compiler's message.
     return     names of NG defines in string-list.
     """
     # open file and get lines
@@ -100,7 +99,7 @@ def execute(name, full_description):
 
 
 def run_tests(names, full_description):
-    """ run each test programs.
+    """Run each test programs.
 
     param[in]  names: appointed target file names. normally .cpp files.
     param[in]  full_description: a flag to show detailed message and
@@ -119,7 +118,7 @@ def run_tests(names, full_description):
         ngs = execute(name, full_description)
 
         # record a program if its result is NG
-        if len(ngs):
+        if ngs:
             results.append(name)
 
     # show results
@@ -136,7 +135,7 @@ def run_tests(names, full_description):
 
 
 def main():
-    """ main function """
+    """Parse args by argparse and run all tests."""
     import argparse
 
     # parse sys.argv
@@ -156,6 +155,7 @@ def main():
         run_tests(filenames(args.targets, args.exclude),
                   args.full_description)
     )
+
 
 if __name__ == "__main__":
     sys.exit(main())

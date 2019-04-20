@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-""" stylecheck
+"""stylecheck does style check of ken3 source code.
 
 check all header and source files are written in common style.
 """
@@ -13,7 +13,7 @@ __version__ = '1.0.0'
 
 
 def pick_names(root_dir):
-    """ pick hpp and cpp files from root_dir
+    """Pick hpp and cpp files from root_dir.
 
     param[in]  root_dir: appointed path of root directory.
                          normaly source root directory "../../ken3/"
@@ -26,7 +26,7 @@ def pick_names(root_dir):
 
 
 def create_indices(filename, lines):
-    """ create index list from lines
+    """Create index list from lines.
 
     param[in]  filename: appointed file name in str. already processed to
                          handle easier.
@@ -34,7 +34,7 @@ def create_indices(filename, lines):
     return     index numbers in tuple.
     """
     def find(key, condition):
-        """ find and return index from str-list """
+        """Find and return index from str-list."""
         for i, line in enumerate(lines):
             if condition(line, key):
                 return i
@@ -69,7 +69,7 @@ def create_indices(filename, lines):
 
 
 def check(filename, lines):
-    """ check a file and yield found problem.
+    """Check a file and yield found problem.
 
     param[in]  filename: appointed file name in str.
     param[in]  lines: lines in file.
@@ -130,7 +130,7 @@ def check(filename, lines):
 
 
 def run(filenames, root_dir):
-    """ check for all files.
+    """Check for all files.
 
     param[in]  filenames: appointed target file names.
     param[in]  root_dir: appointed path of root directory.
@@ -145,7 +145,7 @@ def run(filenames, root_dir):
 
 
 def main():
-    """ main function
+    """Parse args by argparse and run each tests.
 
     return     the number of problems.
     """
@@ -164,6 +164,7 @@ def main():
     if result:
         print(result)
     return len(result)
+
 
 if __name__ == "__main__":
     sys.exit(main())
