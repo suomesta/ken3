@@ -70,7 +70,7 @@ cc_test(
 
 cc_test(
     name = "type_util_test",
-    srcs = ["type_util_test.cpp", "type_util/e2i_test.cpp", "type_util/array_size_test.cpp", "type_util/array_get_test.cpp", "lest.hpp"],
+    srcs = ["type_util_test.cpp", "type_util/e2i_test.cpp", "type_util/array_size_test.cpp", "type_util/array_get_test.cpp", "type_util/const_reference_test.cpp", "lest.hpp"],
     deps = ["//ken3:type_util"],
     size = "small",
 )
