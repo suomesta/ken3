@@ -1,6 +1,6 @@
 # ken3
 
-The C++ library ken3 includes some useful classes and functions.
+The C++ library ken3 includes many useful classes and functions.
 
 ## Getting Started
 
@@ -17,7 +17,7 @@ Bazel is recommended to build and test ken3.
 - pyloop: functions to create Python like object for range-for statement.
 - pystr: functions which imitate Python str function.
 - stopwatch: simple but useful stopwatch using C++11 <chrono>.
-- type_util: util class and functions using C++11 <type_traits>.
+- type_util: util classes and functions using C++11 <type_traits>.
 
 ## Installing
 
@@ -38,4 +38,3 @@ If you do not have Bazel, you need to create Makefile. Although source code tree
 ## Authors
 
 toda
-
