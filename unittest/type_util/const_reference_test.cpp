@@ -1,7 +1,7 @@
 /**
  * @file    unittest/type_util/const_reference_test.cpp
- * @brief   Testing is_const_reference<>, is_const_lvalue_reference<>, and
- *          is_const_rvalue_reference<> using lest. 
+ * @brief   Testing is_const_reference<>, is_const_lvalue_reference<>,
+ *          is_const_rvalue_reference<>, and is_const_pointer<> using lest. 
  * @author  toda
  * @date    2019-04-21
  * @version 0.1.0
@@ -84,6 +84,30 @@ const lest::test module[] =
         EXPECT(false == is_const_rvalue_reference<empty&&>::value);
         EXPECT(false == is_const_rvalue_reference<const empty&>::value);
         EXPECT(true == is_const_rvalue_reference<const empty&&>::value);
+    },
+
+    CASE("is_const_pointer<>") 
+    {
+        using ken3::is_const_pointer;
+        struct empty {};
+
+        EXPECT(false == is_const_pointer<int>::value);
+        EXPECT(false == is_const_pointer<const int>::value);
+        EXPECT(false == is_const_pointer<int*>::value);
+        EXPECT(true == is_const_pointer<const int*>::value);
+        EXPECT(false == is_const_pointer<int&>::value);
+        EXPECT(false == is_const_pointer<int&&>::value);
+        EXPECT(false == is_const_pointer<const int&>::value);
+        EXPECT(false == is_const_pointer<const int&&>::value);
+
+        EXPECT(false == is_const_pointer<empty>::value);
+        EXPECT(false == is_const_pointer<const empty>::value);
+        EXPECT(false == is_const_pointer<empty*>::value);
+        EXPECT(true == is_const_pointer<const empty*>::value);
+        EXPECT(false == is_const_pointer<empty&>::value);
+        EXPECT(false == is_const_pointer<empty&&>::value);
+        EXPECT(false == is_const_pointer<const empty&>::value);
+        EXPECT(false == is_const_pointer<const empty&&>::value);
     },
 
 };

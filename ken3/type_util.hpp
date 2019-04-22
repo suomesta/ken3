@@ -7,9 +7,11 @@
  *          ken3::array_get() is similar function to std::get. its target
  *          is array.
  *          ken3::e2i() converts enum into base integer type.
- *          ken3::is_const_referene<T> can check whether T is const
- *          reference type or not. ken3::is_const_lvalue_referene<> and
- *          ken3::is_const_rvalue_referene<> are similar structs.
+ *          ken3::is_const_reference<T> can check whether T is const
+ *          reference type or not. ken3::is_const_lvalue_reference<> and
+ *          ken3::is_const_rvalue_reference<> are similar structs.
+ *          ken3::is_const_pointer<T> can check whether T is const
+ *          pointer type or not.
  * @author  toda
  * @date    2017-07-04
  * @version 0.1.0
@@ -35,11 +37,17 @@
  *     enum_i e = enumi::zero;
  *     auto i = ken3::e2i(e); // type of i is int
  *
- * usage of ken3::is_const_referene<> is,
+ * usage of ken3::is_const_reference<> is,
  *     int i;
  *     const int& cr = i;
- *     ken3::is_const_referene<decltype(i)>::value; // false
- *     ken3::is_const_referene<decltype(cr)>::value; // true
+ *     ken3::is_const_reference<decltype(i)>::value; // false
+ *     ken3::is_const_reference<decltype(cr)>::value; // true
+ *
+ * usage of ken3::is_const_pointer<> is,
+ *     int i;
+ *     const int* cp = &i;
+ *     ken3::is_const_pointer<decltype(i)>::value; // false
+ *     ken3::is_const_pointer<decltype(cp)>::value; // true
  */
 
 #ifndef INCLUDE_GUARD_KEN3_TYPE_UTIL_HPP
@@ -152,6 +160,17 @@ struct is_const_lvalue_reference : type_util_detail::bool_type<std::is_lvalue_re
  */
 template <typename T>
 struct is_const_rvalue_reference : type_util_detail::bool_type<std::is_rvalue_reference<T>::value && std::is_const<typename std::remove_reference<T>::type>::value> {};
+/////////////////////////////////////////////////////////////////////////////
+
+/**
+ * @struct     is_const_pointer
+ * @brief      inheritance from std::true_type or std::false_type.
+ *             if T is const pointer type, then ::value is true.
+ *             else, value is false.
+ * @tparam     T: appointed type to be checked const pointer or not.
+ */
+template <typename T>
+struct is_const_pointer : type_util_detail::bool_type<std::is_pointer<T>::value && std::is_const<typename std::remove_pointer<T>::type>::value> {};
 /////////////////////////////////////////////////////////////////////////////
 
 } // namespace ken3 {
