@@ -167,6 +167,13 @@ TEST_MAP = OrderedDict((
         ("'\\r\\n\\t'.__repr__()", 'repr("\\r\\n\\t")'),
         ("''.__repr__()", 'repr("")'),
     )),
+    ('rmul()', (
+        ("'a'.__rmul__(3)", 'rmul("a", 3)'),
+        ("'abc'.__rmul__(3)", 'rmul("abc", 3)'),
+        ("''.__rmul__(10)", 'rmul("", 10)'),
+        ("'abc'.__rmul__(0)", 'rmul("abc", 0)'),
+        ("'abc'.__rmul__(-1)", 'rmul("abc", -1)'),
+    )),
     ('ne()', (
         ("'a'.__ne__('a')", 'ne("a", "a")'),
         ("'a'.__ne__('AAA')", 'ne("a", "AAA")'),
@@ -186,6 +193,20 @@ TEST_MAP = OrderedDict((
         ("'98'.capitalize()", 'capitalize("98")'),
         ("'%$'.capitalize()", 'capitalize("%$")'),
         ("''.capitalize()", 'capitalize("")'),
+    )),
+    ('casefold()', (
+        ("'a'.casefold()", 'casefold("a")'),
+        ("'Ab'.casefold()", 'casefold("Ab")'),
+        ("'abc'.casefold()", 'casefold("abc")'),
+        ("'aBc'.casefold()", 'casefold("aBc")'),
+        ("'a c'.casefold()", 'casefold("a c")'),
+        ("'3'.casefold()", 'casefold("3")'),
+        ("'3F'.casefold()", 'casefold("3F")'),
+        ("''.casefold()", 'casefold("")'),
+        ("'@'.casefold()", 'casefold("@")'),
+        ("' '.casefold()", 'casefold(" ")'),
+        ("'3F@'.casefold()", 'casefold("3F@")'),
+        ("'\\n'.casefold()", 'casefold("\\n")'),
     )),
     ('center()', (
         ("'a'.center(1)", 'center("a", 1)'),
@@ -343,6 +364,34 @@ TEST_MAP = OrderedDict((
         ("'3F@'.isalpha()", 'isalpha("3F@")'),
         ("'\\n'.isalpha()", 'isalpha("\\n")'),
     )),
+    ('isascii()', (
+        ("'a'.isascii()", 'isascii("a")'),
+        ("'A'.isascii()", 'isascii("A")'),
+        ("'abc'.isascii()", 'isascii("abc")'),
+        ("'aBc'.isascii()", 'isascii("aBc")'),
+        ("'a c'.isascii()", 'isascii("a c")'),
+        ("'3'.isascii()", 'isascii("3")'),
+        ("'3F'.isascii()", 'isascii("3F")'),
+        ("''.isascii()", 'isascii("")'),
+        ("'@'.isascii()", 'isascii("@")'),
+        ("' '.isascii()", 'isascii(" ")'),
+        ("'3F@'.isascii()", 'isascii("3F@")'),
+        ("'\\n'.isascii()", 'isascii("\\n")'),
+    )),
+    ('isdecimal()', (
+        ("'a'.isdecimal()", 'isdecimal("a")'),
+        ("'A'.isdecimal()", 'isdecimal("A")'),
+        ("'abc'.isdecimal()", 'isdecimal("abc")'),
+        ("'aBc'.isdecimal()", 'isdecimal("aBc")'),
+        ("'a c'.isdecimal()", 'isdecimal("a c")'),
+        ("'3'.isdecimal()", 'isdecimal("3")'),
+        ("'3F'.isdecimal()", 'isdecimal("3F")'),
+        ("''.isdecimal()", 'isdecimal("")'),
+        ("'@'.isdecimal()", 'isdecimal("@")'),
+        ("' '.isdecimal()", 'isdecimal(" ")'),
+        ("'3F@'.isdecimal()", 'isdecimal("3F@")'),
+        ("'\\n'.isdecimal()", 'isdecimal("\\n")'),
+    )),
     ('isdigit()', (
         ("'a'.isdigit()", 'isdigit("a")'),
         ("'A'.isdigit()", 'isdigit("A")'),
@@ -370,6 +419,34 @@ TEST_MAP = OrderedDict((
         ("' '.islower()", 'islower(" ")'),
         ("'3F@'.islower()", 'islower("3F@")'),
         ("'\\n'.islower()", 'islower("\\n")'),
+    )),
+    ('isnumeric()', (
+        ("'a'.isnumeric()", 'isnumeric("a")'),
+        ("'A'.isnumeric()", 'isnumeric("A")'),
+        ("'abc'.isnumeric()", 'isnumeric("abc")'),
+        ("'aBc'.isnumeric()", 'isnumeric("aBc")'),
+        ("'a c'.isnumeric()", 'isnumeric("a c")'),
+        ("'3'.isnumeric()", 'isnumeric("3")'),
+        ("'3F'.isnumeric()", 'isnumeric("3F")'),
+        ("''.isnumeric()", 'isnumeric("")'),
+        ("'@'.isnumeric()", 'isnumeric("@")'),
+        ("' '.isnumeric()", 'isnumeric(" ")'),
+        ("'3F@'.isnumeric()", 'isnumeric("3F@")'),
+        ("'\\n'.isnumeric()", 'isnumeric("\\n")'),
+    )),
+    ('isprintable()', (
+        ("'a'.isprintable()", 'isprintable("a")'),
+        ("'A'.isprintable()", 'isprintable("A")'),
+        ("'abc'.isprintable()", 'isprintable("abc")'),
+        ("'aBc'.isprintable()", 'isprintable("aBc")'),
+        ("'a c'.isprintable()", 'isprintable("a c")'),
+        ("'3'.isprintable()", 'isprintable("3")'),
+        ("'3F'.isprintable()", 'isprintable("3F")'),
+        ("''.isprintable()", 'isprintable("")'),
+        ("'@'.isprintable()", 'isprintable("@")'),
+        ("' '.isprintable()", 'isprintable(" ")'),
+        ("'3F@'.isprintable()", 'isprintable("3F@")'),
+        ("'\\n'.isprintable()", 'isprintable("\\n")'),
     )),
     ('isspace()', (
         ("'a'.isspace()", 'isspace("a")'),
@@ -975,7 +1052,7 @@ def create_expect(test):
                 ', '.join(map(esc_and_quotation, ret))
             )
         return '        EXPECT({0} == {1});'.format(ret, test[1])
-    except (ValueError, TypeError) as ex:
+    except (IndexError, ValueError, TypeError) as ex:
         ret = ex.__class__.__name__
         return '        EXPECT_THROWS_AS({0}, {1});'.format(test[1], ret)
 

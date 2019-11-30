@@ -26,22 +26,14 @@
  *   pystr::slice("abcde", 1, 4) is same as 'abcde'[1:4]
  *
  * Some limitations.
- * - 'format' is not supported.
- * - 'encode' is not supported, because only ascii string is allowed.
- * - '__class__', '__delattr__', '__doc__', '__format__',
+ * - '__mod__', '__rmod__', 'encode', 'format', 'format_map', 'isidentifier',
+ *   'maketrans', and 'translate' are not supported.
+ * - '__class__', '__delattr__', '__dir__', '__doc__', '__format__',
  *   '__getattribute__', '__getnewargs__', '__hash__', '__init__',
- *   '__mod__', '__new__', '__reduce__', '__reduce_ex__', '__rmod__',
- *   '__rmul__', '__setattr__', '__sizeof__', '__str__', and
- *   '__subclasshook__' are not supported, because of differencies of
- *   language specification between Python and C++.
- * - '__iter__', 'format_map', 'isdecimal', 'isidentifier',
- *   'isnumeric', 'isprintable', and 'maketrans' are not supported,
- *   becuase these functions are not in Python 2.
- * - '__getslice__', '_formatter_field_name_split',
- *   '_formatter_parser', and 'decode' are not supported, because these
- *   functions are not in Python 3.
- * - 'translate' is not supported, because its specification has been
- *   changed a lot from Python 2 to Python 3.
+ *   '__init_subclass__', '__iter__', '__new__', '__reduce__',
+ *   '__reduce_ex__', '__setattr__', '__sizeof__', '__str__', and
+ *   '__subclasshook__' are not supported, because of differencies of language
+ *   specification between Python and C++.
  *
  * Following is a sample to use pystr::split() and pystr::upper().
  *     std::string s = "a,b,c";
@@ -212,10 +204,24 @@ std::string repr(const std::string& self);
 /////////////////////////////////////////////////////////////////////////////
 
 /**
+ * @brief str.__rmul__()
+ *        pystr::rmul("abc", 3) <=> 3 * 'abc' or 'abc'.__rmul__(3)
+ */
+std::string rmul(const std::string& self, index_type n);
+/////////////////////////////////////////////////////////////////////////////
+
+/**
  * @brief str.capitalize()
  *        pystr::capitalize("abc") <=> 'abc'.capitalize()
  */
 std::string capitalize(const std::string& self);
+/////////////////////////////////////////////////////////////////////////////
+
+/**
+ * @brief str.casefold()
+ *        pystr::casefold("abc") <=> 'abc'.casefold()
+ */
+std::string casefold(const std::string& self);
 /////////////////////////////////////////////////////////////////////////////
 
 /**
@@ -287,6 +293,20 @@ bool isalpha(const std::string& self);
 /////////////////////////////////////////////////////////////////////////////
 
 /**
+ * @brief str.isascii()
+ *        pystr::isascii("abc") <=> 'abc'.isascii()
+ */
+bool isascii(const std::string& self);
+/////////////////////////////////////////////////////////////////////////////
+
+/**
+ * @brief str.isdecimal()
+ *        pystr::isdecimal("abc") <=> 'abc'.isdecimal()
+ */
+bool isdecimal(const std::string& self);
+/////////////////////////////////////////////////////////////////////////////
+
+/**
  * @brief str.isdigit()
  *        pystr::isdigit("abc") <=> 'abc'.isdigit()
  */
@@ -298,6 +318,20 @@ bool isdigit(const std::string& self);
  *        pystr::islower("abc") <=> 'abc'.islower()
  */
 bool islower(const std::string& self);
+/////////////////////////////////////////////////////////////////////////////
+
+/**
+ * @brief str.isnumeric()
+ *        pystr::isnumeric("abc") <=> 'abc'.isnumeric()
+ */
+bool isnumeric(const std::string& self);
+/////////////////////////////////////////////////////////////////////////////
+
+/**
+ * @brief str.isprintable()
+ *        pystr::isprintable("abc") <=> 'abc'.isprintable()
+ */
+bool isprintable(const std::string& self);
 /////////////////////////////////////////////////////////////////////////////
 
 /**

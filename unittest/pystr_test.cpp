@@ -1,12 +1,12 @@
 /**
  * @file    unittest/pystr_test.cpp
- * @brief   Testing ken3::pystr using lest. 
+ * @brief   Testing ken3::pystr using lest.
  * @author  toda
  * @date    2016-06-29
  * @version 0.1.0
  * @remark  the target is C++11 or more
- * @note    This file is created by Python module to get proper required results.
- *          Please, do not modify this file by manual. 
+ * @note    This file is created by Python to get proper required results.
+ *          Please, do not modify this file by manual.
  */
 
 #include "ken3/pystr.hpp"
@@ -15,7 +15,8 @@
 namespace {
 
 /**
- * @brief      helper function to create std::string, which is {0x00, 0x01, .., 0x0x7F}.
+ * @brief      helper function to create std::string, which is
+ *             {0x00, 0x01, .., 0x0x7F}.
  * @param[in]  size: the size of createdstd::string. default is 128.
  * @return     created std::string.
  */
@@ -209,6 +210,17 @@ const lest::test specification[] =
         EXPECT(std::string("''") == repr(""));
     },
 
+    CASE("rmul()")
+    {
+        using namespace ken3::pystr;
+
+        EXPECT(std::string("aaa") == rmul("a", 3));
+        EXPECT(std::string("abcabcabc") == rmul("abc", 3));
+        EXPECT(std::string("") == rmul("", 10));
+        EXPECT(std::string("") == rmul("abc", 0));
+        EXPECT(std::string("") == rmul("abc", -1));
+    },
+
     CASE("ne()")
     {
         using namespace ken3::pystr;
@@ -235,6 +247,24 @@ const lest::test specification[] =
         EXPECT(std::string("98") == capitalize("98"));
         EXPECT(std::string("%$") == capitalize("%$"));
         EXPECT(std::string("") == capitalize(""));
+    },
+
+    CASE("casefold()")
+    {
+        using namespace ken3::pystr;
+
+        EXPECT(std::string("a") == casefold("a"));
+        EXPECT(std::string("ab") == casefold("Ab"));
+        EXPECT(std::string("abc") == casefold("abc"));
+        EXPECT(std::string("abc") == casefold("aBc"));
+        EXPECT(std::string("a c") == casefold("a c"));
+        EXPECT(std::string("3") == casefold("3"));
+        EXPECT(std::string("3f") == casefold("3F"));
+        EXPECT(std::string("") == casefold(""));
+        EXPECT(std::string("@") == casefold("@"));
+        EXPECT(std::string(" ") == casefold(" "));
+        EXPECT(std::string("3f@") == casefold("3F@"));
+        EXPECT(std::string("\n") == casefold("\n"));
     },
 
     CASE("center()")
@@ -423,6 +453,42 @@ const lest::test specification[] =
         EXPECT(false == isalpha("\n"));
     },
 
+    CASE("isascii()")
+    {
+        using namespace ken3::pystr;
+
+        EXPECT(true == isascii("a"));
+        EXPECT(true == isascii("A"));
+        EXPECT(true == isascii("abc"));
+        EXPECT(true == isascii("aBc"));
+        EXPECT(true == isascii("a c"));
+        EXPECT(true == isascii("3"));
+        EXPECT(true == isascii("3F"));
+        EXPECT(true == isascii(""));
+        EXPECT(true == isascii("@"));
+        EXPECT(true == isascii(" "));
+        EXPECT(true == isascii("3F@"));
+        EXPECT(true == isascii("\n"));
+    },
+
+    CASE("isdecimal()")
+    {
+        using namespace ken3::pystr;
+
+        EXPECT(false == isdecimal("a"));
+        EXPECT(false == isdecimal("A"));
+        EXPECT(false == isdecimal("abc"));
+        EXPECT(false == isdecimal("aBc"));
+        EXPECT(false == isdecimal("a c"));
+        EXPECT(true == isdecimal("3"));
+        EXPECT(false == isdecimal("3F"));
+        EXPECT(false == isdecimal(""));
+        EXPECT(false == isdecimal("@"));
+        EXPECT(false == isdecimal(" "));
+        EXPECT(false == isdecimal("3F@"));
+        EXPECT(false == isdecimal("\n"));
+    },
+
     CASE("isdigit()")
     {
         using namespace ken3::pystr;
@@ -457,6 +523,42 @@ const lest::test specification[] =
         EXPECT(false == islower(" "));
         EXPECT(false == islower("3F@"));
         EXPECT(false == islower("\n"));
+    },
+
+    CASE("isnumeric()")
+    {
+        using namespace ken3::pystr;
+
+        EXPECT(false == isnumeric("a"));
+        EXPECT(false == isnumeric("A"));
+        EXPECT(false == isnumeric("abc"));
+        EXPECT(false == isnumeric("aBc"));
+        EXPECT(false == isnumeric("a c"));
+        EXPECT(true == isnumeric("3"));
+        EXPECT(false == isnumeric("3F"));
+        EXPECT(false == isnumeric(""));
+        EXPECT(false == isnumeric("@"));
+        EXPECT(false == isnumeric(" "));
+        EXPECT(false == isnumeric("3F@"));
+        EXPECT(false == isnumeric("\n"));
+    },
+
+    CASE("isprintable()")
+    {
+        using namespace ken3::pystr;
+
+        EXPECT(true == isprintable("a"));
+        EXPECT(true == isprintable("A"));
+        EXPECT(true == isprintable("abc"));
+        EXPECT(true == isprintable("aBc"));
+        EXPECT(true == isprintable("a c"));
+        EXPECT(true == isprintable("3"));
+        EXPECT(true == isprintable("3F"));
+        EXPECT(true == isprintable(""));
+        EXPECT(true == isprintable("@"));
+        EXPECT(true == isprintable(" "));
+        EXPECT(true == isprintable("3F@"));
+        EXPECT(false == isprintable("\n"));
     },
 
     CASE("isspace()")

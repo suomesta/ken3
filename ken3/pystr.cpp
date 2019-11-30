@@ -374,6 +374,25 @@ std::string mul(const std::string& self, index_type n)
 /////////////////////////////////////////////////////////////////////////////
 
 /**
+ * @brief str.__rmul__()
+ *        pystr::rmul("abc", 3) <=> 3 * 'abc' or 'abc'.__rmul__(3)
+ */
+std::string rmul(const std::string& self, index_type n)
+{
+    if (n <= 0) {
+        return std::string();
+    }
+
+    std::string retval;
+    retval.reserve(self.size() * n);
+    for (index_type i = 0; i < n; i++) {
+        retval += self;
+    }
+    return retval;
+}
+/////////////////////////////////////////////////////////////////////////////
+
+/**
  * @brief str.__ne__()
  *        pystr::ne("abc", "a") <=> 'abc' != 'a' or 'abc'.__ne__('a')
  */
@@ -425,6 +444,18 @@ std::string capitalize(const std::string& self)
         std::transform(first, second, first, ::toupper);
         std::transform(second, str.end(), second, ::tolower);
     }
+    return str;
+}
+/////////////////////////////////////////////////////////////////////////////
+
+/**
+ * @brief str.casefold()
+ *        pystr::casefold("abc") <=> 'abc'.casefold()
+ */
+std::string casefold(const std::string& self)
+{
+    std::string str(self);
+    std::transform(str.begin(), str.end(), str.begin(), ::tolower);
     return str;
 }
 /////////////////////////////////////////////////////////////////////////////
@@ -614,6 +645,31 @@ bool isalpha(const std::string& self)
 /////////////////////////////////////////////////////////////////////////////
 
 /**
+ * @brief str.isascii()
+ *        pystr::isascii("abc") <=> 'abc'.isascii()
+ */
+bool isascii(const std::string& self)
+{
+    return (
+        std::all_of(self.begin(), self.end(), [](char c) { return ((0x00 <= c) && (c <= 0x7f)); })
+    );
+}
+/////////////////////////////////////////////////////////////////////////////
+
+/**
+ * @brief str.isdecimal()
+ *        pystr::isdecimal("abc") <=> 'abc'.isdecimal()
+ */
+bool isdecimal(const std::string& self)
+{
+    return (
+        not self.empty() &&
+        std::all_of(self.begin(), self.end(), ::isdigit)
+    );
+}
+/////////////////////////////////////////////////////////////////////////////
+
+/**
  * @brief str.isdigit()
  *        pystr::isdigit("abc") <=> 'abc'.isdigit()
  */
@@ -635,6 +691,31 @@ bool islower(const std::string& self)
     return (
         std::any_of(self.begin(), self.end(), ::islower) &&
         std::none_of(self.begin(), self.end(), ::isupper)
+    );
+}
+/////////////////////////////////////////////////////////////////////////////
+
+/**
+ * @brief str.isnumeric()
+ *        pystr::isnumeric("abc") <=> 'abc'.isnumeric()
+ */
+bool isnumeric(const std::string& self)
+{
+    return (
+        not self.empty() &&
+        std::all_of(self.begin(), self.end(), ::isdigit)
+    );
+}
+/////////////////////////////////////////////////////////////////////////////
+
+/**
+ * @brief str.isprintable()
+ *        pystr::isprintable("abc") <=> 'abc'.isprintable()
+ */
+bool isprintable(const std::string& self)
+{
+    return (
+        std::all_of(self.begin(), self.end(), [](char c) { return ((0x20 <= c) && (c <= 0x7e)); })
     );
 }
 /////////////////////////////////////////////////////////////////////////////
