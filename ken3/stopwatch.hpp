@@ -98,10 +98,10 @@ public:
     /////////////////////////////////////////////////////////////////////////////
 
     /**
-     * @brief      clear stop watch.
+     * @brief      reset stop watch.
      *             same behavior and argument with constructor
      */
-    void clear(bool start=true) noexcept;
+    void reset(bool start=true) noexcept;
     /////////////////////////////////////////////////////////////////////////////
 
     /**

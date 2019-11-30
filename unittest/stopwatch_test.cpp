@@ -170,14 +170,14 @@ const lest::test specification[] =
         EXPECT(within_range(sw.ms(), 100.0));
     },
 
-    CASE("clear()")
+    CASE("reset()")
     {
         using ken3::stopwatch;
 
         {
             stopwatch sw(true);
             std::this_thread::sleep_for(std::chrono::milliseconds(100));
-            sw.clear(true);
+            sw.reset(true);
             std::this_thread::sleep_for(std::chrono::milliseconds(100));
             EXPECT(within_range(sw.ms(), 100.0));
         }
@@ -185,7 +185,7 @@ const lest::test specification[] =
         {
             stopwatch sw(true);
             std::this_thread::sleep_for(std::chrono::milliseconds(100));
-            sw.clear(false);
+            sw.reset(false);
             std::this_thread::sleep_for(std::chrono::milliseconds(100));
             EXPECT(within_range(sw.ms(), 0.0));
         }
@@ -193,7 +193,7 @@ const lest::test specification[] =
         {
             stopwatch sw;
             std::this_thread::sleep_for(std::chrono::milliseconds(100));
-            sw.clear();
+            sw.reset();
             std::this_thread::sleep_for(std::chrono::milliseconds(100));
             EXPECT(within_range(sw.ms(), 100.0));
         }

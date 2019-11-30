@@ -106,10 +106,10 @@ void stopwatch::stop(void) noexcept
 /////////////////////////////////////////////////////////////////////////////
 
 /**
- * @brief      clear stop watch.
+ * @brief      reset stop watch.
  *             same behavior and argument with constructor
  */
-void stopwatch::clear(bool start/*=true*/) noexcept
+void stopwatch::reset(bool start/*=true*/) noexcept
 {
     started_ = start ? std::chrono::steady_clock::now() : time_point();
     accumulation_ = duration::zero();
