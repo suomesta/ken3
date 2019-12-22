@@ -18,7 +18,7 @@
  */
 int test_func(void)
 {
-    using namespace ken3::pyfunc;
+    using namespace ken3::py;
 
     // first argument is neither bool castable nor iterable
     struct tmp {};
@@ -35,7 +35,7 @@ int test_func(void)
  */
 int test_func(void)
 {
-    using namespace ken3::pyfunc;
+    using namespace ken3::py;
 
     // first argument is not iterable
     min(0);
@@ -50,7 +50,7 @@ int test_func(void)
  */
 int test_func(void)
 {
-    using namespace ken3::pyfunc;
+    using namespace ken3::py;
 
     // second argument is not function
     struct tmp {};
@@ -67,7 +67,7 @@ int test_func(void)
  */
 int test_func(void)
 {
-    using namespace ken3::pyfunc;
+    using namespace ken3::py;
 
     // second argument is not function
     int array[3] = {0, 1, 2};
@@ -83,7 +83,7 @@ int test_func(void)
  */
 int test_func(void)
 {
-    using namespace ken3::pyfunc;
+    using namespace ken3::py;
 
     // second argument does not have return value
     auto no_return = [](int i) {
@@ -102,7 +102,7 @@ int test_func(void)
  */
 int test_func(void)
 {
-    using namespace ken3::pyfunc;
+    using namespace ken3::py;
 
     // first argument is not iterable
     max(0);
@@ -117,7 +117,7 @@ int test_func(void)
  */
 int test_func(void)
 {
-    using namespace ken3::pyfunc;
+    using namespace ken3::py;
 
     // second argument is not function
     struct tmp {};
@@ -134,7 +134,7 @@ int test_func(void)
  */
 int test_func(void)
 {
-    using namespace ken3::pyfunc;
+    using namespace ken3::py;
 
     // second argument is not function
     int array[3] = {0, 1, 2};
@@ -150,7 +150,7 @@ int test_func(void)
  */
 int test_func(void)
 {
-    using namespace ken3::pyfunc;
+    using namespace ken3::py;
 
     // second argument does not have return value
     auto no_return = [](int i) {
@@ -169,7 +169,7 @@ int test_func(void)
  */
 int test_func(void)
 {
-    using namespace ken3::pyfunc;
+    using namespace ken3::py;
 
     // the argument is not iterable
     all(1);
@@ -184,7 +184,7 @@ int test_func(void)
  */
 int test_func(void)
 {
-    using namespace ken3::pyfunc;
+    using namespace ken3::py;
 
     // the argument cannot be converted into bool
     struct tmp {};
@@ -201,7 +201,7 @@ int test_func(void)
  */
 int test_func(void)
 {
-    using namespace ken3::pyfunc;
+    using namespace ken3::py;
 
     // the argument is not iterable
     any(1);
@@ -216,7 +216,7 @@ int test_func(void)
  */
 int test_func(void)
 {
-    using namespace ken3::pyfunc;
+    using namespace ken3::py;
 
     // the argument cannot be converted into bool
     struct tmp {};
@@ -233,7 +233,7 @@ int test_func(void)
  */
 int test_func(void)
 {
-    using namespace ken3::pyfunc;
+    using namespace ken3::py;
 
     // first argument is not iterable
     sum(1);
@@ -248,7 +248,7 @@ int test_func(void)
  */
 int test_func(void)
 {
-    using namespace ken3::pyfunc;
+    using namespace ken3::py;
 
     // first argument does not accept accumulate
     struct tmp {};
@@ -265,7 +265,7 @@ int test_func(void)
  */
 int test_func(void)
 {
-    using namespace ken3::pyfunc;
+    using namespace ken3::py;
 
     // second argument does not match
     struct tmp {};
@@ -283,7 +283,7 @@ int test_func(void)
  */
 int test_func(void)
 {
-    using namespace ken3::pyfunc;
+    using namespace ken3::py;
 
     // first argument is not function
     int array[3] = {1, 2, 3};
@@ -299,7 +299,7 @@ int test_func(void)
  */
 int test_func(void)
 {
-    using namespace ken3::pyfunc;
+    using namespace ken3::py;
 
     // first argument does not have return value
     auto no_return = [](int i, int j) {
@@ -318,7 +318,7 @@ int test_func(void)
  */
 int test_func(void)
 {
-    using namespace ken3::pyfunc;
+    using namespace ken3::py;
 
     // second argument is not iterable
     reduce(std::plus<int>(), 1);
@@ -333,7 +333,7 @@ int test_func(void)
  */
 int test_func(void)
 {
-    using namespace ken3::pyfunc;
+    using namespace ken3::py;
 
     // third argument does not match
     struct tmp {};
@@ -351,7 +351,7 @@ int test_func(void)
  */
 int test_func(void)
 {
-    using namespace ken3::pyfunc;
+    using namespace ken3::py;
 
     // first argument is not function
     int array[3] = {1, 2, 3};
@@ -367,7 +367,7 @@ int test_func(void)
  */
 int test_func(void)
 {
-    using namespace ken3::pyfunc;
+    using namespace ken3::py;
 
     // first argument does not have return value
     auto no_return = [](int i) {
@@ -386,7 +386,7 @@ int test_func(void)
  */
 int test_func(void)
 {
-    using namespace ken3::pyfunc;
+    using namespace ken3::py;
 
     // second argument is not iterable
     auto exp2 = [](int i) -> int {
@@ -404,7 +404,7 @@ int test_func(void)
  */
 int test_func(void)
 {
-    using namespace ken3::pyfunc;
+    using namespace ken3::py;
 
     // first argument is not function
     int array[3] = {1, 2, 3};
@@ -420,7 +420,7 @@ int test_func(void)
  */
 int test_func(void)
 {
-    using namespace ken3::pyfunc;
+    using namespace ken3::py;
 
     // first argument does not have return value
     auto no_return = [](int i) {
@@ -439,7 +439,7 @@ int test_func(void)
  */
 int test_func(void)
 {
-    using namespace ken3::pyfunc;
+    using namespace ken3::py;
 
     // second argument is not iterable
     auto f = [](int i) -> bool {

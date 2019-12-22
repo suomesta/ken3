@@ -1,6 +1,6 @@
 /**
  * @file    unittest/pyloop/range_test.cpp
- * @brief   Testing ken3::pyloop::range() using lest.
+ * @brief   Testing ken3::py::range() using lest.
  * @author  toda
  * @date    2017-07-21
  * @version 0.1.0
@@ -17,7 +17,7 @@ const lest::test module[] =
 
     CASE("range with argument {stop}")
     {
-        using ken3::pyloop::range;
+        using ken3::py::range;
 
         std::vector<int> v;
 
@@ -30,7 +30,7 @@ const lest::test module[] =
 
     CASE("range with argument {start, stop}")
     {
-        using ken3::pyloop::range;
+        using ken3::py::range;
 
         std::vector<int> v;
 
@@ -43,7 +43,7 @@ const lest::test module[] =
 
     CASE("range with argument {start, stop, step}")
     {
-        using ken3::pyloop::range;
+        using ken3::py::range;
 
         {
             std::vector<int> v;
@@ -103,7 +103,7 @@ const lest::test module[] =
 
     CASE("range with non-int tparam")
     {
-        using ken3::pyloop::range;
+        using ken3::py::range;
 
         {
             std::vector<unsigned short> v;
@@ -129,7 +129,7 @@ const lest::test module[] =
 
     CASE("in case range is empty")
     {
-        using ken3::pyloop::range;
+        using ken3::py::range;
 
         for (auto i: range(5, 0)) {
             EXPECT(false);
@@ -154,7 +154,7 @@ const lest::test module[] =
 
     CASE("range avoids overflow")
     {
-        using ken3::pyloop::range;
+        using ken3::py::range;
 
         {
             std::vector<int> v;
@@ -210,10 +210,10 @@ const lest::test module[] =
 
     CASE("range throws because step is 0")
     {
-        using ken3::pyloop::range;
+        using ken3::py::range;
 
-        EXPECT_THROWS_AS(range(0, 5, 0), ken3::pyloop::ValueError);
-        EXPECT_THROWS_AS(range(5, 0, 0), ken3::pyloop::ValueError);
+        EXPECT_THROWS_AS(range(0, 5, 0), ken3::py::ValueError);
+        EXPECT_THROWS_AS(range(5, 0, 0), ken3::py::ValueError);
     },
 
 };

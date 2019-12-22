@@ -20,7 +20,7 @@ const lest::test module[] =
 
     CASE("zip with array")
     {
-        using ken3::pyloop::zip;
+        using ken3::py::zip;
 
         int a1[3] = {1, 2, 3};
         int a2[3] = {4, 5, 6};
@@ -39,7 +39,7 @@ const lest::test module[] =
 
     CASE("zip with STL containers")
     {
-        using ken3::pyloop::zip;
+        using ken3::py::zip;
 
         {
             std::array<int, 3> a{1, 2, 3};
@@ -79,7 +79,7 @@ const lest::test module[] =
 
     CASE("zip with std::string")
     {
-        using ken3::pyloop::zip;
+        using ken3::py::zip;
 
         std::string s1 = "ABC";
         std::string s2 = "abc";
@@ -98,7 +98,7 @@ const lest::test module[] =
 
     CASE("zip with const array")
     {
-        using ken3::pyloop::zip;
+        using ken3::py::zip;
 
         const int a1[3] = {1, 2, 3};
         const int a2[3] = {4, 5, 6};
@@ -117,7 +117,7 @@ const lest::test module[] =
 
     CASE("zip with const STL containers")
     {
-        using ken3::pyloop::zip;
+        using ken3::py::zip;
 
         {
             const std::array<int, 3> a{1, 2, 3};
@@ -157,7 +157,7 @@ const lest::test module[] =
 
     CASE("zip with const std::string")
     {
-        using ken3::pyloop::zip;
+        using ken3::py::zip;
 
         const std::string s1 = "ABC";
         const std::string s2 = "abc";
@@ -176,7 +176,7 @@ const lest::test module[] =
 
     CASE("modify zip items with array")
     {
-        using ken3::pyloop::zip;
+        using ken3::py::zip;
 
         int a1[3] = {1, 2, 3};
         int a2[3] = {4, 5, 6};
@@ -196,7 +196,7 @@ const lest::test module[] =
 
     CASE("modify zip items with STL containers")
     {
-        using ken3::pyloop::zip;
+        using ken3::py::zip;
 
         {
             std::array<int, 3> a{1, 2, 3};
@@ -225,7 +225,7 @@ const lest::test module[] =
 
     CASE("modify zip items with std::string")
     {
-        using ken3::pyloop::zip;
+        using ken3::py::zip;
 
         std::string s1 = "ABC";
         std::string s2 = "abc";
@@ -241,7 +241,7 @@ const lest::test module[] =
 
     CASE("zip with empty STL containers")
     {
-        using ken3::pyloop::zip;
+        using ken3::py::zip;
 
         {
             std::array<int, 0> a;
@@ -263,7 +263,7 @@ const lest::test module[] =
 
     CASE("zip with empty std::string")
     {
-        using ken3::pyloop::zip;
+        using ken3::py::zip;
 
         std::string s1 = "";
         std::string s2 = "";
@@ -275,7 +275,7 @@ const lest::test module[] =
 
     CASE("zip when first argument is larger than the second")
     {
-        using ken3::pyloop::zip;
+        using ken3::py::zip;
 
         {
             int a[5] = {1, 2, 3, 4, 5};
@@ -326,7 +326,7 @@ const lest::test module[] =
 
     CASE("zip when second argument is larger than the first")
     {
-        using ken3::pyloop::zip;
+        using ken3::py::zip;
 
         {
             int a[3] = {1, 2, 3};
@@ -378,7 +378,7 @@ const lest::test module[] =
 
     CASE("zip when two arguments are same instance")
     {
-        using ken3::pyloop::zip;
+        using ken3::py::zip;
 
         std::vector<int> v{1, 2, 3};
         std::vector<int> firsts;

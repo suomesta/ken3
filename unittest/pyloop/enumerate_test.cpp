@@ -1,6 +1,6 @@
 /**
  * @file    unittest/pyloop/enumerate_test.cpp
- * @brief   Testing ken3::pyloop::enumerate() using lest.
+ * @brief   Testing ken3::py::enumerate() using lest.
  * @author  toda
  * @date    2017-07-21
  * @version 0.1.0
@@ -20,7 +20,7 @@ const lest::test module[] =
 
     CASE("enumerate with array")
     {
-        using ken3::pyloop::enumerate;
+        using ken3::py::enumerate;
 
         int array[3] = {1, 2, 3};
 
@@ -38,7 +38,7 @@ const lest::test module[] =
 
     CASE("enumerate with STL containers")
     {
-        using ken3::pyloop::enumerate;
+        using ken3::py::enumerate;
 
         {
             std::array<int, 3> a{1, 2, 3};
@@ -104,7 +104,7 @@ const lest::test module[] =
 
     CASE("enumerate with std::string")
     {
-        using ken3::pyloop::enumerate;
+        using ken3::py::enumerate;
 
         std::string str = "ABCD";
 
@@ -122,7 +122,7 @@ const lest::test module[] =
 
     CASE("enumerate with const array")
     {
-        using ken3::pyloop::enumerate;
+        using ken3::py::enumerate;
 
         const int array[3] = {1, 2, 3};
 
@@ -140,7 +140,7 @@ const lest::test module[] =
 
     CASE("enumerate with const STL containers")
     {
-        using ken3::pyloop::enumerate;
+        using ken3::py::enumerate;
 
         {
             const std::array<int, 3> a{1, 2, 3};
@@ -206,7 +206,7 @@ const lest::test module[] =
 
     CASE("enumerate with const std::string")
     {
-        using ken3::pyloop::enumerate;
+        using ken3::py::enumerate;
 
         const std::string str = "ABCD";
 
@@ -224,7 +224,7 @@ const lest::test module[] =
 
     CASE("modify enumerate items with array")
     {
-        using ken3::pyloop::enumerate;
+        using ken3::py::enumerate;
 
         int array[3] = {1, 2, 3};
 
@@ -239,7 +239,7 @@ const lest::test module[] =
 
     CASE("modify enumerate items with STL containers")
     {
-        using ken3::pyloop::enumerate;
+        using ken3::py::enumerate;
 
         {
             std::array<int, 3> a{1, 2, 3};
@@ -273,7 +273,7 @@ const lest::test module[] =
 
     CASE("modify enumerate items with std::string")
     {
-        using ken3::pyloop::enumerate;
+        using ken3::py::enumerate;
 
         std::string str = "ABCD";
 
@@ -286,7 +286,7 @@ const lest::test module[] =
 
     CASE("enumerate with zero sized containers")
     {
-        using ken3::pyloop::enumerate;
+        using ken3::py::enumerate;
 
         {
             std::array<int, 0> a;

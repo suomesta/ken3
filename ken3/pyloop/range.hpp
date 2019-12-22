@@ -15,7 +15,7 @@
 #include <type_traits>
 
 namespace ken3 {
-namespace pyloop {
+namespace py {
 namespace range_detail {
 
 // range iterator, which supports operator++, operator*, and operator!=.
@@ -114,7 +114,7 @@ private:
 /////////////////////////////////////////////////////////////////////////////
 
 } // namespace range_detail {
-} // namespace pyloop {
+} // namespace py {
 } // namespace ken3 {
 
 #endif // #ifndef INCLUDE_GUARD_KEN3_PYLOOP_RANGE_HPP

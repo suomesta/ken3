@@ -18,7 +18,6 @@ namespace {
 
 using ken3::pystr::index_type;
 using ken3::pystr::None;
-using ken3::pystr::ValueError;
 
 /**
  * @brief     helper function to convert a characer into std::string for repr().
@@ -79,7 +78,7 @@ public:
      * @param[in] start: start index for slice
      * @param[in] end: end index for slice
      * @param[in] step: step of slice
-     * @throw     ken3::pystr::ValueError: when step is 0
+     * @throw     ken3::py::ValueError: when step is 0
      */
     explicit slice_object(index_type size, index_type start=None, index_type end=None, index_type step=None) :
         start_(start),
@@ -88,7 +87,7 @@ public:
     {
         // set step
         if (step_ == 0) {
-            throw ValueError("slice step cannot be zero");
+            throw ken3::py::ValueError("slice step cannot be zero");
         }
         else if (step_ == None) {
             step_ = 1;
@@ -175,7 +174,7 @@ private:
  * @param[in] end: end index for slice
  * @param[in] step: step of slice
  * @return    start index
- * @throw     ken3::pystr::ValueError: when step is 0
+ * @throw     ken3::py::ValueError: when step is 0
  */
 index_type offset(const std::string& self, index_type start=None, index_type end=None, index_type step=None)
 {
@@ -189,39 +188,6 @@ index_type offset(const std::string& self, index_type start=None, index_type end
 
 namespace ken3 {
 namespace pystr {
-
-/**
- * @brief       constructor. 
- * @param[in]   msg: message for what(). 
- */
-ValueError::ValueError(const std::string& msg) :
-    std::runtime_error(std::string("ValueError: ") + msg)
-{
-    ;
-}
-/////////////////////////////////////////////////////////////////////////////
-
-/**
- * @brief       constructor. 
- * @param[in]   msg: message for what(). 
- */
-IndexError::IndexError(const std::string& msg) :
-    std::runtime_error(std::string("IndexError: ") + msg)
-{
-    ;
-}
-/////////////////////////////////////////////////////////////////////////////
-
-/**
- * @brief       constructor. 
- * @param[in]   msg: message for what(). 
- */
-TypeError::TypeError(const std::string& msg) :
-    std::runtime_error(std::string("TypeError: ") + msg)
-{
-    ;
-}
-/////////////////////////////////////////////////////////////////////////////
 
 /**
  * @brief str.__add__()
@@ -266,7 +232,7 @@ bool ge(const std::string& self, const std::string& x) noexcept
 /**
  * @brief str.__getitem__()
  *        pystr::getitem("abc", 1) <=> 'abc'[1] or 'abc'.__getitem__(1)
- * @throw ken3::pystr::IndexError: when index is out of range
+ * @throw ken3::py::IndexError: when index is out of range
  * @note  the return value is std::string (not char)
  */
 std::string getitem(const std::string& self, index_type index)
@@ -274,7 +240,7 @@ std::string getitem(const std::string& self, index_type index)
     index_type size = static_cast<index_type>(self.size());
     index_type new_index = (index >= 0) ? index : size + index;
     if ((new_index < 0) || (new_index >= size)) {
-        throw IndexError("string index out of range");
+        throw ken3::py::IndexError("string index out of range");
     }
 
     return self.substr(new_index, 1);
@@ -284,7 +250,7 @@ std::string getitem(const std::string& self, index_type index)
 /**
  * @brief str.__getitem__() with slice
  *        pystr::slice("abcde", 1, 4, 2) <=> 'abcde'[1:4:2] or 'abcde'.__getitem__(slice(1, 4, 2))
- * @throw ken3::pystr::ValueError: when step is 0
+ * @throw ken3::py::ValueError: when step is 0
  */
 std::string slice(const std::string& self, index_type start/*=None*/, index_type end/*=None*/, index_type step/*=None*/)
 {
@@ -463,14 +429,14 @@ std::string casefold(const std::string& self)
 /**
  * @brief str.center()
  *        pystr::center("abc", 5) <=> 'abc'.center(5)
- * @throw ken3::pystr::TypeError: when fillchar is not one character
+ * @throw ken3::py::TypeError: when fillchar is not one character
  * @note  the behavior of str.centor() is little bit strange.
  *        see http://bugs.python.org/issue23624
  */
 std::string center(const std::string& self, index_type width, const std::string& fillchar/*=std::string(" ")*/)
 {
     if (fillchar.size() != 1) {
-        throw TypeError("The fill character must be exactly one character long");
+        throw ken3::py::TypeError("The fill character must be exactly one character long");
     }
 
     if (static_cast<index_type>(self.size()) >= width) {
@@ -601,7 +567,7 @@ index_type find(const std::string& self, const std::string& sub, index_type star
 /**
  * @brief str.index()
  *        pystr::index("abc", "a") <=> 'abc'.index('a')
- * @throw ken3::pystr::ValueError: when sub is not found in self
+ * @throw ken3::py::ValueError: when sub is not found in self
  */
 index_type index(const std::string& self, const std::string& sub, index_type start/*=None*/, index_type end/*=None*/)
 {
@@ -613,7 +579,7 @@ index_type index(const std::string& self, const std::string& sub, index_type sta
         return static_cast<index_type>(pos) + offset_pos;
     }
     else {
-        throw ValueError("substring not found");
+        throw ken3::py::ValueError("substring not found");
     }
 }
 /////////////////////////////////////////////////////////////////////////////
@@ -803,13 +769,13 @@ std::string join(const std::string& self, const std::vector<std::string>& strs)
 /**
  * @brief str.ljust()
  *        pystr::ljust("abc", 5) <=> 'abc'.ljust(5)
- * @throw ken3::pystr::TypeError: when fillchar is not one character
+ * @throw ken3::py::TypeError: when fillchar is not one character
  * @note  the type of fillchar is not char.
  */
 std::string ljust(const std::string& self, index_type width, const std::string& fillchar/*=std::string(" ")*/)
 {
     if (fillchar.size() != 1) {
-        throw TypeError("must be char, not str");
+        throw ken3::py::TypeError("must be char, not str");
     }
 
     if (static_cast<index_type>(self.size()) >= width) {
@@ -855,12 +821,12 @@ std::string lstrip(const std::string& self, const std::string& chars/*=std::stri
 /**
  * @brief str.partition()
  *        pystr::partition("abc", "b") <=> 'abc'.partition('b')
- * @throw ken3::pystr::ValueError: when sep is empty
+ * @throw ken3::py::ValueError: when sep is empty
  */
 std::vector<std::string> partition(const std::string& self, const std::string& sep)
 {
     if (sep.empty()) {
-        throw ValueError("empty separator");
+        throw ken3::py::ValueError("empty separator");
     }
 
     std::vector<std::string> ret(3);
@@ -926,7 +892,7 @@ index_type rfind(const std::string& self, const std::string& sub, index_type sta
 /**
  * @brief str.rindex()
  *        pystr::rindex("abc", "a") <=> 'abc'.rindex('a')
- * @throw ken3::pystr::ValueError: when sub is not found in self
+ * @throw ken3::py::ValueError: when sub is not found in self
  */
 index_type rindex(const std::string& self, const std::string& sub, index_type start/*=None*/, index_type end/*=None*/)
 {
@@ -938,7 +904,7 @@ index_type rindex(const std::string& self, const std::string& sub, index_type st
         return static_cast<index_type>(pos) + offset_pos;
     }
     else {
-        throw ValueError("substring not found");
+        throw ken3::py::ValueError("substring not found");
     }
 }
 /////////////////////////////////////////////////////////////////////////////
@@ -946,13 +912,13 @@ index_type rindex(const std::string& self, const std::string& sub, index_type st
 /**
  * @brief str.rjust()
  *        pystr::rjust("abc", 5) <=> 'abc'.rjust(5)
- * @throw ken3::pystr::TypeError: when fill char is not one character
+ * @throw ken3::py::TypeError: when fill char is not one character
  * @note  the type of fillchar is not char.
  */
 std::string rjust(const std::string& self, index_type width, const std::string& fillchar/*=std::string(" ")*/)
 {
     if (fillchar.size() != 1) {
-        throw TypeError("must be char, not str");
+        throw ken3::py::TypeError("must be char, not str");
     }
 
     if (static_cast<index_type>(self.size()) >= width) {
@@ -968,12 +934,12 @@ std::string rjust(const std::string& self, index_type width, const std::string& 
 /**
  * @brief str.rpartition()
  *        pystr::rpartition("abc", "b") <=> 'abc'.rpartition('b')
- * @throw ken3::pystr::ValueError: when sep is empty
+ * @throw ken3::py::ValueError: when sep is empty
  */
 std::vector<std::string> rpartition(const std::string& self, const std::string& sep)
 {
     if (sep.empty()) {
-        throw ValueError("empty separator");
+        throw ken3::py::ValueError("empty separator");
     }
 
     std::vector<std::string> ret(3);
@@ -995,13 +961,13 @@ std::vector<std::string> rpartition(const std::string& self, const std::string& 
 /**
  * @brief str.rsplit()
  *        pystr::rsplit("abc", "b") <=> 'abc'.rsplit('b')
- * @throw ken3::pystr::ValueError: when sep is empty
+ * @throw ken3::py::ValueError: when sep is empty
  * @note  this function corresponds to str.rsplit(sep).
  */
 std::vector<std::string> rsplit(const std::string& self, const std::string& sep, index_type maxsplit/*=None*/)
 {
     if (sep.empty()) {
-        throw ValueError("empty separator");
+        throw ken3::py::ValueError("empty separator");
     }
     if (self.empty()) {
         return std::vector<std::string>(1);
@@ -1097,13 +1063,13 @@ std::string rstrip(const std::string& self, const std::string& chars/*=std::stri
 /**
  * @brief str.split()
  *        pystr::split("abc", "b") <=> 'abc'.split('b')
- * @throw ken3::pystr::ValueError: when sep is empty
+ * @throw ken3::py::ValueError: when sep is empty
  * @note  this function corresponds to str.split(sep).
  */
 std::vector<std::string> split(const std::string& self, const std::string& sep, index_type maxsplit/*=None*/)
 {
     if (sep.empty()) {
-        throw ValueError("empty separator");
+        throw ken3::py::ValueError("empty separator");
     }
 
     std::vector<std::string> ret;

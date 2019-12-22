@@ -37,20 +37,22 @@ cc_library(
 
 cc_library(
     name = "pyfunc",
-    hdrs = ["pyfunc.hpp"],
+    srcs = ["pycommon.cpp"],
+    hdrs = ["pycommon.hpp", "pyfunc.hpp"],
     visibility = ["//unittest:__pkg__"],
 )
 
 cc_library(
     name = "pyloop",
-    hdrs = ["pyloop.hpp", "pyloop/enumerate.hpp", "pyloop/range.hpp", "pyloop/zip.hpp"],
+    srcs = ["pycommon.cpp"],
+    hdrs = ["pycommon.hpp", "pyloop.hpp", "pyloop/enumerate.hpp", "pyloop/range.hpp", "pyloop/zip.hpp"],
     visibility = ["//unittest:__pkg__"],
 )
 
 cc_library(
     name = "pystr",
-    srcs = ["pystr.cpp"],
-    hdrs = ["pystr.hpp"],
+    srcs = ["pycommon.cpp", "pystr.cpp"],
+    hdrs = ["pycommon.hpp", "pystr.hpp"],
     visibility = ["//unittest:__pkg__"],
 )
 

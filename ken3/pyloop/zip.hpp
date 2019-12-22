@@ -14,7 +14,7 @@
 #include <utility>
 
 namespace ken3 {
-namespace pyloop {
+namespace py {
 namespace zip_detail {
 
 // zip iterator, which supports operator++, operator*, and operator!=.
@@ -79,7 +79,7 @@ private:
 /////////////////////////////////////////////////////////////////////////////
 
 } // namespace zip_detail {
-} // namespace pyloop {
+} // namespace py {
 } // namespace ken3 {
 
 #endif // #ifndef INCLUDE_GUARD_KEN3_PYLOOP_ZIP_HPP

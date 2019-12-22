@@ -24,7 +24,7 @@ const lest::test specification[] =
 
     CASE("bool_cast()")
     {
-        using ken3::pyfunc::bool_cast;
+        using ken3::py::bool_cast;
 
         {
             EXPECT(false == bool_cast(0));
@@ -75,7 +75,7 @@ const lest::test specification[] =
 
     CASE("min() with one argument")
     {
-        using ken3::pyfunc::min;
+        using ken3::py::min;
 
         {
             int a[5] = {1, -3, 0, 5, 4};
@@ -153,7 +153,7 @@ const lest::test specification[] =
         }
         {
             std::vector<int> v;
-            EXPECT_THROWS_AS(min(v), ken3::pyfunc::ValueError);
+            EXPECT_THROWS_AS(min(v), ken3::py::ValueError);
         }
         {
             std::vector<int> v = {1, -3, 0, 5, 4};
@@ -171,7 +171,7 @@ const lest::test specification[] =
 
     CASE("min() with two argument")
     {
-        using ken3::pyfunc::min;
+        using ken3::py::min;
 
         {
             auto comp = [](const std::string& lhs, const std::string& rhs) -> bool {
@@ -215,7 +215,7 @@ const lest::test specification[] =
         }
         {
             std::vector<int> v;
-            EXPECT_THROWS_AS(min(v, std::less<int>()), ken3::pyfunc::ValueError);
+            EXPECT_THROWS_AS(min(v, std::less<int>()), ken3::py::ValueError);
         }
         {
             auto comp = [](int lhs, int rhs) -> bool {
@@ -239,7 +239,7 @@ const lest::test specification[] =
 
     CASE("max() with one argument")
     {
-        using ken3::pyfunc::max;
+        using ken3::py::max;
 
         {
             int a[5] = {1, -3, 0, 5, 4};
@@ -313,7 +313,7 @@ const lest::test specification[] =
         }
         {
             std::vector<int> v;
-            EXPECT_THROWS_AS(max(v), ken3::pyfunc::ValueError);
+            EXPECT_THROWS_AS(max(v), ken3::py::ValueError);
         }
         {
             std::vector<int> v = {1, -3, 0, 5, 4};
@@ -331,7 +331,7 @@ const lest::test specification[] =
 
     CASE("max() with two argument")
     {
-        using ken3::pyfunc::max;
+        using ken3::py::max;
 
         {
             auto comp = [](const std::string& lhs, const std::string& rhs) -> bool {
@@ -375,7 +375,7 @@ const lest::test specification[] =
         }
         {
             std::vector<int> v;
-            EXPECT_THROWS_AS(max(v, std::less<int>()), ken3::pyfunc::ValueError);
+            EXPECT_THROWS_AS(max(v, std::less<int>()), ken3::py::ValueError);
         }
         {
             auto comp = [](int lhs, int rhs) -> bool {
@@ -399,7 +399,7 @@ const lest::test specification[] =
 
     CASE("all()")
     {
-        using ken3::pyfunc::all;
+        using ken3::py::all;
 
         {
             int a[5] = {1, -3, 0, 5, 4};
@@ -524,7 +524,7 @@ const lest::test specification[] =
 
     CASE("any()")
     {
-        using ken3::pyfunc::any;
+        using ken3::py::any;
 
         {
             int a[3] = {0, 0, 0};
@@ -644,7 +644,7 @@ const lest::test specification[] =
 
     CASE("sum() with one argument")
     {
-        using ken3::pyfunc::sum;
+        using ken3::py::sum;
 
         {
             int a[4] = {1, 3, 5, 7};
@@ -684,7 +684,7 @@ const lest::test specification[] =
 
     CASE("sum() with two arguments")
     {
-        using ken3::pyfunc::sum;
+        using ken3::py::sum;
 
         {
             int a[4] = {1, 3, 5, 7};
@@ -743,7 +743,7 @@ const lest::test specification[] =
 
     CASE("reduce() with two arguments")
     {
-        using ken3::pyfunc::reduce;
+        using ken3::py::reduce;
 
         {
             std::vector<int> v{1, 2, 3, 4};
@@ -781,11 +781,11 @@ const lest::test specification[] =
         }
         {
             std::vector<int> v;
-            EXPECT_THROWS_AS(reduce(std::plus<int>(), v), ken3::pyfunc::TypeError);
+            EXPECT_THROWS_AS(reduce(std::plus<int>(), v), ken3::py::TypeError);
         }
         {
             std::vector<int> v;
-            EXPECT_THROWS_AS(reduce(std::multiplies<int>(), v), ken3::pyfunc::TypeError);
+            EXPECT_THROWS_AS(reduce(std::multiplies<int>(), v), ken3::py::TypeError);
         }
         {
             std::vector<int> v{1, 2, 3, 4};
@@ -803,7 +803,7 @@ const lest::test specification[] =
 
     CASE("reduce() with three arguments")
     {
-        using ken3::pyfunc::reduce;
+        using ken3::py::reduce;
 
         {
             std::vector<int> v{1, 2, 3, 4};
@@ -864,7 +864,7 @@ const lest::test specification[] =
 
     CASE("map() with three arguments")
     {
-        using ken3::pyfunc::map;
+        using ken3::py::map;
 
         {
             auto exp2 = [](int i) -> int {
@@ -917,7 +917,7 @@ const lest::test specification[] =
 
     CASE("filter() with three arguments")
     {
-        using ken3::pyfunc::filter;
+        using ken3::py::filter;
 
         {
             auto f = [](int i) -> bool {

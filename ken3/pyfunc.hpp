@@ -1,8 +1,8 @@
 /**
  * @file    ken3/pyfunc.hpp
  * @brief   Define functions which imitate Python's built-in functions. 
- *          pyfunc::bool_cast(), pyfunc::min(), pyfunc::max(), pyfunc::all(), pyfunc::any(),
- *          pyfunc::sum(), pyfunc::reduce(), pyfunc::map(), and pyfunc::filter() behave almost
+ *          py::bool_cast(), py::min(), py::max(), py::all(), py::any(), py::sum(), 
+ *          py::reduce(), py::map(), and py::filter() behave almost
  *          same as Python's same named function.
  * @author  toda
  * @date    2018-03-13
@@ -12,7 +12,7 @@
  *
  * @note
  * Typical usage is;
- *     using namespace ken3::pyfunc;
+ *     using namespace ken3::py;
  *
  *     // Python like bool()
  *     std::cout << bool_cast(std::vector<int>{}); // => 0
@@ -67,9 +67,10 @@
 #include <stdexcept>
 #include <string>
 #include <type_traits>
+#include "pycommon.hpp"
 
 namespace ken3 {
-namespace pyfunc {
+namespace py {
 
 namespace pyfunc_detail {
 
@@ -95,42 +96,6 @@ bool bool_cast(const T& t, std::false_type dummy)
 /////////////////////////////////////////////////////////////////////////////
 
 } // namespace pyfunc_detail {
-
-/**
- * @class ValueError
- * @brief Exception which imitates Python ValueError. 
- */
-struct ValueError : public std::runtime_error
-{
-    /**
-     * @brief       constructor. 
-     * @param[in]   msg: message for what(). 
-     */
-    explicit ValueError(const std::string& msg) :
-        std::runtime_error(std::string("ValueError: ") + msg)
-    {
-        ;
-    }
-};
-/////////////////////////////////////////////////////////////////////////////
-
-/**
- * @class TypeError
- * @brief Exception which imitates Python TypeError. 
- */
-struct TypeError : public std::runtime_error
-{
-    /**
-     * @brief       constructor. 
-     * @param[in]   msg: message for what(). 
-     */
-    explicit TypeError(const std::string& msg) :
-        std::runtime_error(std::string("TypeError: ") + msg)
-    {
-        ;
-    }
-};
-/////////////////////////////////////////////////////////////////////////////
 
 /**
  * @brief      Python like bool().
@@ -169,7 +134,7 @@ bool bool_cast(const std::nullptr_t& t)
  * @param[in]  iterable: target container of min().
  * @param[in]  compare: comparison funstion.
  * @return     result of min()
- * @throw      ValueError: in case iterable is empty
+ * @throw      ken3::py::ValueError: in case iterable is empty
  * @note       unfortunately argument default in Python's min() is not supported.
  */
 template <typename ITERABLE,
@@ -192,7 +157,7 @@ const decltype(*std::begin(std::declval<const ITERABLE&>()))& min(const ITERABLE
  * @param[in]  iterable: target container of max().
  * @param[in]  compare: comparison funstion.
  * @return     result of max()
- * @throw      ValueError: in case iterable is empty
+ * @throw      ken3::py::ValueError: in case iterable is empty
  * @note       unfortunately argument default in Python's max() is not supported.
  */
 template <typename ITERABLE,
@@ -261,7 +226,7 @@ typename pyfunc_detail::remove_cvr<decltype(*std::begin(std::declval<const ITERA
  * @param[in]  func: function to be target container of reduce().
  * @param[in]  iterable: target container of reduce().
  * @return     result of reduce()
- * @throw      TypeError: in case iterable is empyt
+ * @throw      ken3::py::TypeError: in case iterable is empyt
  */
 template <typename FUNC, typename ITERABLE>
 typename pyfunc_detail::remove_cvr<decltype(*std::begin(std::declval<const ITERABLE&>()))>::type reduce(FUNC func, const ITERABLE& iterable)
@@ -329,7 +294,7 @@ ITERABLE filter(FUNC func, const ITERABLE& iterable)
 }
 /////////////////////////////////////////////////////////////////////////////
 
-} // namespace pyfunc {
+} // namespace py {
 } // namespace ken3 {
 
 #endif // #ifndef INCLUDE_GUARD_KEN3_PYFUNC_HPP

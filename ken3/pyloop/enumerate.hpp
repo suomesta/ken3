@@ -14,7 +14,7 @@
 #include <utility>
 
 namespace ken3 {
-namespace pyloop {
+namespace py {
 namespace enumerate_detail {
 
 // enumerate iterator, which supports operator++, operator*, and operator!=.
@@ -77,7 +77,7 @@ private:
 /////////////////////////////////////////////////////////////////////////////
 
 } // namespace enumerate_detail {
-} // namespace pyloop {
+} // namespace py {
 } // namespace ken3 {
 
 #endif // #ifndef INCLUDE_GUARD_KEN3_PYLOOP_ENUMERATE_HPP

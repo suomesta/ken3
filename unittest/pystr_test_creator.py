@@ -1053,7 +1053,7 @@ def create_expect(test):
             )
         return '        EXPECT({0} == {1});'.format(ret, test[1])
     except (IndexError, ValueError, TypeError) as ex:
-        ret = ex.__class__.__name__
+        ret = 'ken3::py::' + ex.__class__.__name__
         return '        EXPECT_THROWS_AS({0}, {1});'.format(test[1], ret)
 
 

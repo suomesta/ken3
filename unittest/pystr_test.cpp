@@ -94,10 +94,10 @@ const lest::test specification[] =
         EXPECT(std::string("a") == getitem("abc", -3));
         EXPECT(std::string("b") == getitem("abc", -2));
         EXPECT(std::string("c") == getitem("abc", -1));
-        EXPECT_THROWS_AS(getitem("abc", 10), IndexError);
-        EXPECT_THROWS_AS(getitem("abc", -10), IndexError);
-        EXPECT_THROWS_AS(getitem("", 0), IndexError);
-        EXPECT_THROWS_AS(getitem("", -1), IndexError);
+        EXPECT_THROWS_AS(getitem("abc", 10), ken3::py::IndexError);
+        EXPECT_THROWS_AS(getitem("abc", -10), ken3::py::IndexError);
+        EXPECT_THROWS_AS(getitem("", 0), ken3::py::IndexError);
+        EXPECT_THROWS_AS(getitem("", -1), ken3::py::IndexError);
     },
 
     CASE("slice()")
@@ -115,7 +115,7 @@ const lest::test specification[] =
         EXPECT(std::string("") == slice("abcdefgh", 1, -100));
         EXPECT(std::string("abcdefgh") == slice("abcdefgh", 0, None));
         EXPECT(std::string("abcdefgh") == slice("abcdefgh", None, None));
-        EXPECT_THROWS_AS(slice("abcdefgh", None, None, 0), ValueError);
+        EXPECT_THROWS_AS(slice("abcdefgh", None, None, 0), ken3::py::ValueError);
         EXPECT(std::string("aceg") == slice("abcdefgh", None, None, 2));
         EXPECT(std::string("") == slice("abcdefgh", 1, 0, 2));
         EXPECT(std::string("bdfh") == slice("abcdefgh", 1, 100, 2));
@@ -287,8 +287,8 @@ const lest::test specification[] =
         EXPECT(std::string("a") == center("a", -1));
         EXPECT(std::string("a@") == center("a", 2, "@"));
         EXPECT(std::string("@@@abc@@@@") == center("abc", 10, "@"));
-        EXPECT_THROWS_AS(center("a", 1, "@@"), TypeError);
-        EXPECT_THROWS_AS(center("a", 1, ""), TypeError);
+        EXPECT_THROWS_AS(center("a", 1, "@@"), ken3::py::TypeError);
+        EXPECT_THROWS_AS(center("a", 1, ""), ken3::py::TypeError);
         EXPECT(std::string("  ") == center("", 2));
     },
 
@@ -399,20 +399,20 @@ const lest::test specification[] =
         using namespace ken3::pystr;
 
         EXPECT(0 == index("abc", "a"));
-        EXPECT_THROWS_AS(index("abc", "d"), ValueError);
+        EXPECT_THROWS_AS(index("abc", "d"), ken3::py::ValueError);
         EXPECT(1 == index("abc", "bc"));
-        EXPECT_THROWS_AS(index("abc", "ac"), ValueError);
+        EXPECT_THROWS_AS(index("abc", "ac"), ken3::py::ValueError);
         EXPECT(0 == index("abcabc", "abc"));
-        EXPECT_THROWS_AS(index("abcab", "a", 1, 3), ValueError);
+        EXPECT_THROWS_AS(index("abcab", "a", 1, 3), ken3::py::ValueError);
         EXPECT(3 == index("abcab", "a", 1, 4));
-        EXPECT_THROWS_AS(index("abcab", "ab", 1, 3), ValueError);
-        EXPECT_THROWS_AS(index("abcab", "ab", 1, 4), ValueError);
+        EXPECT_THROWS_AS(index("abcab", "ab", 1, 3), ken3::py::ValueError);
+        EXPECT_THROWS_AS(index("abcab", "ab", 1, 4), ken3::py::ValueError);
         EXPECT(3 == index("abcab", "a", 1));
-        EXPECT_THROWS_AS(index("abcab", "a", 4), ValueError);
+        EXPECT_THROWS_AS(index("abcab", "a", 4), ken3::py::ValueError);
         EXPECT(1 == index("abcab", "", 1, 3));
-        EXPECT_THROWS_AS(index("abcab", "ab", 999), ValueError);
+        EXPECT_THROWS_AS(index("abcab", "ab", 999), ken3::py::ValueError);
         EXPECT(3 == index("abcab", "ab", 1, 999));
-        EXPECT_THROWS_AS(index("", "a"), ValueError);
+        EXPECT_THROWS_AS(index("", "a"), ken3::py::ValueError);
         EXPECT(0 == index("a", ""));
         EXPECT(0 == index("", ""));
     },
@@ -651,8 +651,8 @@ const lest::test specification[] =
         EXPECT(std::string("a") == ljust("a", -1));
         EXPECT(std::string("a@") == ljust("a", 2, "@"));
         EXPECT(std::string("abc@@@@@@@") == ljust("abc", 10, "@"));
-        EXPECT_THROWS_AS(ljust("a", 1, "@@"), TypeError);
-        EXPECT_THROWS_AS(ljust("a", 1, ""), TypeError);
+        EXPECT_THROWS_AS(ljust("a", 1, "@@"), ken3::py::TypeError);
+        EXPECT_THROWS_AS(ljust("a", 1, ""), ken3::py::TypeError);
         EXPECT(std::string("") == ljust("", 0));
         EXPECT(std::string(" ") == ljust("", 1));
         EXPECT(std::string("  ") == ljust("", 2));
@@ -708,9 +708,9 @@ const lest::test specification[] =
         EXPECT((std::vector<std::string>{"ab ab ", "", ""}) == partition("ab ab ", "ba"));
         EXPECT((std::vector<std::string>{"a", "b a", "b "}) == partition("ab ab ", "b a"));
         EXPECT((std::vector<std::string>{"", " ", "ab ab "}) == partition(" ab ab ", " "));
-        EXPECT_THROWS_AS(partition(" ab ab ", ""), ValueError);
+        EXPECT_THROWS_AS(partition(" ab ab ", ""), ken3::py::ValueError);
         EXPECT((std::vector<std::string>{"", "", ""}) == partition("", "a"));
-        EXPECT_THROWS_AS(partition("", ""), ValueError);
+        EXPECT_THROWS_AS(partition("", ""), ken3::py::ValueError);
     },
 
     CASE("replace()")
@@ -765,20 +765,20 @@ const lest::test specification[] =
         using namespace ken3::pystr;
 
         EXPECT(0 == rindex("abc", "a"));
-        EXPECT_THROWS_AS(rindex("abc", "d"), ValueError);
+        EXPECT_THROWS_AS(rindex("abc", "d"), ken3::py::ValueError);
         EXPECT(1 == rindex("abc", "bc"));
-        EXPECT_THROWS_AS(rindex("abc", "ac"), ValueError);
+        EXPECT_THROWS_AS(rindex("abc", "ac"), ken3::py::ValueError);
         EXPECT(3 == rindex("abcabc", "abc"));
-        EXPECT_THROWS_AS(rindex("abcab", "a", 1, 3), ValueError);
+        EXPECT_THROWS_AS(rindex("abcab", "a", 1, 3), ken3::py::ValueError);
         EXPECT(3 == rindex("abcab", "a", 1, 4));
-        EXPECT_THROWS_AS(rindex("abcab", "ab", 1, 3), ValueError);
-        EXPECT_THROWS_AS(rindex("abcab", "ab", 1, 4), ValueError);
+        EXPECT_THROWS_AS(rindex("abcab", "ab", 1, 3), ken3::py::ValueError);
+        EXPECT_THROWS_AS(rindex("abcab", "ab", 1, 4), ken3::py::ValueError);
         EXPECT(3 == rindex("abcab", "a", 1));
-        EXPECT_THROWS_AS(rindex("abcab", "a", 4), ValueError);
+        EXPECT_THROWS_AS(rindex("abcab", "a", 4), ken3::py::ValueError);
         EXPECT(3 == rindex("abcab", "", 1, 3));
-        EXPECT_THROWS_AS(rindex("abcab", "ab", 999), ValueError);
+        EXPECT_THROWS_AS(rindex("abcab", "ab", 999), ken3::py::ValueError);
         EXPECT(3 == rindex("abcab", "ab", 1, 999));
-        EXPECT_THROWS_AS(rindex("", "a"), ValueError);
+        EXPECT_THROWS_AS(rindex("", "a"), ken3::py::ValueError);
         EXPECT(1 == rindex("a", ""));
         EXPECT(0 == rindex("", ""));
     },
@@ -803,8 +803,8 @@ const lest::test specification[] =
         EXPECT(std::string("a") == rjust("a", -1));
         EXPECT(std::string("@a") == rjust("a", 2, "@"));
         EXPECT(std::string("@@@@@@@abc") == rjust("abc", 10, "@"));
-        EXPECT_THROWS_AS(rjust("a", 1, "@@"), TypeError);
-        EXPECT_THROWS_AS(rjust("a", 1, ""), TypeError);
+        EXPECT_THROWS_AS(rjust("a", 1, "@@"), ken3::py::TypeError);
+        EXPECT_THROWS_AS(rjust("a", 1, ""), ken3::py::TypeError);
         EXPECT(std::string("") == rjust("", 0));
         EXPECT(std::string(" ") == rjust("", 1));
         EXPECT(std::string("  ") == rjust("", 2));
@@ -824,10 +824,10 @@ const lest::test specification[] =
         EXPECT((std::vector<std::string>{"", "", "ab ab "}) == rpartition("ab ab ", "ba"));
         EXPECT((std::vector<std::string>{"a", "b a", "b "}) == rpartition("ab ab ", "b a"));
         EXPECT((std::vector<std::string>{" ab ab", " ", ""}) == rpartition(" ab ab ", " "));
-        EXPECT_THROWS_AS(rpartition(" ab ab ", ""), ValueError);
-        EXPECT_THROWS_AS(rpartition("a", ""), ValueError);
+        EXPECT_THROWS_AS(rpartition(" ab ab ", ""), ken3::py::ValueError);
+        EXPECT_THROWS_AS(rpartition("a", ""), ken3::py::ValueError);
         EXPECT((std::vector<std::string>{"", "", ""}) == rpartition("", "a"));
-        EXPECT_THROWS_AS(rpartition("", ""), ValueError);
+        EXPECT_THROWS_AS(rpartition("", ""), ken3::py::ValueError);
     },
 
     CASE("rsplit() with sep")
@@ -848,10 +848,10 @@ const lest::test specification[] =
         EXPECT((std::vector<std::string>{"aabb", "", "aabb", "", ""}) == rsplit("aabb  aabb  ", " "));
         EXPECT((std::vector<std::string>{"aab", "abb  "}) == rsplit("aabb  aabb  ", "b  a"));
         EXPECT((std::vector<std::string>{"", "ab", "ab", ""}) == rsplit(" ab ab ", " "));
-        EXPECT_THROWS_AS(rsplit(" ab ab ", ""), ValueError);
-        EXPECT_THROWS_AS(rsplit("a", ""), ValueError);
+        EXPECT_THROWS_AS(rsplit(" ab ab ", ""), ken3::py::ValueError);
+        EXPECT_THROWS_AS(rsplit("a", ""), ken3::py::ValueError);
         EXPECT((std::vector<std::string>{""}) == rsplit("", "a"));
-        EXPECT_THROWS_AS(rsplit("", ""), ValueError);
+        EXPECT_THROWS_AS(rsplit("", ""), ken3::py::ValueError);
         EXPECT((std::vector<std::string>{"", "bc"}) == rsplit("abc", "a", 1));
         EXPECT((std::vector<std::string>{"a", "c"}) == rsplit("abc", "b", 1));
         EXPECT((std::vector<std::string>{"ab", ""}) == rsplit("abc", "c", 1));
@@ -866,10 +866,10 @@ const lest::test specification[] =
         EXPECT((std::vector<std::string>{"aabb  aabb ", ""}) == rsplit("aabb  aabb  ", " ", 1));
         EXPECT((std::vector<std::string>{"aab", "abb  "}) == rsplit("aabb  aabb  ", "b  a", 1));
         EXPECT((std::vector<std::string>{" ab ab", ""}) == rsplit(" ab ab ", " ", 1));
-        EXPECT_THROWS_AS(rsplit(" ab ab ", "", 1), ValueError);
-        EXPECT_THROWS_AS(rsplit("a", "", 1), ValueError);
+        EXPECT_THROWS_AS(rsplit(" ab ab ", "", 1), ken3::py::ValueError);
+        EXPECT_THROWS_AS(rsplit("a", "", 1), ken3::py::ValueError);
         EXPECT((std::vector<std::string>{""}) == rsplit("", "a", 1));
-        EXPECT_THROWS_AS(rsplit("", "", 1), ValueError);
+        EXPECT_THROWS_AS(rsplit("", "", 1), ken3::py::ValueError);
         EXPECT((std::vector<std::string>{"", "bc"}) == rsplit("abc", "a", 2));
         EXPECT((std::vector<std::string>{"a", "c"}) == rsplit("abc", "b", 2));
         EXPECT((std::vector<std::string>{"ab", ""}) == rsplit("abc", "c", 2));
@@ -884,10 +884,10 @@ const lest::test specification[] =
         EXPECT((std::vector<std::string>{"aabb  aabb", "", ""}) == rsplit("aabb  aabb  ", " ", 2));
         EXPECT((std::vector<std::string>{"aab", "abb  "}) == rsplit("aabb  aabb  ", "b  a", 2));
         EXPECT((std::vector<std::string>{" ab", "ab", ""}) == rsplit(" ab ab ", " ", 2));
-        EXPECT_THROWS_AS(rsplit(" ab ab ", "", 2), ValueError);
-        EXPECT_THROWS_AS(rsplit("a", "", 2), ValueError);
+        EXPECT_THROWS_AS(rsplit(" ab ab ", "", 2), ken3::py::ValueError);
+        EXPECT_THROWS_AS(rsplit("a", "", 2), ken3::py::ValueError);
         EXPECT((std::vector<std::string>{""}) == rsplit("", "a", 2));
-        EXPECT_THROWS_AS(rsplit("", "", 2), ValueError);
+        EXPECT_THROWS_AS(rsplit("", "", 2), ken3::py::ValueError);
         EXPECT((std::vector<std::string>{"a", "c"}) == rsplit("abc", "b", 10));
         EXPECT((std::vector<std::string>{"abc"}) == rsplit("abc", "b", 0));
         EXPECT((std::vector<std::string>{"a", "c"}) == rsplit("abc", "b", -1));
@@ -958,10 +958,10 @@ const lest::test specification[] =
         EXPECT((std::vector<std::string>{"aabb", "", "aabb", "", ""}) == split("aabb  aabb  ", " "));
         EXPECT((std::vector<std::string>{"aab", "abb  "}) == split("aabb  aabb  ", "b  a"));
         EXPECT((std::vector<std::string>{"", "ab", "ab", ""}) == split(" ab ab ", " "));
-        EXPECT_THROWS_AS(split(" ab ab ", ""), ValueError);
-        EXPECT_THROWS_AS(split("a", ""), ValueError);
+        EXPECT_THROWS_AS(split(" ab ab ", ""), ken3::py::ValueError);
+        EXPECT_THROWS_AS(split("a", ""), ken3::py::ValueError);
         EXPECT((std::vector<std::string>{""}) == split("", "a"));
-        EXPECT_THROWS_AS(split("", ""), ValueError);
+        EXPECT_THROWS_AS(split("", ""), ken3::py::ValueError);
         EXPECT((std::vector<std::string>{"", "bc"}) == split("abc", "a", 1));
         EXPECT((std::vector<std::string>{"a", "c"}) == split("abc", "b", 1));
         EXPECT((std::vector<std::string>{"ab", ""}) == split("abc", "c", 1));
@@ -976,10 +976,10 @@ const lest::test specification[] =
         EXPECT((std::vector<std::string>{"aabb", " aabb  "}) == split("aabb  aabb  ", " ", 1));
         EXPECT((std::vector<std::string>{"aab", "abb  "}) == split("aabb  aabb  ", "b  a", 1));
         EXPECT((std::vector<std::string>{"", "ab ab "}) == split(" ab ab ", " ", 1));
-        EXPECT_THROWS_AS(split(" ab ab ", "", 1), ValueError);
-        EXPECT_THROWS_AS(split("a", "", 1), ValueError);
+        EXPECT_THROWS_AS(split(" ab ab ", "", 1), ken3::py::ValueError);
+        EXPECT_THROWS_AS(split("a", "", 1), ken3::py::ValueError);
         EXPECT((std::vector<std::string>{""}) == split("", "a", 1));
-        EXPECT_THROWS_AS(split("", "", 1), ValueError);
+        EXPECT_THROWS_AS(split("", "", 1), ken3::py::ValueError);
         EXPECT((std::vector<std::string>{"", "bc"}) == split("abc", "a", 2));
         EXPECT((std::vector<std::string>{"a", "c"}) == split("abc", "b", 2));
         EXPECT((std::vector<std::string>{"ab", ""}) == split("abc", "c", 2));
@@ -994,10 +994,10 @@ const lest::test specification[] =
         EXPECT((std::vector<std::string>{"aabb", "", "aabb  "}) == split("aabb  aabb  ", " ", 2));
         EXPECT((std::vector<std::string>{"aab", "abb  "}) == split("aabb  aabb  ", "b  a", 2));
         EXPECT((std::vector<std::string>{"", "ab", "ab "}) == split(" ab ab ", " ", 2));
-        EXPECT_THROWS_AS(split(" ab ab ", "", 2), ValueError);
-        EXPECT_THROWS_AS(split("a", "", 2), ValueError);
+        EXPECT_THROWS_AS(split(" ab ab ", "", 2), ken3::py::ValueError);
+        EXPECT_THROWS_AS(split("a", "", 2), ken3::py::ValueError);
         EXPECT((std::vector<std::string>{""}) == split("", "a", 2));
-        EXPECT_THROWS_AS(split("", "", 2), ValueError);
+        EXPECT_THROWS_AS(split("", "", 2), ken3::py::ValueError);
         EXPECT((std::vector<std::string>{"a", "c"}) == split("abc", "b", 10));
         EXPECT((std::vector<std::string>{"abc"}) == split("abc", "b", 0));
         EXPECT((std::vector<std::string>{"a", "c"}) == split("abc", "b", -1));

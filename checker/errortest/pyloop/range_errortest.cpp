@@ -19,7 +19,7 @@
  */
 int test_func(void)
 {
-    for (const auto& i: ken3::pyloop::range<bool>(true)) {
+    for (const auto& i: ken3::py::range<bool>(true)) {
         ;
     }
 
@@ -34,7 +34,7 @@ int test_func(void)
  */
 int test_func(void)
 {
-    for (const auto& i: ken3::pyloop::range(std::string("abc"))) {
+    for (const auto& i: ken3::py::range(std::string("abc"))) {
         ;
     }
 
@@ -51,7 +51,7 @@ int test_func(void)
 {
     struct S{};
 
-    for (const auto& i: ken3::pyloop::range(S{})) {
+    for (const auto& i: ken3::py::range(S{})) {
         ;
     }
 
@@ -69,7 +69,7 @@ int test_func(void)
     int i = 0;
     int* p = &i;
 
-    for (const auto& i: ken3::pyloop::range(p)) {
+    for (const auto& i: ken3::py::range(p)) {
         ;
     }
 
