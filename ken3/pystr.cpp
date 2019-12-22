@@ -16,9 +16,6 @@
 
 namespace {
 
-using ken3::pystr::index_type;
-using ken3::pystr::None;
-
 /**
  * @brief     helper function to convert a characer into std::string for repr().
  * @param[in] c: appointed character
@@ -61,8 +58,12 @@ std::string conv_repr(char c)
  * @param[in] step: step of slice
  * @return    true: all default value, flase: else
  */
-bool all_default(index_type start=None, index_type end=None, index_type step=None)
+bool all_default(ken3::pystr::index_type start=ken3::pystr::None,
+                 ken3::pystr::index_type end=ken3::pystr::None,
+                 ken3::pystr::index_type step=ken3::pystr::None)
 {
+    using ken3::pystr::None;
+
     return (start == None && end == None && step == None);
 }
 /////////////////////////////////////////////////////////////////////////////
@@ -80,11 +81,16 @@ public:
      * @param[in] step: step of slice
      * @throw     ken3::py::ValueError: when step is 0
      */
-    explicit slice_object(index_type size, index_type start=None, index_type end=None, index_type step=None) :
+    explicit slice_object(ken3::pystr::index_type size,
+                          ken3::pystr::index_type start=ken3::pystr::None,
+                          ken3::pystr::index_type end=ken3::pystr::None,
+                          ken3::pystr::index_type step=ken3::pystr::None) :
         start_(start),
         end_(end),
         step_(step)
     {
+        using ken3::pystr::None;
+
         // set step
         if (step_ == 0) {
             throw ken3::py::ValueError("slice step cannot be zero");
@@ -136,7 +142,7 @@ public:
     /**
      * @brief     getter of start
      */
-    index_type start(void) const
+    ken3::pystr::index_type start(void) const
     {
         return start_;
     }
@@ -145,7 +151,7 @@ public:
     /**
      * @brief     getter of end
      */
-    index_type end(void) const
+    ken3::pystr::index_type end(void) const
     {
         return end_;
     }
@@ -154,16 +160,16 @@ public:
     /**
      * @brief     getter of step
      */
-    index_type step(void) const
+    ken3::pystr::index_type step(void) const
     {
         return step_;
     }
     /////////////////////////////////////////////////////////////////////////////
 
 private:
-    index_type start_;
-    index_type end_;
-    index_type step_;
+    ken3::pystr::index_type start_;
+    ken3::pystr::index_type end_;
+    ken3::pystr::index_type step_;
 };
 /////////////////////////////////////////////////////////////////////////////
 
@@ -176,8 +182,13 @@ private:
  * @return    start index
  * @throw     ken3::py::ValueError: when step is 0
  */
-index_type offset(const std::string& self, index_type start=None, index_type end=None, index_type step=None)
+ken3::pystr::index_type offset(const std::string& self,
+                               ken3::pystr::index_type start=ken3::pystr::None,
+                               ken3::pystr::index_type end=ken3::pystr::None,
+                               ken3::pystr::index_type step=ken3::pystr::None)
 {
+    using ken3::pystr::index_type;
+
     slice_object s(static_cast<index_type>(self.size()), start, end, step);
 
     return s.start();

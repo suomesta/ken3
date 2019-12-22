@@ -14,8 +14,6 @@
 
 namespace {
 
-using ken3::stopwatch;
-
 /**
  * @brief      helper function to convert period.
  *             own_duration will be converted from stopwatch::duration::period into TARGET_DURATION::period
@@ -23,9 +21,9 @@ using ken3::stopwatch;
  * @return     scaling own_duration.count()
  */
 template <typename TARGET_DURATION>
-double duration_in(const stopwatch::duration& own_duration) noexcept
+double duration_in(const ken3::stopwatch::duration& own_duration) noexcept
 {
-    using here_ratio = std::ratio_divide<typename stopwatch::duration::period, typename TARGET_DURATION::period>;
+    using here_ratio = std::ratio_divide<typename ken3::stopwatch::duration::period, typename TARGET_DURATION::period>;
     constexpr double scaling = static_cast<double>(here_ratio::num) / static_cast<double>(here_ratio::den);
     return own_duration.count() * scaling;
 }
