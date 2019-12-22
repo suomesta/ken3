@@ -325,6 +325,97 @@ const lest::test module[] =
         }
     },
 
+    CASE("enumerate using start")
+    {
+        using ken3::py::enumerate;
+
+        {
+            int array[3] = {1, 2, 3};
+
+            std::vector<int> firsts;
+            std::vector<int> seconds;
+
+            for (auto i: enumerate(array, -10)) {
+                firsts.push_back(i.first);
+                seconds.push_back(i.second);
+            }
+
+            EXPECT((std::vector<int>{-10, -9, -8} == firsts));
+            EXPECT((std::vector<int>{1, 2, 3} == seconds));
+        }
+        {
+            int array[3] = {1, 2, 3};
+
+            std::vector<int> firsts;
+            std::vector<int> seconds;
+
+            for (auto i: enumerate(array, 0)) {
+                firsts.push_back(i.first);
+                seconds.push_back(i.second);
+            }
+
+            EXPECT((std::vector<int>{0, 1, 2} == firsts));
+            EXPECT((std::vector<int>{1, 2, 3} == seconds));
+        }
+        {
+            int array[3] = {1, 2, 3};
+
+            std::vector<int> firsts;
+            std::vector<int> seconds;
+
+            for (auto i: enumerate(array, 10)) {
+                firsts.push_back(i.first);
+                seconds.push_back(i.second);
+            }
+
+            EXPECT((std::vector<int>{10, 11, 12} == firsts));
+            EXPECT((std::vector<int>{1, 2, 3} == seconds));
+        }
+        {
+            std::vector<int> v{1, 2, 3};
+
+            std::vector<int> firsts;
+            std::vector<int> seconds;
+
+            for (auto i: enumerate(v, -10)) {
+                firsts.push_back(i.first);
+                seconds.push_back(i.second);
+            }
+
+            EXPECT((std::vector<int>{-10, -9, -8} == firsts));
+            EXPECT((std::vector<int>{1, 2, 3} == seconds));
+        }
+        {
+            std::vector<int> v{1, 2, 3};
+
+            std::vector<int> firsts;
+            std::vector<int> seconds;
+
+            for (auto i: enumerate(v, 0)) {
+                firsts.push_back(i.first);
+                seconds.push_back(i.second);
+            }
+
+            EXPECT((std::vector<int>{0, 1, 2} == firsts));
+            EXPECT((std::vector<int>{1, 2, 3} == seconds));
+        }
+        {
+            std::vector<int> v{1, 2, 3};
+
+            std::vector<int> firsts;
+            std::vector<int> seconds;
+
+            for (auto i: enumerate(v, 10)) {
+                firsts.push_back(i.first);
+                seconds.push_back(i.second);
+            }
+
+            EXPECT((std::vector<int>{10, 11, 12} == firsts));
+            EXPECT((std::vector<int>{1, 2, 3} == seconds));
+        }
+
+    },
+
 };
 
 extern lest::tests& specification();

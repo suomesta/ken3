@@ -17,16 +17,20 @@ namespace ken3 {
 namespace py {
 namespace enumerate_detail {
 
+// signed integer type for 2nd argument 'start'
+template <typename ITERABLE>
+using count_type = typename std::iterator_traits<decltype(std::begin(std::declval<ITERABLE&>()))>::difference_type;
+
 // enumerate iterator, which supports operator++, operator*, and operator!=.
 // this struct is made in enumerate_object::begin() or enumerate_object::end().
 template <typename ITERATOR>
 struct enumerate_iterator
 {
     using self_type = enumerate_iterator<ITERATOR>;
-    using size_type = typename std::iterator_traits<ITERATOR>::difference_type;
-    using return_type = std::pair<size_type, decltype(*std::declval<ITERATOR>())>;
+    using count_type = typename std::iterator_traits<ITERATOR>::difference_type;
+    using return_type = std::pair<count_type, decltype(*std::declval<ITERATOR>())>;
 
-    size_type first;
+    count_type first;
     ITERATOR second;
 
     void operator++(void)
@@ -54,7 +58,8 @@ class enumerate_object
 public:
     using iterator_type = enumerate_iterator<decltype(std::begin(std::declval<ITERABLE&>()))>;
 
-    explicit enumerate_object(ITERABLE& iterable):
+    explicit enumerate_object(ITERABLE& iterable, count_type<ITERABLE> start=0):
+        start_(start),
         iterable_(iterable)
     {}
 
@@ -62,16 +67,17 @@ public:
 
     iterator_type begin(void) const
     {
-        return iterator_type{0, std::begin(iterable_)};
+        return iterator_type{start_, std::begin(iterable_)};
     }
 
     iterator_type end(void) const
     {
-        return iterator_type{std::distance(std::begin(iterable_), std::end(iterable_)),
+        return iterator_type{start_ + std::distance(std::begin(iterable_), std::end(iterable_)),
                              std::end(iterable_)};
     }
 
 private:
+    const count_type<ITERABLE> start_;
     ITERABLE& iterable_;
 };
 /////////////////////////////////////////////////////////////////////////////

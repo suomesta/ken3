@@ -75,9 +75,9 @@ namespace py {
  * @return     created enumerate object. this works in range-for statement.
  */
 template <typename ITERABLE>
-enumerate_detail::enumerate_object<ITERABLE> enumerate(ITERABLE& iterable)
+enumerate_detail::enumerate_object<ITERABLE> enumerate(ITERABLE& iterable, enumerate_detail::count_type<ITERABLE> start=0)
 {
-    return enumerate_detail::enumerate_object<ITERABLE>(iterable);
+    return enumerate_detail::enumerate_object<ITERABLE>(iterable, start);
 }
 /////////////////////////////////////////////////////////////////////////////
 
