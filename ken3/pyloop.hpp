@@ -72,6 +72,7 @@ namespace py {
  * @brief      create and return enumerate object.
  * @tparam     ITERABLE: type of argument. should accept std::begin() and std::end().
  * @param[in]  iterable: appointed iterable object. shall be left const reference.
+ * @param[in]  start: start value of count. default is 0.
  * @return     created enumerate object. this works in range-for statement.
  */
 template <typename ITERABLE>
