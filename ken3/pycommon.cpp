@@ -11,6 +11,7 @@
  * @remark  the target is C++11 or more.
  */
 
+#include <string>
 #include "ken3/pycommon.hpp"
 
 namespace ken3 {

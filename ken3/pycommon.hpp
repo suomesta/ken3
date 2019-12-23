@@ -15,7 +15,6 @@
 #define INCLUDE_GUARD_KEN3_PYCOMMON_HPP
 
 #include <stdexcept>
-#include <string>
 
 namespace ken3 {
 namespace py {
