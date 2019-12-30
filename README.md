@@ -13,8 +13,9 @@ Bazel is recommended to build and test ken3.
 - cast: supports some safe cast functions.
 - counter: simple counter class which never overflows.
 - metric: easy and flexible conversion between units.
-- pyfunc: Python like functions min, max, all, any, sum, reduce, filter, and map.
-- pyloop: functions to create Python like object for range-for statement.
+- overflow: simple overflow checker of integer operations.
+- pyfunc: Python like functions (min, max, all, any, sum, reduce, filter, and map).
+- pyloop: Python like objects (enumerate, range, and zip) for range-for statement.
 - pystr: functions which imitate Python str function.
 - stopwatch: simple but useful stopwatch using C++11 <chrono>.
 - type_util: util classes and functions using C++11 <type_traits>.

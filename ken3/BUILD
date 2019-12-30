@@ -36,6 +36,12 @@ cc_library(
 )
 
 cc_library(
+    name = "overflow",
+    hdrs = ["overflow.hpp"],
+    visibility = ["//unittest:__pkg__"],
+)
+
+cc_library(
     name = "pyfunc",
     srcs = ["pycommon.cpp"],
     hdrs = ["pycommon.hpp", "pyfunc.hpp"],

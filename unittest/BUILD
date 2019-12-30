@@ -41,6 +41,13 @@ cc_test(
 )
 
 cc_test(
+    name = "overflow_test",
+    srcs = ["overflow_test.cpp", "lest.hpp"],
+    deps = ["//ken3:overflow"],
+    size = "small",
+)
+
+cc_test(
     name = "pyfunc_test",
     srcs = ["pyfunc_test.cpp", "lest.hpp"],
     deps = ["//ken3:pyfunc"],
