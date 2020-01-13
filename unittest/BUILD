@@ -34,6 +34,13 @@ cc_test(
 )
 
 cc_test(
+    name = "fraction_test",
+    srcs = ["fraction_test.cpp", "lest.hpp"],
+    deps = ["//ken3:fraction"],
+    size = "small",
+)
+
+cc_test(
     name = "metric_test",
     srcs = ["metric_test.cpp", "lest.hpp"],
     deps = ["//ken3:metric"],

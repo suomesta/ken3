@@ -68,7 +68,7 @@ const lest::test specification[] =
     CASE("tests for uint8_t")
     {
         using namespace ken3::overflow;
-        int8_t a, b;
+        uint8_t a, b;
 
         a = 64;
         b = 1;
@@ -90,7 +90,7 @@ const lest::test specification[] =
 
         a = 100;
         b = 200;
-        EXPECT(true) == occur_add(a, b));
+        EXPECT(true == occur_add(a, b));
         EXPECT(true == occur_sub(a, b));
         EXPECT(true == occur_mul(a, b));
         EXPECT(false == occur_div(a, b));
