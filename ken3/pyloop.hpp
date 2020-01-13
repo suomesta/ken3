@@ -58,7 +58,6 @@
 #ifndef INCLUDE_GUARD_KEN3_PYLOOP_HPP
 #define INCLUDE_GUARD_KEN3_PYLOOP_HPP
 
-#include <string>
 #include "ken3/pycommon.hpp"
 #include "ken3/pyloop/enumerate.hpp"
 #include "ken3/pyloop/range.hpp"

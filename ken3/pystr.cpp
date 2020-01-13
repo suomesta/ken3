@@ -11,7 +11,6 @@
 #include <string.h>
 #include <algorithm>
 #include <cctype>
-#include <map>
 #include "ken3/pystr.hpp"
 
 namespace {
@@ -26,14 +25,17 @@ namespace {
  */
 std::string conv_repr(char c)
 {
-    static const std::map<char, std::string> _esc = {
+    // special escape characters
+    static const struct {
+        char c;
+        const char* const escaped;
+    } _esc[] = {
         {'\t', "\\t"}, {'\n', "\\n"}, {'\r', "\\r"}, {'\\', "\\\\"},
     };
-
-    // special escape characters
-    auto i = _esc.find(c);
-    if (i != _esc.end()) {
-        return i->second;
+    for (const auto& i: _esc) {
+        if (c == i.c) {
+            return i.escaped;
+        }
     }
 
     // non-ascci characters. return string which starts with "\\x"
