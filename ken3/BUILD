@@ -30,6 +30,13 @@ cc_library(
 )
 
 cc_library(
+    name = "fraction",
+    srcs = ["fraction.cpp"],
+    hdrs = ["fraction.hpp", "overflow.hpp"],
+    visibility = ["//unittest:__pkg__"],
+)
+
+cc_library(
     name = "metric",
     hdrs = ["metric.hpp"],
     visibility = ["//unittest:__pkg__"],
