@@ -597,6 +597,8 @@ TEST_MAP = OrderedDict((
          'replace("abcabcabc", "bc", "dd", 0)'),
         ("'abcabcabc'.replace('bc', 'dd', -1)",
          'replace("abcabcabc", "bc", "dd", -1)'),
+        ("'abcabcabc'.replace('bc', 'dd', -2)",
+         'replace("abcabcabc", "bc", "dd", -2)'),
     )),
     ('rfind()', (
         ("'abc'.rfind('a')", 'rfind("abc", "a")'),

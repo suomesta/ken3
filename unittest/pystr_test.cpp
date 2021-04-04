@@ -735,6 +735,7 @@ const lest::test specification[] =
         EXPECT(std::string("addabcabc") == replace("abcabcabc", "bc", "dd", 1));
         EXPECT(std::string("abcabcabc") == replace("abcabcabc", "bc", "dd", 0));
         EXPECT(std::string("addaddadd") == replace("abcabcabc", "bc", "dd", -1));
+        EXPECT(std::string("addaddadd") == replace("abcabcabc", "bc", "dd", -2));
     },
 
     CASE("rfind()")
