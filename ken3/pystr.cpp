@@ -1299,6 +1299,9 @@ std::string zfill(const std::string& self, index_type width)
     if (startswith(self, "-")) {
         return std::string("-") + rjust(self.substr(1), width - 1, "0");
     }
+    else if (startswith(self, "+")) {
+        return std::string("+") + rjust(self.substr(1), width - 1, "0");
+    }
     else {
         return rjust(self, width, "0");
     }

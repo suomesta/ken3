@@ -1174,15 +1174,23 @@ const lest::test specification[] =
 
         EXPECT(std::string("00001") == zfill("1", 5));
         EXPECT(std::string("-0001") == zfill("-1", 5));
+        EXPECT(std::string("+0001") == zfill("+1", 5));
+        EXPECT(std::string("-0000") == zfill("-", 5));
+        EXPECT(std::string("+0000") == zfill("+", 5));
         EXPECT(std::string("0000a") == zfill("a", 5));
         EXPECT(std::string("-000a") == zfill("-a", 5));
+        EXPECT(std::string("+000a") == zfill("+a", 5));
         EXPECT(std::string("00100") == zfill("100", 5));
         EXPECT(std::string("-0100") == zfill("-100", 5));
+        EXPECT(std::string("+0100") == zfill("+100", 5));
         EXPECT(std::string("01000") == zfill("1000", 5));
         EXPECT(std::string("-1000") == zfill("-1000", 5));
+        EXPECT(std::string("+1000") == zfill("+1000", 5));
         EXPECT(std::string("10000") == zfill("10000", 5));
         EXPECT(std::string("-10000") == zfill("-10000", 5));
+        EXPECT(std::string("+10000") == zfill("+10000", 5));
         EXPECT(std::string("-0---") == zfill("----", 5));
+        EXPECT(std::string("+0+++") == zfill("++++", 5));
         EXPECT(std::string("123") == zfill("123", 0));
         EXPECT(std::string("123") == zfill("123", -1));
         EXPECT(std::string("123") == zfill("123", -100));
@@ -1190,6 +1198,9 @@ const lest::test specification[] =
         EXPECT(std::string("") == zfill("", 0));
         EXPECT(std::string("") == zfill("", -1));
         EXPECT(std::string("") == zfill("", -100));
+        EXPECT(std::string("00000") == zfill("00", 5));
+        EXPECT(std::string("-0-00") == zfill("--00", 5));
+        EXPECT(std::string("+0+00") == zfill("++00", 5));
     },
 
 };
