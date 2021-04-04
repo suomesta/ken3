@@ -19,6 +19,7 @@ Bazel is recommended to build and test ken3.
 - pystr: functions which imitate Python str function.
 - stopwatch: simple but useful stopwatch using C++11 <chrono>.
 - type_util: util classes and functions using C++11 <type_traits>.
+- typenames: converter from type into type name string.
 
 ## Installing
 

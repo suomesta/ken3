@@ -89,3 +89,9 @@ cc_test(
     size = "small",
 )
 
+cc_test(
+    name = "typenames_test",
+    srcs = ["typenames_test.cpp", "lest.hpp"],
+    deps = ["//ken3:typenames"],
+    size = "small",
+)
