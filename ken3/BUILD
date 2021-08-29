@@ -5,6 +5,12 @@ cc_library(
 )
 
 cc_library(
+    name = "biconv",
+    hdrs = ["biconv.hpp"],
+    visibility = ["//unittest:__pkg__"],
+)
+
+cc_library(
     name = "bits",
     srcs = ["bits.cpp"],
     hdrs = ["bits.hpp"],

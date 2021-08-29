@@ -8,8 +8,9 @@ All ken3 source code depends on only c++11 standard.
 Bazel is recommended to build and test ken3.
 
 - angle: util angle class.
-- biunique_map: useful expanded map class.
+- biconv: bidirectional converter.
 - bits: handling bit data.
+- biunique_map: useful expanded map class.
 - cast: supports some safe cast functions.
 - counter: simple counter class which never overflows.
 - metric: easy and flexible conversion between units.

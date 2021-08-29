@@ -6,6 +6,13 @@ cc_test(
 )
 
 cc_test(
+    name = "biconv_test",
+    srcs = ["biconv_test.cpp", "lest.hpp"],
+    deps = ["//ken3:biconv"],
+    size = "small",
+)
+
+cc_test(
     name = "bits_test",
     srcs = ["bits_test.cpp", "lest.hpp"],
     deps = ["//ken3:bits"],
