@@ -83,6 +83,13 @@ cc_test(
 )
 
 cc_test(
+    name = "scope_exit_test",
+    srcs = ["scope_exit_test.cpp", "lest.hpp"],
+    deps = ["//ken3:scope_exit"],
+    size = "small",
+)
+
+cc_test(
     name = "stopwatch_test",
     srcs = ["stopwatch_test.cpp", "lest.hpp"],
     deps = ["//ken3:stopwatch"],
