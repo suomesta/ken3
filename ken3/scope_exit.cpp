@@ -29,7 +29,9 @@ scope_exit::scope_exit(scope_exit::func func_in) :
  */
 scope_exit::~scope_exit()
 {
-    f_();
+    if (f_) {
+        f_();
+    }
 }
 /////////////////////////////////////////////////////////////////////////////
 
