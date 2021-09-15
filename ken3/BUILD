@@ -76,6 +76,13 @@ cc_library(
 )
 
 cc_library(
+    name = "scope_exit",
+    srcs = ["scope_exit.cpp"],
+    hdrs = ["scope_exit.hpp"],
+    visibility = ["//unittest:__pkg__"],
+)
+
+cc_library(
     name = "stopwatch",
     srcs = ["stopwatch.cpp"],
     hdrs = ["stopwatch.hpp"],
