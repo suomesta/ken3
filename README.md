@@ -18,6 +18,7 @@ Bazel is recommended to build and test ken3.
 - pyfunc: Python like functions (min, max, all, any, sum, reduce, filter, and map).
 - pyloop: Python like objects (enumerate, range, and zip) for range-for statement.
 - pystr: functions which imitate Python str function.
+- scope_exit: simple at scope exit class.
 - stopwatch: simple but useful stopwatch using C++11 <chrono>.
 - type_util: util classes and functions using C++11 <type_traits>.
 - typenames: converter from type into type name string.
